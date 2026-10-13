@@ -230,8 +230,11 @@ def _cached_tissue(d_g: float, ratio: float, fibre: float, rho: float):
 
 def _with_player(widgets, controls: dict, show, *, interval_ms: int):
     """Sliders plus a play button stepping the day slider; each step redraws the figure."""
+    from glioma_ai.notebook_display import play_control
+
     day = controls["day"]
-    player = widgets.Play(
+    player, player_box = play_control(
+        widgets,
         value=day.value,
         min=day.min,
         max=day.max,
@@ -241,7 +244,7 @@ def _with_player(widgets, controls: dict, show, *, interval_ms: int):
         layout=widgets.Layout(width="auto"),
     )
     widgets.jslink((player, "value"), (day, "value"))
-    rows = [widgets.HBox([day, player]) if c is day else c for c in controls.values()]
+    rows = [widgets.HBox([day, player_box]) if c is day else c for c in controls.values()]
     output = widgets.interactive_output(show, controls)
     return widgets.VBox([widgets.VBox(rows), output])
 

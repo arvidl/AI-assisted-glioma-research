@@ -25,6 +25,26 @@ def show_figure(figure, dpi: int = 110) -> None:
     display(Image(data=figure_png(figure, dpi)))
 
 
+PLAY_SYMBOLS = {"play": r"\25B6", "pause": r"\275A\275A", "stop": r"\25A0", "retweet": r"\21BB"}
+PLAY_STYLE = "<style>{}</style>".format(
+    "".join(
+        f".widget-play i.fa-{icon}::before{{content:'{symbol}';font-family:sans-serif;"
+        "font-style:normal;font-weight:normal}"
+        for icon, symbol in PLAY_SYMBOLS.items()
+    )
+)
+
+
+def play_control(widgets, **settings):
+    """An ipywidgets Play whose buttons show text symbols.
+
+    Play draws its buttons with Font Awesome icons, which Colab does not load, so
+    the buttons appear blank there. The style draws Unicode symbols instead.
+    """
+    player = widgets.Play(**settings)
+    return player, widgets.HBox([widgets.HTML(PLAY_STYLE), player])
+
+
 def figure_widget(render, controls: dict, dpi: int = 110):
     """A widget that redraws ``render(**values)`` in place whenever a control changes.
 

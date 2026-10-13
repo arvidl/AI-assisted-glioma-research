@@ -746,4 +746,13 @@ The investigator reported, from a hosted Colab run of notebook 01, the warning "
 - Companion repositories: the licence line of `data/README.md` in `arvidl/high-precision-glioma-segmentation` and its development twin now states CC BY 4.0 with the TCIA Data Usage Policy and both citations. The development twin's commit is left to the investigator because its pre-commit hook needs `pre-commit`, which its environment lacks.
 - The second Colab screenshot ("Expected geometry refusal: Reference and segmentation must have the same shape and affine.") is the intended demonstration output; the underlined `glioma_ai` imports come from Colab's editor, which does not see the `sys.path` entry added at run time.
 - Public history. At the investigator's request, so that the old UCSF-PDGM wording does not remain in the public history, the public `main` was rebuilt as the initial README commit followed by one commit with this tree, replacing `81101d8` and `8f79178`, and force-pushed; the tag `ucsf-pdgm-cohort50-v1` was moved to the new commit. GitHub can keep unreferenced commits reachable by hash for some time, and copies made while they were public cannot be recalled.
+- After the push: GitHub Actions run 38357879031 on the new public commit succeeded; the three releases resolve, and the figure asset URL returned HTTP 200. The public companion commit `7b609ac` was pushed; its CI failed with 7 ruff errors in existing test files, as on every push since 4 October 2026 (not caused by the README line).
+- Hosted Colab (same day): the investigator reported that notebook 01 now works in Colab. The assistant did not observe that run.
+
+## 13 October 2026: play buttons of the time sliders in Colab
+
+The investigator reported that notebook 02 works in Colab, but that the play control beside "Observation day" in both growth explorers shows blank buttons. ipywidgets draws the buttons of `Play` with Font Awesome icons, which Colab does not load. `glioma_ai.notebook_display.play_control` adds a style that draws the play, pause, stop and repeat buttons with Unicode symbols (written as CSS escapes); the growth explorers (notebooks 02 and 11) and the LUMIERE explorer (notebook 03) use it, and the explorer test checks the style.
+
+- A mock of the `Play` button markup without Font Awesome, in the Cursor browser: the unstyled buttons were blank and the styled ones showed the four symbols.
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; re-export changed only the widget state of the executed copies of 02, 03 and 11; `make check` passed (215 tests).
 - Not done: hosted Colab after the change.

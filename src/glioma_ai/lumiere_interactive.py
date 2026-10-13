@@ -268,7 +268,7 @@ def what_if_explorer(case: SliceCase, prepared_root: Path | None = None):
     import ipywidgets as widgets
     from IPython.display import display
 
-    from glioma_ai.notebook_display import figure_widget
+    from glioma_ai.notebook_display import figure_widget, play_control
 
     style = {"description_width": "16em"}
     layout = widgets.Layout(width="40em")
@@ -374,8 +374,14 @@ def what_if_explorer(case: SliceCase, prepared_root: Path | None = None):
 
         button.on_click(apply)
         buttons.append(button)
-    player = widgets.Play(
-        value=OBSERVED_DAY, min=0, max=HORIZON_DAYS, step=4, interval=700, description="Play"
+    player, player_box = play_control(
+        widgets,
+        value=OBSERVED_DAY,
+        min=0,
+        max=HORIZON_DAYS,
+        step=4,
+        interval=700,
+        description="Play",
     )
     widgets.jslink((player, "value"), (controls["day"], "value"))
     note = widgets.HTML(
@@ -411,7 +417,7 @@ def what_if_explorer(case: SliceCase, prepared_root: Path | None = None):
     groups = widgets.Tab(
         children=[
             widgets.VBox([controls["plane_offset"], controls["boundary_shift_mm"]]),
-            widgets.VBox([widgets.HBox([controls["day"], player])]),
+            widgets.VBox([widgets.HBox([controls["day"], player_box])]),
             widgets.VBox([controls["use_brain_domain"], controls["abnormal_factor"], note]),
             widgets.VBox(
                 [

@@ -123,9 +123,10 @@ def test_explorer_day_slider_gets_a_linked_play_button():
     }
     box = _with_player(widgets, controls, lambda d, day: None, interval_ms=500)
     row = box.children[0].children[1]
-    player = row.children[1]
+    style, player = row.children[1].children
     assert isinstance(player, widgets.Play)
     assert (player.min, player.max, player.step, player.value) == (0, 40, 2, 10)
+    assert all(f"i.fa-{icon}::before" in style.value for icon in ("play", "pause", "stop"))
 
 
 def test_drawing_helpers_render_without_widgets(phantom, short_runs):
