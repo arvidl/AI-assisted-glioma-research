@@ -755,4 +755,56 @@ The investigator reported that notebook 02 works in Colab, but that the play con
 
 - A mock of the `Play` button markup without Font Awesome, in the Cursor browser: the unstyled buttons were blank and the styled ones showed the four symbols.
 - On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; re-export changed only the widget state of the executed copies of 02, 03 and 11; `make check` passed (215 tests).
-- Not done: hosted Colab after the change.
+- Hosted Colab (same day): the investigator reported that notebook 02 now works in Colab. The assistant did not observe that run. Later the same day the investigator reported that notebook 03 works in Colab (also not observed by the assistant). Notebook 11 is not yet published.
+
+## 13 October 2026: notebook 04 restructured with clinical and modeling tracks
+
+After the investigator's review of notebook 04, its text was restructured (record: `docs/ai-use/2026-10-13-notebook-04-tracks.md`). Numerical statements in the new text were taken from runs of `run_checks`: plateau 0.67 mM and time constant 1.1 s; the omitted-clearance plateau 0.75 mM; the Figure 1 deviations (forward Euler 3.9e-3 mM; omitted clearance 8.3e-2 and 3.1 mM; start-of-step accounting 1.1e-2 mM); with λo = 0 the omitted-clearance bug passes the analytic and balance checks and fails swap invariance (5.5 mM); with λa = λo = 0.45/s it passes swap invariance and fails the analytic check; at a tolerance of 1e-2 mM forward Euler passes at Δt = 0.05 s, the accounting bug passes at Δt = 0.01 s (2.1e-3 mM), and both fail at Δt = 0.2 s. The validator rules in section 7 were listed from `glioma_ai.assistance.validate_record`.
+
+- The former exploration task 1 overstated the λo = 0 case (see above); corrected, and the test now asserts the full verdict.
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; the executed copy of 04 was re-exported; `make check` passed (215 tests).
+- Not done: hosted Colab (04 is not yet public); the investigator's reading of the new text.
+
+## 13 October 2026: notebook 05 with two tracks, glossary and references
+
+After the investigator's review questions on notebook 05, its text was restructured (record: `docs/ai-use/2026-10-13-notebook-05-tracks.md`).
+
+- References: the 14 DOIs in the notebook were checked against Crossref (first author, year, journal, title) and all resolve (doi.org handle API, HTTP 200). Each statement attributed to a study was compared with its PubMed abstract (PMIDs 34087162, 38640932, 28697342, 35700707, 38653236, 31327527, 24925914, 26713745, 19505944, 21854987, 20129251, 34185076, 28292436).
+- Numbers in the new text were taken from runs: overall MES-like fraction 0.279 at day 10 with the cue and 0.082 without; long-run limit 0.489; peak local fraction 0.542 at day 10 and 0.798 at day 60; cue centre at 20 mm gives 0.145 at day 10 (limit 0.196); a 2 mm cue gives 0.101 (limit 0.056); no-cue half-life 34.7 days; Figure 2 at day 5: 0.375 (reference) and 0.542 (rates doubled).
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; the executed copy of 05 was re-exported; `make check` passed (215 tests).
+- Not done: hosted Colab (05 is not yet public); the investigator's reading of the new text.
+- Title change (investigator's choice): on a fresh staged tree (same platform), `make notebooks` executed 01–12, the executed copy of 05 was re-exported and `make check` passed (215 tests) with the staged executed copies.
+- MES-like and T2/FLAIR spelled out in the introduction: same procedure on a fresh staged tree; `make check` passed (215 tests).
+- The investigator reported being happy with notebook 05 after reading it (13 October 2026). Hosted Colab remains not done.
+
+## 13 October 2026: notebook 06 with two tracks, glossary, references and a proposed title
+
+At the investigator's request, notebook 06 received the treatment of notebooks 04 and 05 (record: `docs/ai-use/2026-10-13-notebook-06-tracks.md`).
+
+- References: the 15 reference DOIs were checked against Crossref (first author, year, journal, title) and all resolve (doi.org handle API, HTTP 200). Statements attributed to studies were compared with their PubMed abstracts (PMIDs 25913192, 28959975, 31534222, 31534219, 26536111, 21909104, 31996845, 32250339, 37138086, 41298888, 32302564, 37059069, 14607296; Louis 2021 and Raue 2009 as for notebook 05).
+- Numbers in the new text were taken from runs of the package functions and match the executed notebook: well-mixed half-carrying-capacity days 73.7, 50.8 and 48.1; Table 1 values; largest nullcline distance 0.016 (0.099 with τ = 20 days, half capacity on day 45.0); nullcline at full density 0.527 (0.794 with τ = 20 days); κ = 0 signal 0.519 at day 150 with unchanged density; b = 0 feedback half capacity on day 65.9 with signal 0.322; spatial integrals 35.2 → 67.3, 93.0, 95.8 mm² (ratios 1.424 and 1.031), step halving 0.11%; peak signal increase 0.125 at (−7, 0) mm; extra feedback density centred at x = −2.6 mm, peak density 0.54 against 0.40; sensitivity grid 1.178/1.382, 1.187/1.404, 1.196/1.424; spatial explorer tasks (drive at −5 and +15 mm, zero amplitude, κ = 0, days 10 and 40) as stated.
+- Figures 1 and 2 were inspected against the reading guides.
+- Code cells are byte-identical to the previous commit.
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; the executed copy of 06 was re-exported; `make check` passed (215 tests) with the staged executed copies.
+- Not done: hosted Colab (06 is not yet public); the investigator's reading of the new text. The investigator chose the proposed title.
+- Fifteen further references (recent 2024–2026 studies and papers co-authored by Bjerkvig, Jian Wang and/or Miletic) were checked against Crossref (all resolve, HTTP 200) and their PubMed abstracts and author lists (PMIDs 39644898, 39821165, 40897174, 38246990, 39972132, 42754728, 42705231, 39532103, 39837324, 41747254, 34543427, 37169842, 41729947, 41284925, 40208515); Jian Wang's Bergen affiliation was confirmed in PMIDs 34543427 and 41284925. Code cells unchanged; on a fresh staged tree `make notebooks` executed 01–12, the executed copy of 06 was re-exported and `make check` passed (215 tests).
+- The investigator accepted notebook 06 for now after reading it (13 October 2026). Hosted Colab remains not done.
+
+## 13 October 2026: notebook 07 with two tracks, glossary, recent and Bergen references, and a proposed title
+
+At the investigator's request, notebook 07 received the treatment of notebooks 04–06, with attention to recent papers and to work co-authored by Bjerkvig, Jian Wang and/or Miletic (record: `docs/ai-use/2026-10-13-notebook-07-tracks.md`).
+
+- References: the 30 references and the linked 2022 correction notice of Chen et al. 2016 (31 DOIs) were checked against Crossref (first author, year, journal, title) and all resolve (doi.org handle API, HTTP 200). Statements attributed to studies were compared with their PubMed abstracts (PMIDs 36787748, 37697045, 40562937, 40399681, 42791388, 42744791, 42768016, 39514365, 38342629, 31509308, 31769546, 28173797, 27613828, 15561419, 17942730, 24482245, 832122, 33589835, 14999814, 24367247, 32348299, 10899222, 24081156, 31186414; Venkatesh 2019, Watson 2023, Storevik 2026, Zhou 2026 and Raue 2009 as for notebook 06), and co-author names written out in full with the Crossref author lists. Three recalled DOIs were wrong and were replaced via a Crossref bibliographic search.
+- Numbers in the new text were taken from runs of the package functions and match the executed notebook: Table 1 (λ 0.9/0.3/0.1 per s; 1/λ 1.11/3.33/10 s; half-life 0.77/2.31/6.93 s; plateau 0.67/2.00/6.00 mM; first-pulse peak 0.648/1.398/1.978 mM, closed form and package agree); Figure 1 second-pulse peaks 0.649/1.524/2.867 mM, maximum E_K shift 5.23/10.98/17.93 mV; Table 2 (baseline E_K −102.7 mV; shifts +4.1/+7.7/+18.5/+29.4 mV); conservation residual zero to floating-point precision; identifiability example 4.741 versus 1.185 mM-equivalent astrocytic removal. Explorer task values (4.8 mM without clearance; plateaus 0.667 and 1.995 mM for a 20 s pulse; plateau 0.67 mM, time constant 2.2 s and peaks 0.56 and 0.57 mM with release and clearance halved) and exercise answers were computed with the package; the explorer colours named in the text were checked against `neuroglial_interactive`.
+- Figure 1 was inspected against its reading guide. Code cells are byte-identical to the previous commit.
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; the executed copy of 07 was re-exported; `make check` passed (215 tests) with the staged executed copies.
+- Not done: hosted Colab (07 is not yet public); the investigator's reading of the new text; moving the explorer sliders in a live front end. The investigator chose the proposed title.
+- Expansion of sections 4, 6, 7, 8 and the exercises (record as above). New numbers were computed with the package and checked numerically: leftover excess at 10 s 3%, 30% and 67% of the first peak; second/first peak 1.00, 1.09 and 1.45; time below 0.1 mM after the second pulse 2.1, 9.1 and 33.6 s; time-integrated excess 5.33, 15.75 and 37.45 mM·s; astrocytic removal by 24 s 4.27, 3.15 and 0 mM (other 0.53, 1.57, 3.75 mM); E_K at the highest point −97.5, −91.7 and −84.8 mV (8.1, 7.2 and 6.3 mV per mM); RT/F 26.73 mV, 18.5 mV per doubling, 61.5 mV per decade; ∫k dt 5.93 mM·s in the identifiability runs; peaks 0.97 and 2.10 mM with 50% more release; periodic-train peaks 0.649, 1.537 and 3.592 mM (formula and 30-pulse simulation agree); saturating-uptake plateau 0.928 mM (quadratic and time stepping agree). The Curry et al. 2023 abstract was re-read for the seizure-screen wording. Explorer slider ranges were checked against `neuroglial_interactive`. Code cells unchanged; on a fresh staged tree `make notebooks` executed 01–12, the executed copy of 07 was re-exported and `make check` passed (215 tests).
+
+## 13 October 2026: notebooks 04–07 prepared for publication (stage 2)
+
+The investigator reported finding notebooks 04–07 all ok for now and asked to commit and push them for Colab testing (record: `docs/ai-use/2026-10-13-publish-notebooks-04-07.md`). Each gained a Colab badge, a Colab note and a Colab-only setup cell before its first code cell; `scripts/public_snapshot.py` publishes 00–07, and the public README and notebook map list 04–07.
+
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12; the executed copies of 04–07 were re-exported; `make check` passed (215 tests), including the badge test, which now covers 04–07.
+- The map entries were checked against the notebooks' headings; notebook 04 has no glossary and no longer contains the AI-benefit pilot, and its entry says so.
+- Not done: hosted Colab of 04–07 (the investigator's).

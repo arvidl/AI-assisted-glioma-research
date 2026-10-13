@@ -40,7 +40,7 @@ def test_each_check_catches_a_different_flaw():
 
 def test_bug_is_invisible_when_parameters_do_not_exercise_it():
     found = verdicts(run_checks(other_per_s=0.0))
-    assert found["Bug: omits other clearance"][0]
+    assert found["Bug: omits other clearance"] == (True, True, False)
     found = verdicts(run_checks(astro_per_s=0.4, other_per_s=0.4))
     assert found["Bug: omits other clearance"][2]
 

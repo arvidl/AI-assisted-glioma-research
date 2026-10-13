@@ -33,8 +33,8 @@ each part after the investigator's review.
 | Part | Status |
 | --- | --- |
 | Python package `glioma_ai`, tests, notebook checker | Published (all modules) |
-| Notebooks 00–03 and executed copies of 01–03 | Published |
-| Notebooks 04–12 (AI-assistance record, microenvironment, neuron–glioma feedback, astrocytes and potassium, LFP and fields, published imaging bridge, CANTAB cognition, network disconnection, patient connectome) | In review; added one by one |
+| Notebooks 00–07 and executed copies of 01–07 | Published |
+| Notebooks 08–12 (LFP and fields, published imaging bridge, CANTAB cognition, network disconnection, patient connectome) | In review; added one by one |
 | Paper and slides | In preparation |
 | Data release `lumiere-p048-prepared-v1` | Published (see below) |
 
@@ -46,9 +46,13 @@ each part after the investigator's review.
 | 01 | Measuring tumour compartments: overlap is not volume; NIfTI geometry checks | [executed](notebooks/executed/01_imaging_measurements.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/01_imaging_measurements.ipynb) |
 | 02 | Tumour growth as reaction–diffusion: units, verification, thresholds and tissue-guided spread on a synthetic phantom; interactive explorers | [executed](notebooks/executed/02_tumor_dynamics.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/02_tumor_dynamics.ipynb) |
 | 03 | LUMIERE Patient-048: released metadata, six visits of automated labels on a fixed plane, a baseline model and its failure, a biologically informed revision, a labelled fit, a what-if explorer and a 3D model with a tissue map | [executed](notebooks/executed/03_lumiere_prepared_slice.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/03_lumiere_prepared_slice.ipynb) |
+| 04 | Can we trust AI-assisted research code? Records, checks and their limits: an actual assistance record, independent checks of the potassium model, constructed bugs and what each check catches | [executed](notebooks/executed/04_ai_assistance_record.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/04_ai_assistance_record.ipynb) |
+| 05 | Can a glioblastoma change without growing? A synthetic two-state model of cell states under a macrophage cue, and why volume cannot see composition; interactive explorers | [executed](notebooks/executed/05_tumor_microenvironment.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/05_tumor_microenvironment.ipynb) |
+| 06 | Does a glioma feed its own growth? A synthetic neuron–glioma feedback loop, nested controls and what a growth curve cannot tell; interactive explorers | [executed](notebooks/executed/06_neuron_glioma_feedback.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/06_neuron_glioma_feedback.ipynb) |
+| 07 | When potassium clearance slows: a synthetic astrocyte potassium budget, the Nernst relation and what one trace cannot tell; interactive explorer | [executed](notebooks/executed/07_astrocytes_and_potassium.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/07_astrocytes_and_potassium.ipynb) |
 
 The executed copies show figures on GitHub; animations and sliders need a
-running kernel. In Colab, notebooks 01–03 clone this repository in their first
+running kernel. In Colab, notebooks 01–07 clone this repository in their first
 cell, and notebook 03 fetches the data release below when you run its Colab
 cell. See the [notebook map](notebooks/README.md).
 

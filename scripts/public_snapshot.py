@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03")
+PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07")
 HELD_BACK = (
     "public/*",
     "paper/*",
