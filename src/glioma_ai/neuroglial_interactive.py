@@ -306,6 +306,139 @@ def draw_error_curve(axis, curve: dict, noise_uV: float) -> None:
     axis.legend(fontsize=8)
 
 
+def tumour_border_fields(
+    amplitude_brain_uV: float = 100.0,
+    amplitude_tumour_uV: float = 20.0,
+    wavelength_mm: float = 2.5,
+    border_width_mm: float = 0.5,
+    field_brain_V_per_m: float = 0.05,
+    conductivity_ratio: float = 2.0,
+    coarse_spacings_mm: tuple[float, ...] = (0.5, 2.5),
+    span_mm: tuple[float, float] = (-5.0, 5.0),
+    n_points: int = 1001,
+) -> dict:
+    """Two prescribed one-dimensional pictures of a tumour border at x = 0 mm.
+
+    Brain is at x < 0 and tumour at x > 0. Activity: a sinusoidal potential
+    whose amplitude falls from amplitude_brain_uV to amplitude_tumour_uV over a
+    tanh border of width border_width_mm. Conductivity: a steady current density
+    normal to the border, so E = J/sigma is piecewise constant and the tumour
+    field is field_brain_V_per_m / conductivity_ratio (sigma_tumour/sigma_brain).
+    Neither is fitted to tissue; no 3D geometry, oedema shell or source model.
+    """
+    values = (amplitude_brain_uV, amplitude_tumour_uV, wavelength_mm, border_width_mm)
+    if min(values) < 0 or wavelength_mm <= 0 or border_width_mm <= 0:
+        raise ValueError("Amplitudes must be nonnegative; wavelength and width positive.")
+    if conductivity_ratio <= 0 or any(d <= 0 for d in coarse_spacings_mm):
+        raise ValueError("Conductivity ratio and spacings must be positive.")
+    x = np.linspace(*span_mm, int(n_points))
+    k = 2 * np.pi / wavelength_mm
+    drop = amplitude_brain_uV - amplitude_tumour_uV
+    u = x / border_width_mm
+    amplitude = amplitude_brain_uV - drop * 0.5 * (1 + np.tanh(u))
+    slope = -drop / (2 * border_width_mm) / np.cosh(u) ** 2
+    activity_potential = amplitude * np.sin(k * x)
+    border_term = -slope * np.sin(k * x) * 1e-3
+    activity_field = border_term - amplitude * k * np.cos(k * x) * 1e-3
+
+    field_tumour = field_brain_V_per_m / conductivity_ratio
+    step_field = np.where(x < 0, field_brain_V_per_m, field_tumour)
+    step_potential = -np.where(x < 0, field_brain_V_per_m * x, field_tumour * x) * 1e3
+
+    coarse = {}
+    for spacing in coarse_spacings_mm:
+        count = int(round((span_mm[1] - span_mm[0]) / spacing)) + 1
+        positions = np.linspace(*span_mm, count)
+        potential = (
+            -np.where(positions < 0, field_brain_V_per_m * positions, field_tumour * positions)
+            * 1e3
+        )
+        coarse[float(spacing)] = {
+            "positions_mm": positions,
+            "estimated_field_V_per_m": field_from_potential(potential, positions),
+        }
+    return {
+        "positions_mm": x,
+        "activity_amplitude_uV": amplitude,
+        "activity_potential_uV": activity_potential,
+        "activity_field_V_per_m": activity_field,
+        "activity_border_term_V_per_m": border_term,
+        "activity_numerical_field_V_per_m": field_from_potential(activity_potential, x),
+        "step_potential_uV": step_potential,
+        "step_field_V_per_m": step_field,
+        "step_numerical_field_V_per_m": field_from_potential(step_potential, x),
+        "coarse": coarse,
+        "parameters": {
+            "amplitude_brain_uV": float(amplitude_brain_uV),
+            "amplitude_tumour_uV": float(amplitude_tumour_uV),
+            "wavelength_mm": float(wavelength_mm),
+            "border_width_mm": float(border_width_mm),
+            "field_brain_V_per_m": float(field_brain_V_per_m),
+            "field_tumour_V_per_m": float(field_tumour),
+            "conductivity_ratio": float(conductivity_ratio),
+        },
+    }
+
+
+def draw_tumour_border(figure, run: dict) -> None:
+    """Activity and conductivity pictures of a border at 0 mm; tumour side shaded."""
+    axes = figure.subplots(2, 2, sharex=True)
+    x = run["positions_mm"]
+    p = run["parameters"]
+    axes[0, 0].plot(x, run["activity_potential_uV"], color="#31858f", lw=1.5, label="Potential")
+    axes[0, 0].plot(
+        x, run["activity_amplitude_uV"], color="#888888", ls="--", lw=1, label="Activity amplitude"
+    )
+    axes[0, 0].set(ylabel="Potential (µV)")
+    axes[0, 0].set_title(
+        f"Activity {p['amplitude_brain_uV']:g} → {p['amplitude_tumour_uV']:g} µV across the border",
+        loc="left",
+        fontsize=10,
+    )
+    axes[0, 1].plot(x, run["activity_field_V_per_m"], color="#cf704b", lw=1.5, label="Field E_x")
+    axes[0, 1].plot(
+        x,
+        run["activity_border_term_V_per_m"],
+        color="black",
+        lw=1,
+        ls=":",
+        label="Border term −A′(x) sin(kx)",
+    )
+    axes[0, 1].set(ylabel="Field component E_x (V/m)")
+    axes[0, 1].set_title("Field follows the local activity", loc="left", fontsize=10)
+    axes[1, 0].plot(x, run["step_potential_uV"], color="#31858f", lw=1.5)
+    axes[1, 0].set(ylabel="Potential (µV)", xlabel="Position across the border (mm)")
+    axes[1, 0].set_title(
+        f"Steady current, σ_tumour/σ_brain = {p['conductivity_ratio']:g}", loc="left", fontsize=10
+    )
+    axes[1, 1].plot(x, run["step_field_V_per_m"], color="#cf704b", lw=1.5, label="Exact J/σ")
+    styles = (("o", "#31858f"), ("s", "#555555"))
+    for (spacing, est), (marker, colour) in zip(run["coarse"].items(), styles, strict=False):
+        axes[1, 1].plot(
+            est["positions_mm"],
+            est["estimated_field_V_per_m"],
+            marker + "-",
+            color=colour,
+            ms=4,
+            lw=0.8,
+            label=f"Electrodes every {spacing:g} mm",
+        )
+    axes[1, 1].set(ylabel="Field component E_x (V/m)", xlabel="Position across the border (mm)")
+    axes[1, 1].set_ylim(bottom=0)
+    axes[1, 1].set_title("The field jumps; coarse sampling smears it", loc="left", fontsize=10)
+    for axis in axes.flat:
+        axis.axvspan(0, x[-1], color="#f2e6dc", zorder=0)
+        axis.axvline(0, color="#999999", lw=0.8)
+        axis.axhline(0, color="#dddddd", lw=0.6)
+    axes[0, 0].text(-4.9, -0.9 * p["amplitude_brain_uV"], "brain", fontsize=9, color="#555555")
+    axes[0, 0].text(
+        0.2, -0.9 * p["amplitude_brain_uV"], "tumour (shaded)", fontsize=9, color="#555555"
+    )
+    for axis in (axes[0, 0], axes[0, 1]):
+        axis.legend(fontsize=8, loc="upper right")
+    axes[1, 1].legend(fontsize=8, loc="lower left")
+
+
 def field_explorer():
     """Sliders for amplitude, wavelength, sample count, offset and noise."""
     import ipywidgets as widgets

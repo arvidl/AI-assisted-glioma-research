@@ -19,8 +19,10 @@ from glioma_ai.neuroglial_interactive import (
     draw_clearance_state,
     draw_error_curve,
     draw_sampling_state,
+    draw_tumour_border,
     pulse_release,
     sampled_field,
+    tumour_border_fields,
 )
 
 
@@ -75,6 +77,32 @@ def test_error_curve_terms_bracket_the_measured_error():
     np.testing.assert_allclose(noisy["empirical_rms_V_per_m"], noisy["noise_rms_V_per_m"], rtol=0.1)
 
 
+def test_tumour_border_fields_match_their_analytic_forms():
+    run = tumour_border_fields()
+    x = run["positions_mm"]
+    np.testing.assert_allclose(
+        run["activity_numerical_field_V_per_m"], run["activity_field_V_per_m"], atol=1e-4
+    )
+    assert run["activity_amplitude_uV"][0] == pytest.approx(100, abs=1e-6)
+    assert run["activity_amplitude_uV"][-1] == pytest.approx(20, abs=1e-6)
+    assert np.abs(run["activity_field_V_per_m"][x < -2]).max() == pytest.approx(
+        100e-6 * 2 * np.pi / 2.5e-3, rel=1e-3
+    )
+    away = np.abs(x) > 0.02
+    np.testing.assert_allclose(
+        run["step_numerical_field_V_per_m"][away], run["step_field_V_per_m"][away], atol=1e-12
+    )
+    assert run["parameters"]["field_tumour_V_per_m"] == pytest.approx(0.025)
+    assert run["step_potential_uV"][x == 0] == pytest.approx(0)
+    for estimate in run["coarse"].values():
+        at_border = estimate["estimated_field_V_per_m"][estimate["positions_mm"] == 0]
+        assert at_border == pytest.approx(0.0375)
+    with pytest.raises(ValueError):
+        tumour_border_fields(conductivity_ratio=0)
+    with pytest.raises(ValueError):
+        tumour_border_fields(border_width_mm=0)
+
+
 def test_explorer_figures_render():
     figure = plt.figure()
     draw_clearance_state(figure, clearance_scenario(0.2, 0.0))
@@ -82,6 +110,8 @@ def test_explorer_figures_render():
     draw_sampling_state(figure, sampled_field(noise_uV=5))
     figure, axis = plt.subplots()
     draw_error_curve(axis, derivative_error_curve(100, 2.5, 5, np.array([11, 41]), repeats=2), 5)
+    figure = plt.figure()
+    draw_tumour_border(figure, tumour_border_fields(coarse_spacings_mm=(1.0,)))
     plt.close("all")
 
 

@@ -33,8 +33,8 @@ each part after the investigator's review.
 | Part | Status |
 | --- | --- |
 | Python package `glioma_ai`, tests, notebook checker | Published (all modules) |
-| Notebooks 00–07 and executed copies of 01–07 | Published |
-| Notebooks 08–12 (LFP and fields, published imaging bridge, CANTAB cognition, network disconnection, patient connectome) | In review; added one by one |
+| Notebooks 00–08 and executed copies of 01–08 | Published |
+| Notebooks 09–12 (published imaging bridge, CANTAB cognition, network disconnection, patient connectome) | In review; added one by one |
 | Paper and slides | In preparation |
 | Data release `lumiere-p048-prepared-v1` | Published (see below) |
 
@@ -50,9 +50,10 @@ each part after the investigator's review.
 | 05 | Can a glioblastoma change without growing? A synthetic two-state model of cell states under a macrophage cue, and why volume cannot see composition; interactive explorers | [executed](notebooks/executed/05_tumor_microenvironment.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/05_tumor_microenvironment.ipynb) |
 | 06 | Does a glioma feed its own growth? A synthetic neuron–glioma feedback loop, nested controls and what a growth curve cannot tell; interactive explorers | [executed](notebooks/executed/06_neuron_glioma_feedback.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/06_neuron_glioma_feedback.ipynb) |
 | 07 | When potassium clearance slows: a synthetic astrocyte potassium budget, the Nernst relation and what one trace cannot tell; interactive explorer | [executed](notebooks/executed/07_astrocytes_and_potassium.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/07_astrocytes_and_potassium.ipynb) |
+| 08 | Potential is not field: what an electrode records, what a cell feels and how far that is from cognition; field estimation from sampled potentials, a synthetic tumour–brain border, evidence and testable hypotheses; interactive explorer | [executed](notebooks/executed/08_lfp_fields_and_cognition.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/08_lfp_fields_and_cognition.ipynb) |
 
 The executed copies show figures on GitHub; animations and sliders need a
-running kernel. In Colab, notebooks 01–07 clone this repository in their first
+running kernel. In Colab, notebooks 01–08 clone this repository in their first
 cell, and notebook 03 fetches the data release below when you run its Colab
 cell. See the [notebook map](notebooks/README.md).
 
