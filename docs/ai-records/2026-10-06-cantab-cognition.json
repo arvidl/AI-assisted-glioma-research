@@ -1,0 +1,27 @@
+{
+  "schema": "glioma-ai-assistance-v1",
+  "date": "2026-10-06",
+  "task": "Build a source-verified CANTAB example, integrate cognition and design an AI prediction study",
+  "tool": "Codex desktop",
+  "model": "unknown",
+  "input_classification": "Investigator instructions, repository source, public behavioral release and metadata, explicit local case audit and primary publications; no raw MRI or behavioral trial data acquired",
+  "instruction_summary": "Verify the prepared scores against OSF; add the empirical slide before the hypothesis horizon and a corresponding notebook/paper example; design cognitive prediction with explicit AI roles and segmentation input limits",
+  "contribution": "Pinned acquisition and source verification, strict reader and local precision audit, availability counts, four-domain figure and TeX values, notebook 13, paper section, empirical talk slide, revised study proposal and header-only schemas",
+  "artifact_reference": "docs/ai-use/2026-10-06-cantab-cognition.md; docs/cantab-example.md; docs/cognition-prediction-study.md; notebooks/13_cantab_cognitive_outcomes.ipynb; src/glioma_ai/cantab.py; src/glioma_ai/cantab_examples.py; paper/main.tex; talk/slides.tex",
+  "checks": [
+    "OSF revisions and SHA-256 pins, source group codes, missingness, date parsing and native score units checked",
+    "Local shared measures checked at both visits; figure uses released values and preserves released precision",
+    "Synthetic controls reject malformed values, ambiguous pairing and changed source hashes",
+    "Actual notebook execution, Python checks, PDF builds, timing consistency and visual QA recorded in docs/validation.md"
+  ],
+  "decision": "pending_human_review",
+  "reviewer": null,
+  "unresolved_questions": [
+    "Investigator and neuropsychological review of interpretation, candidate endpoint, follow-up window and feature budget",
+    "MRI-behavior participant overlap and imaging QC, larger-cohort feasibility and prospective sample-size justification",
+    "No fitted predictor, reliable-change assessment, causal surgical effect or measured patient benefit",
+    "No electrophysiological, astrocytic or microtubule measurements to discriminate the mechanism hypotheses",
+    "Timed rehearsal and hosted Colab execution"
+  ],
+  "record_type": "retrospective_summary"
+}

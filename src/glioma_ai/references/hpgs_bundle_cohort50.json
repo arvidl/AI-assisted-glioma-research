@@ -1,0 +1,12 @@
+{
+  "schema": "hpgs-bundle-pin-v1",
+  "repository": "arvidl/AI-assisted-glioma-research",
+  "tag": "ucsf-pdgm-cohort50-v1",
+  "asset": "ucsf_pdgm_cohort50_v1.zip",
+  "size": 9047431,
+  "sha256": "e386f2127e08042421a756b336964ece5d222e7c2c96e9476069d6eb295039bf",
+  "files": 201,
+  "subjects": 50,
+  "figure_case": "0494",
+  "use_condition": "CC BY 4.0 with attribution to UCSF-PDGM (Calabrese et al. 2022, doi:10.7937/tcia.bdgf-8v37) and Lundervold et al. 2026; TCIA Data Usage Policy applies"
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "lumiere-bundle-pin-v1",
+  "repository": "arvidl/AI-assisted-glioma-research",
+  "tag": "lumiere-p048-prepared-v1",
+  "asset": "lumiere_p048_prepared_v1.zip",
+  "size": 25933130,
+  "sha256": "61d0a6b4de51083575473fe3ae3460093668c99fccc67c23458e587acf59faa8",
+  "files": 27,
+  "use_condition": "LUMIERE authors' non-commercial condition; research, teaching and learning; not covered by the MIT licence"
+}

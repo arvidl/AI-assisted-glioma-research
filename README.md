@@ -1,23 +1,132 @@
 # AI-assisted glioma research
 
-Provisional home of the public release of a perspective with reproducible
-examples, an educational codebase and a conference talk on AI-assisted glioma
-research. The code, notebooks, paper and slides will be published here after
-review; until then this repository holds only this README, the licence and a
-data release.
+**Talk:** AI-Assisted Glioma Research: Imaging, Tumor–Brain Interactions, and Cognition
 
-## Data release `lumiere-p048-prepared-v1`
+**Paper (in preparation):** AI-assisted glioma research: a perspective with reproducible examples in imaging and clinical evidence.
 
-Prepared inputs of one patient (Patient-048) of the LUMIERE dataset, used by
-notebook 03: registered contrast-enhanced T1 images, automated tumour labels
-(MONAI BraTS bundle 0.4.8) and a week-045 FreeSurfer 8.2 tissue parcellation on
-one 1 mm grid. Source: Suter Y et al., Scientific Data 9, 768 (2022),
-https://doi.org/10.1038/s41597-022-01881-7. The LUMIERE authors state that the
-dataset may only be used for non-commercial purposes; the derived files are
-shared for research, teaching and learning under that condition and are not
-covered by the MIT licence of the code.
+Educational notebooks and a tested Python package accompanying a perspective
+paper and a 20-minute talk at the 2026 China-Europe Neurosurgery Academic
+Symposium. Arvid Lundervold, Department of Biomedicine, University of Bergen,
+Norway.
 
-## Licence
+The scientific thread is the **glioma–brain interface**: how to measure a
+tumour on MRI, how a growth model's assumptions shape what it predicts, and how
+to compare such a model with one real patient's serial scans without
+over-reading the result. Our published
+[segmentation and anatomical-profiling study](https://doi.org/10.1080/03091902.2026.2713703)
+and its [public code](https://github.com/arvidl/high-precision-glioma-segmentation)
+provide the imaging foundation.
 
-Code: MIT (see `LICENSE`). Data: see the release notes and the README inside
-the release archive.
+Two AI roles are kept apart: **trained imaging AI** supplies segmentations;
+**generative research assistance** helped construct the code, controls, figures
+and prose. Conventional numerical solvers reproduce the specified models, and
+rebuilding the examples calls no language model. The investigator defines the
+research direction and reviews assumptions and interpretation. Every notebook
+states its question, AI contribution, investigator choices, verification and
+evidence status.
+
+## Release status
+
+This repository is published in stages from a private development repository,
+each part after the investigator's review.
+
+| Part | Status |
+| --- | --- |
+| Python package `glioma_ai`, tests, notebook checker | Published (all modules) |
+| Notebooks 00–03 and executed copies of 01–03 | Published |
+| Notebooks 04–12 (AI-assistance record, microenvironment, neuron–glioma feedback, astrocytes and potassium, LFP and fields, published imaging bridge, CANTAB cognition, network disconnection, patient connectome) | In review; added one by one |
+| Paper and slides | In preparation |
+| Data release `lumiere-p048-prepared-v1` | Published (see below) |
+
+## Notebooks
+
+| Notebook | Content | Open |
+| --- | --- | --- |
+| 00 | Colab quickstart: clones this repository, installs the locked environment and runs the notebook checker and synthetic demo | [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/00_colab_quickstart.ipynb) |
+| 01 | Measuring tumour compartments: overlap is not volume; NIfTI geometry checks | [executed](notebooks/executed/01_imaging_measurements.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/01_imaging_measurements.ipynb) |
+| 02 | Tumour growth as reaction–diffusion: units, verification, thresholds and tissue-guided spread on a synthetic phantom; interactive explorers | [executed](notebooks/executed/02_tumor_dynamics.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/02_tumor_dynamics.ipynb) |
+| 03 | LUMIERE Patient-048: released metadata, six visits of automated labels on a fixed plane, a baseline model and its failure, a biologically informed revision, a labelled fit, a what-if explorer and a 3D model with a tissue map | [executed](notebooks/executed/03_lumiere_prepared_slice.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/03_lumiere_prepared_slice.ipynb) |
+
+The executed copies show figures on GitHub; animations and sliders need a
+running kernel. In Colab, notebooks 01–03 clone this repository in their first
+cell, and notebook 03 fetches the data release below when you run its Colab
+cell. See the [notebook map](notebooks/README.md).
+
+## Run locally
+
+Use Python 3.12 and [uv](https://docs.astral.sh/uv/). Everything runs on CPU;
+no GPU, model weights, API key or patient files are needed for 01 and 02.
+
+~~~sh
+git clone https://github.com/arvidl/AI-assisted-glioma-research.git
+cd AI-assisted-glioma-research
+uv sync --locked --group notebooks
+make check        # Ruff and pytest
+make notebooks    # executes the notebooks into ignored outputs/notebooks/
+make demo         # synthetic figures and records in ignored outputs/demo/
+~~~
+
+Open the notebooks in Cursor, VS Code or JupyterLab with the project's
+`.venv/bin/python` as kernel. Keep committed notebook sources output-free
+(`make clear-notebooks`).
+
+## LUMIERE Patient-048 data
+
+Notebook 03 uses one patient of the LUMIERE dataset (Suter et al., *Scientific
+Data* 9, 768, 2022, [doi:10.1038/s41597-022-01881-7](https://doi.org/10.1038/s41597-022-01881-7)).
+Its prepared inputs (registered contrast-enhanced T1, automated MONAI tumour
+labels and a FreeSurfer tissue map; 27 files, 26 MB) are attached to the release
+[`lumiere-p048-prepared-v1`](https://github.com/arvidl/AI-assisted-glioma-research/releases/tag/lumiere-p048-prepared-v1):
+
+~~~sh
+make lumiere-bundle-fetch   # download, check the pinned SHA-256, extract to data/
+~~~
+
+then set `{"prepared_root": "<absolute path>/data/lumiere_p048_prepared"}` in
+`local/lumiere-case.json`, or export `LUMIERE_P048_ROOT`. The LUMIERE authors
+state that the dataset may only be used for non-commercial purposes; these
+derived files are shared for research, teaching and learning under that
+condition and are not covered by the MIT licence of the code. See
+[data and provenance](docs/data.md). Nothing is used for clinical decisions.
+
+## UCSF-PDGM cohort data
+
+Figure 3 of notebook 01 recomputes Dice and volume error in the 50-subject
+evaluation cohort of Lundervold et al. (2026) from UCSF-PDGM v5 (Calabrese et
+al. 2022, [doi:10.7937/tcia.bdgf-8v37](https://doi.org/10.7937/tcia.bdgf-8v37);
+CC BY 4.0, TCIA Data Usage Policy). The reference segmentations, the study's
+SegResNet label maps and metrics records, and one subject's T1c (201 files,
+9 MB) are attached to the release
+[`ucsf-pdgm-cohort50-v1`](https://github.com/arvidl/AI-assisted-glioma-research/releases/tag/ucsf-pdgm-cohort50-v1):
+
+~~~sh
+make hpgs-bundle-fetch   # download, check the pinned SHA-256, extract to data/
+~~~
+
+then set `HPGS_REPO=<absolute path>/data/ucsf_pdgm_cohort50`. In Colab the
+notebook fetches it itself.
+
+## Repository layout
+
+~~~text
+src/glioma_ai/   Scientific functions, references and CLI
+notebooks/       Teaching notebooks (output-free) and executed/ copies
+tests/           Numerical, unit, geometry and provenance checks
+scripts/         Notebook checker and exporters, data build scripts
+docs/            Data, environment, validation and AI-assistance records
+data/            Acquisition notes; data themselves are not tracked
+~~~
+
+Validation records and AI-assistance records in `docs/` were written in the
+private development repository `arvidl/AI-assisted-glioma-research-dev`. Commit
+hashes they cite, links into that repository (for example to its GitHub Actions
+runs) and mentions of notebooks, manuscript or talk material not yet published
+here refer to that repository and are not publicly accessible.
+
+## Licence and attribution
+
+Code: MIT (`LICENSE`). Selected scientific helpers were adapted from
+arvidl/AI-in-clinical-brain-tumor-research-dev at commit
+f8a37993d11f595135f407638750442041422391, under the same licence. External
+datasets keep their own terms. No human scientific review, clinical validation
+or measured benefit of AI assistance is claimed beyond what the records state.

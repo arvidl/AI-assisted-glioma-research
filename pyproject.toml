@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-assisted-glioma-research"
+version = "0.1.0"
+description = "Imaging, tumor dynamics and clinical evidence for AI-assisted glioma research"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+authors = [{name = "Arvid Lundervold"}]
+dependencies = [
+    "matplotlib>=3.9,<4",
+    "nibabel>=5.3,<6",
+    "numpy>=2.0,<3",
+]
+
+[project.scripts]
+glioma-ai = "glioma_ai.cli:main"
+
+# Neither extra is needed for the examples. The torch extra provides MPS on
+# Apple Silicon and a CPU wheel on Linux; cuda selects the CUDA 12.8 wheel.
+[project.optional-dependencies]
+torch = ["torch>=2.8,<3"]
+cuda = ["torch>=2.8,<3; sys_platform == 'linux'"]
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "ruff>=0.11,<1"]
+notebooks = [
+    "ipykernel>=6.29,<8",
+    "ipywidgets>=8.1,<9",
+    "jupyterlab>=4.3,<5",
+    "nbclient>=0.10,<1",
+    "nbformat>=5.10,<6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/glioma_ai"]
+
+[tool.uv]
+conflicts = [[{extra = "torch"}, {extra = "cuda"}]]
+
+[tool.uv.sources]
+torch = [
+    {index = "pytorch-cpu", extra = "torch", marker = "sys_platform == 'linux'"},
+    {index = "pytorch-cu128", extra = "cuda", marker = "sys_platform == 'linux'"},
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

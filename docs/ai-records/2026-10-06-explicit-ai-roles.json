@@ -1,0 +1,25 @@
+{
+  "schema": "glioma-ai-assistance-v1",
+  "date": "2026-10-06",
+  "task": "Make AI roles explicit across artifacts and design a prospective benefit evaluation",
+  "tool": "Codex desktop",
+  "model": "unknown",
+  "input_classification": "Investigator instructions, repository source and prior assistance summaries; no patient inputs or new biological measurements",
+  "instruction_summary": "Introduce imaging AI and research assistance early; show a retrospective potassium workflow; add consistent contribution and verification blocks; design an AI benefit evaluation",
+  "contribution": "Talk opening and example labels, paper framework, notebook contribution blocks and worked check, retrospective potassium case, proposed matched-task pilot and blank recording forms",
+  "artifact_reference": "docs/ai-use/2026-10-06-explicit-ai-roles.md; docs/worked-ai-potassium.md; docs/ai-benefit-evaluation.md; notebooks/07_ai_assistance_record.ipynb; paper/main.tex; talk/slides.tex",
+  "checks": [
+    "Contribution statements checked against the unchanged historical assistance summaries and source",
+    "Notebook 07 independently compares the potassium solution with its analytic limit and concentration balance",
+    "Actual notebook execution, source checks, builds, timing consistency and visual QA recorded in docs/validation.md"
+  ],
+  "decision": "pending_human_review",
+  "reviewer": null,
+  "unresolved_questions": [
+    "Human scientific review and rehearsal",
+    "Pilot task packets, participants, independent reviewers, allocation and permitted tool version",
+    "No measured productivity, independent quality improvement or patient benefit",
+    "Hosted Colab execution"
+  ],
+  "record_type": "retrospective_summary"
+}

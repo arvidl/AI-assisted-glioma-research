@@ -1,0 +1,16 @@
+{
+  "schema": "glioma-ai-assistance-v1",
+  "date": "YYYY-MM-DD",
+  "task": "REPLACE",
+  "tool": "REPLACE",
+  "model": "unknown",
+  "input_classification": "REPLACE",
+  "instruction_summary": "REPLACE",
+  "contribution": "REPLACE",
+  "artifact_reference": "REPLACE",
+  "checks": ["REPLACE"],
+  "decision": "pending_human_review",
+  "reviewer": null,
+  "unresolved_questions": ["REPLACE"],
+  "record_type": "retrospective_summary"
+}

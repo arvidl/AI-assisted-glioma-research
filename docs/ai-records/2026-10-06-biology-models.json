@@ -1,0 +1,28 @@
+{
+  "schema": "glioma-ai-assistance-v1",
+  "date": "2026-10-06",
+  "task": "Implement biology-focused glioma teaching models and connect the recent published imaging work",
+  "tool": "Codex desktop",
+  "model": "unknown",
+  "input_classification": "Repository source, user instructions, primary publications and an author-owned published PDF; no patient inputs to simulations",
+  "instruction_summary": "Add tumor microenvironment and cancer neuroscience to notebooks, paper and talk; touch on our recent segmentation paper and code",
+  "contribution": "Prescribed models, numerical checks, notebooks 08\u201309, generated evidence, source-attributed published aggregates, manuscript and Beamer deck",
+  "artifact_reference": "docs/ai-use/2026-10-06-biology-modeling.md; src/glioma_ai/biology.py; notebooks/08_tumor_microenvironment.ipynb; notebooks/09_neuron_glioma_feedback.ipynb; paper/main.tex; talk/slides.tex",
+  "checks": [
+    "Analytic transition and local conservation",
+    "Uncoupled baseline recovery and no-reaction conservation",
+    "Constant-signal logistic limit and confounding",
+    "Combined positivity step bound and step refinement",
+    "Separate published and synthetic provenance",
+    "Primary-source verification and builds recorded in docs/validation.md"
+  ],
+  "decision": "pending_human_review",
+  "reviewer": null,
+  "unresolved_questions": [
+    "Biological interpretation and citation context",
+    "Observation models and biological calibration",
+    "Independent imaging and clinical review",
+    "Authorship, disclosures and future study design"
+  ],
+  "record_type": "retrospective_summary"
+}

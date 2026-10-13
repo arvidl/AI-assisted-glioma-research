@@ -1,0 +1,41 @@
+{
+  "schema": "glioma-cantab-source-v1",
+  "project_url": "https://osf.io/5kfw3/",
+  "doi": "10.17605/OSF.IO/5KFW3",
+  "license": "CC BY 4.0",
+  "checked_date": "2026-10-06",
+  "files": {
+    "Data.csv": {
+      "file_id": "5c48811e377632001a2c3274",
+      "revision": 2,
+      "download_url": "https://osf.io/download/z3sk7/?revision=2",
+      "sha256": "0bd830758c13832b5c86bc9b656e2c6b9908cdd8da600fb2588948464317cd9a",
+      "size_bytes": 5426,
+      "modified_utc": "2022-01-13T17:09:33.247399"
+    },
+    "Legend.csv": {
+      "file_id": "5c488123154ce50016e32b1c",
+      "revision": 1,
+      "download_url": "https://osf.io/download/js8q4/?revision=1",
+      "sha256": "4f35873d0fb8eb49a3b7ef2c2ffc5f23491db58f258eb55f7efaa043557d0fbb",
+      "size_bytes": 2232,
+      "modified_utc": "2019-01-23T14:58:43.838176"
+    },
+    "Code_RegressionAnalyses_NA-no-impute.R": {
+      "file_id": "5d67c3bb721510001a9b1ede",
+      "revision": 1,
+      "download_url": "https://osf.io/download/spmj3/?revision=1",
+      "sha256": "ef7a91f65d17fa4caadcd40a4d77c872d3ce96ae9c4deb69ecea9c0bade4dd9b",
+      "size_bytes": 40033,
+      "modified_utc": "2019-08-29T12:23:23.624665"
+    }
+  },
+  "date_format": "%d/%m/%y",
+  "legend_encoding": "Windows-1252",
+  "date_definition": "preoperative and follow-up assessment dates, not surgery dates",
+  "units_source": "https://nda.nih.gov/data_structure?short_name=cantab01",
+  "behavioral_study_url": "https://biblio.ugent.be/publication/8625236",
+  "mri_study_doi": "10.1038/s41597-022-01806-4",
+  "scope": "Behavioral release; MRI cohort linkage, norms, reliable change and clinical prediction not validated.",
+  "data_in_git": false
+}

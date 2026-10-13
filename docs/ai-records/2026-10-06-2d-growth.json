@@ -1,0 +1,28 @@
+{
+  "schema": "glioma-ai-assistance-v1",
+  "date": "2026-10-06",
+  "task": "Strengthen 2D tumor-growth teaching and add a real-data fixed-plane illustration",
+  "tool": "Codex desktop",
+  "model": "unknown",
+  "input_classification": "Investigator instructions, repository source, and the explicitly requested prepared public LUMIERE Patient-048 extract; MRI inputs remain in their existing local checkout",
+  "instruction_summary": "Use a simplified 2D growth model, describe its mathematics and checks explicitly, and demonstrate it alongside prepared Patient-048 anatomy",
+  "contribution": "Equation and unit exposition; conservative reaction-diffusion solver and controls; analytic verification; fixed-plane data adapter; visualizations, sensitivity analyses, tests and documentation",
+  "artifact_reference": "notebooks/02_tumor_dynamics.ipynb; notebooks/06_lumiere_prepared_slice.ipynb; src/glioma_ai/growth_model.py; src/glioma_ai/lumiere_dynamics.py",
+  "checks": [
+    "Primary publisher source for the Fisher-Kolmogorov model context verified",
+    "make check passed Ruff lint/format and all 94 tests with explicit LUMIERE input",
+    "make notebooks executed 12 notebooks including 02 and 06; hosted Colab and separate clinical inputs were explicitly skipped",
+    "Notebook 06 completed from the hash-checked fixed-plane bundle with LUMIERE_P048_ROOT unset",
+    "make paper built a 24-page PDF; generated synthetic and Patient-048 figures were visually inspected",
+    "Ignored editor-kernel case configuration resolved the prepared extract without shell variables"
+  ],
+  "decision": "pending_human_review",
+  "reviewer": null,
+  "unresolved_questions": [
+    "Whether the simplified state, initialization and coefficients are biologically appropriate",
+    "No independent expert-label or held-out validation",
+    "No measured benefit of AI research assistance",
+    "Whether to integrate local Patient-048 model panels into the paper or talk after review"
+  ],
+  "record_type": "retrospective_summary"
+}

@@ -1,0 +1,200 @@
+{
+  "schema": "lumiere-imaging-pin-v1",
+  "patient": "Patient-048",
+  "archive": {
+    "name": "Imaging-v202211.zip",
+    "size": 32565467707,
+    "download_url": "https://ndownloader.figshare.com/files/38249697",
+    "figshare_article": 21249516,
+    "figshare_file": 38249697,
+    "doi": "10.6084/m9.figshare.21249516.v1",
+    "title": "LUMIERE dataset - MRI data and automated segmentations",
+    "collection_doi": "10.6084/m9.figshare.c.5904905.v1",
+    "article": "Suter Y et al., Scientific Data 9, 768 (2022), doi:10.1038/s41597-022-01881-7"
+  },
+  "use_condition": "Figshare labels the file CC0; the dataset authors' Usage Notes and README restrict use to non-commercial purposes. Files stay local and out of Git.",
+  "selection": "the four MRI sequences and the released HD-GLIO-AUTO (registered) and DeepBraTumIA (native CT1) segmentations at each visit, as staged by high-precision-glioma-segmentation scripts/extract_lumiere_p048.py",
+  "pinned_utc": "2026-10-12",
+  "members": {
+    "Imaging/Patient-048/week-000-1/CT1.nii.gz": {
+      "size": 1653139,
+      "crc32": "d333414e",
+      "sha256": "dbf5fc398d5b2b6b1f15d154838b1a11e467f5bd9037941af4fdaa9bd588bc66"
+    },
+    "Imaging/Patient-048/week-000-1/DeepBraTumIA-segmentation/native/segmentation/ct1_seg_mask.nii.gz": {
+      "size": 27412,
+      "crc32": "50631032",
+      "sha256": "8bdd48520ed6eb71f80016649ce8568c901eb37a99156a254a2fbd48c1881fef"
+    },
+    "Imaging/Patient-048/week-000-1/FLAIR.nii.gz": {
+      "size": 488159,
+      "crc32": "e57766c4",
+      "sha256": "72311c09c32035001640a831932d40d4ff7f00180716a59ab79bdf3837194ac1"
+    },
+    "Imaging/Patient-048/week-000-1/HD-GLIO-AUTO-segmentation/registered/segmentation.nii.gz": {
+      "size": 27248,
+      "crc32": "801d4651",
+      "sha256": "a718b84fa9b824c6c1cb7d16a7c097401e780b7e9caed35372f598205726fb79"
+    },
+    "Imaging/Patient-048/week-000-1/T1.nii.gz": {
+      "size": 1587112,
+      "crc32": "537f3ab2",
+      "sha256": "3485885b633f0c9a1f8649e81541bcafc368baee7cbd2943e8ef080594b2198e"
+    },
+    "Imaging/Patient-048/week-000-1/T2.nii.gz": {
+      "size": 1560288,
+      "crc32": "9899192d",
+      "sha256": "65f1facc67640de5ffee299e69c2b888089b399dd9349d84f7c7cda1ec5406b3"
+    },
+    "Imaging/Patient-048/week-000-2/CT1.nii.gz": {
+      "size": 1738698,
+      "crc32": "7a6bf875",
+      "sha256": "507d3810e69ae8b5cc7e31eadae7946779d508010bd471542e883c55dd162fb9"
+    },
+    "Imaging/Patient-048/week-000-2/DeepBraTumIA-segmentation/native/segmentation/ct1_seg_mask.nii.gz": {
+      "size": 23588,
+      "crc32": "dd3fe4b4",
+      "sha256": "9c861e2967eac07bf097ae5d061278d4c0ea0a08ac3d27025cbdd930bb7eba13"
+    },
+    "Imaging/Patient-048/week-000-2/FLAIR.nii.gz": {
+      "size": 2186001,
+      "crc32": "c89d9b30",
+      "sha256": "72c07f9b3125cb933db1f265f218911d590c609acfeb8d3e45dbd04ec4a19de2"
+    },
+    "Imaging/Patient-048/week-000-2/HD-GLIO-AUTO-segmentation/registered/segmentation.nii.gz": {
+      "size": 21280,
+      "crc32": "58852bef",
+      "sha256": "8abd08eb931799e1f1ea8524ef9b573154a308fadf071a36d32613cbc35d8ca5"
+    },
+    "Imaging/Patient-048/week-000-2/T1.nii.gz": {
+      "size": 1664971,
+      "crc32": "2087c17c",
+      "sha256": "1c135a4cda44b0d830ecafd9169ee424e63b6d9fda74b29c3dc5196cec73825b"
+    },
+    "Imaging/Patient-048/week-000-2/T2.nii.gz": {
+      "size": 1540008,
+      "crc32": "4035adc2",
+      "sha256": "443656fa938000e4a83879fe7f5793422260413c64de360f1cae6507aaaacc9a"
+    },
+    "Imaging/Patient-048/week-013/CT1.nii.gz": {
+      "size": 1745630,
+      "crc32": "f9149407",
+      "sha256": "767c48b81063cec76419355a54e7f3d874756c7245b4645cfdd36fc314961fed"
+    },
+    "Imaging/Patient-048/week-013/DeepBraTumIA-segmentation/native/segmentation/ct1_seg_mask.nii.gz": {
+      "size": 15765,
+      "crc32": "b1b84228",
+      "sha256": "35f440df10b742d4746b92ebe43403ec379377a05fd3384bd9f3e80e2402abcf"
+    },
+    "Imaging/Patient-048/week-013/FLAIR.nii.gz": {
+      "size": 2133651,
+      "crc32": "f615f4fb",
+      "sha256": "2065a18e16ae514335af15b452b942a57c704a89de66621195973bd4b40771ab"
+    },
+    "Imaging/Patient-048/week-013/HD-GLIO-AUTO-segmentation/registered/segmentation.nii.gz": {
+      "size": 11927,
+      "crc32": "1d9016b9",
+      "sha256": "61f4816a0ac886f4e10aff5f5cffaf946a27d1eb2630c1ef58a56d8a8b4ec244"
+    },
+    "Imaging/Patient-048/week-013/T1.nii.gz": {
+      "size": 1659738,
+      "crc32": "72a53912",
+      "sha256": "466f140b291cd2b03c356cece71f16273b81f571589dcb80253661a613253e05"
+    },
+    "Imaging/Patient-048/week-013/T2.nii.gz": {
+      "size": 1566947,
+      "crc32": "2f8837bb",
+      "sha256": "b5deb64b75b6090b5faa4d88149117db4fdf5f9aa131d8595e0bbe12692ebe95"
+    },
+    "Imaging/Patient-048/week-023/CT1.nii.gz": {
+      "size": 1717184,
+      "crc32": "f63a1bb1",
+      "sha256": "8469ab51af9c72d7102660e224d65f242656e7db74252d1081ff15c708b30739"
+    },
+    "Imaging/Patient-048/week-023/DeepBraTumIA-segmentation/native/segmentation/ct1_seg_mask.nii.gz": {
+      "size": 16521,
+      "crc32": "43801412",
+      "sha256": "b06b3eb5375beb301fd28ea349d56efd9d8ba366ec41fbf9ce6b14d04e01fd7d"
+    },
+    "Imaging/Patient-048/week-023/FLAIR.nii.gz": {
+      "size": 1618045,
+      "crc32": "21dc4d15",
+      "sha256": "586a37603d794f42e461562ab91091313a18e3c20da062e338c1b5be8a7e9c33"
+    },
+    "Imaging/Patient-048/week-023/HD-GLIO-AUTO-segmentation/registered/segmentation.nii.gz": {
+      "size": 11168,
+      "crc32": "5d031887",
+      "sha256": "c060f1543c95cd40afac0bf07c7d7880d758e405168bc15905ba83826041b8a7"
+    },
+    "Imaging/Patient-048/week-023/T1.nii.gz": {
+      "size": 508484,
+      "crc32": "46ef1484",
+      "sha256": "980c42af11f70d2c510c95fcb0392c1d6129a0429dcb07726a2ecfa4a26ae4fb"
+    },
+    "Imaging/Patient-048/week-023/T2.nii.gz": {
+      "size": 1575968,
+      "crc32": "4d3f6f1e",
+      "sha256": "ac214d5beeb9970bbb93e68220372f2e912f1964e65fb88d69d644c7f1c0eeee"
+    },
+    "Imaging/Patient-048/week-045/CT1.nii.gz": {
+      "size": 1631155,
+      "crc32": "08d53baf",
+      "sha256": "af33fb39b1ca0e8b68ec69226785b0a8917291e73eac95511d7b012470c74f36"
+    },
+    "Imaging/Patient-048/week-045/DeepBraTumIA-segmentation/native/segmentation/ct1_seg_mask.nii.gz": {
+      "size": 18133,
+      "crc32": "b95dbe67",
+      "sha256": "6b966f61183426b0187474298814a729f339beffeea8c2bf79240ce57bbeeefc"
+    },
+    "Imaging/Patient-048/week-045/FLAIR.nii.gz": {
+      "size": 471093,
+      "crc32": "31c8e26e",
+      "sha256": "749e6bcc2cf2a8010abcaf421ee4c5c06485d150178effa9462f7370e7a47c7c"
+    },
+    "Imaging/Patient-048/week-045/HD-GLIO-AUTO-segmentation/registered/segmentation.nii.gz": {
+      "size": 14990,
+      "crc32": "7816856f",
+      "sha256": "d9bd33da67a35a994ea525245210dd653b77b7bf4c25a8a2a9814f505d45cf2d"
+    },
+    "Imaging/Patient-048/week-045/T1.nii.gz": {
+      "size": 1584991,
+      "crc32": "38a1fa9a",
+      "sha256": "8b82b53d9899dee3767bdc3f9e3464501e479cadf67b75a4278b4818400c606d"
+    },
+    "Imaging/Patient-048/week-045/T2.nii.gz": {
+      "size": 1589207,
+      "crc32": "479e162d",
+      "sha256": "fa07672ab3f24869712cdf284ca8b071d12aa4972f84cfc50b0c2990704ddbc6"
+    },
+    "Imaging/Patient-048/week-049/CT1.nii.gz": {
+      "size": 1751957,
+      "crc32": "a3ace42b",
+      "sha256": "b58e41bbecc348a8aaccfc8403afc8eb0420b4bee730d115744704cb77a4c93e"
+    },
+    "Imaging/Patient-048/week-049/DeepBraTumIA-segmentation/native/segmentation/ct1_seg_mask.nii.gz": {
+      "size": 27911,
+      "crc32": "e53a2f7e",
+      "sha256": "317e176c734564062c6ba816aae819ac35841eb8f92824bcb5372c0f87c0ca5b"
+    },
+    "Imaging/Patient-048/week-049/FLAIR.nii.gz": {
+      "size": 2191993,
+      "crc32": "3d712ead",
+      "sha256": "97e1d7d9dbd055c7cc00ef62cc4b0a6c120611e514b0ad641a266ebfa71ce76d"
+    },
+    "Imaging/Patient-048/week-049/HD-GLIO-AUTO-segmentation/registered/segmentation.nii.gz": {
+      "size": 22151,
+      "crc32": "7908d50e",
+      "sha256": "85370ab983d174599c1824622774850363ea29b563cd98196eac3a1da30c1549"
+    },
+    "Imaging/Patient-048/week-049/T1.nii.gz": {
+      "size": 1677629,
+      "crc32": "f69d4b75",
+      "sha256": "7da993be625e1750e25a6b5721b7718ad0e24a65e7aaca4fc999e34029f5998d"
+    },
+    "Imaging/Patient-048/week-049/T2.nii.gz": {
+      "size": 1595630,
+      "crc32": "44998308",
+      "sha256": "3ac4e07fa6c5b2bb6fd1cd26e96f85b037ea5383baffaf60f8446de73f430a7a"
+    }
+  }
+}

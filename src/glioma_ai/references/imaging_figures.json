@@ -1,0 +1,41 @@
+{
+  "evidence_type": "published_illustration",
+  "repository": "arvidl/high-precision-glioma-segmentation",
+  "revision": "e1868d48591a068b075460a7f12f7951978114bc",
+  "revision_scope": "Local author manuscript checkout; not asserted to be present in the cleaned public code repository.",
+  "publication_doi": "10.1080/03091902.2026.2713703",
+  "license": "CC BY 4.0, as stated in the published article",
+  "attribution": "Lundervold et al., Journal of Medical Engineering & Technology, 2026",
+  "transformation": "None: original author figure-asset bytes. Display size may change.",
+  "scope": "Published public-dataset illustrations only; no restricted BGO-D assets or raw patient files.",
+  "figures": [
+    {
+      "name": "hpgs_mri_pipeline.png",
+      "source_path": "paper/figs/glioma-localization-figs-UCSF-PDGM-0085-pipeline.png",
+      "source_url": "https://doi.org/10.1080/03091902.2026.2713703",
+      "publication_locator": "Figure 1",
+      "caption": "Public UCSF-PDGM-0085: MRI, dataset-reference compartment masks and native anatomical parcellation.",
+      "sha256": "8956358e2fa312a0b0a8fb1fda7310a4d36a39cbf8223395312619b1602732fc"
+    },
+    {
+      "name": "hpgs_regional_anatomy.png",
+      "source_path": "paper/figs/glioma-localization-figs-UCSF-PDGM-0020-tumor-contours-on-wmparc.png",
+      "source_url": "https://doi.org/10.1080/03091902.2026.2713703",
+      "publication_locator": "Figure 4, panels a-b",
+      "caption": "Public UCSF-PDGM-0020: contours and anatomical labels in subject space.",
+      "sha256": "5abf80e8c6d61a9f1ad67bb18ff2db64fd5bd5304b9f856910b939844a15d50f"
+    },
+    {
+      "name": "hpgs_hitplot_reference.png",
+      "source_path": "paper/figs/sub-0020_panel_i_hitplot_gt.png",
+      "source_url": "https://doi.org/10.1080/03091902.2026.2713703",
+      "publication_locator": "Figure 4, panel c",
+      "caption": "Public UCSF-PDGM-0020: top-12 regional overlap volumes from dataset reference masks; source=gt is the upstream convention, not histological ground truth.",
+      "sha256": "18b4a943b05427c58d4e7abbf64d3c4ffc3630548ae1fc8b88b8dbcae4946e1b"
+    }
+  ],
+  "release": {
+    "repository": "arvidl/AI-assisted-glioma-research",
+    "tag": "published-figures-v1"
+  }
+}

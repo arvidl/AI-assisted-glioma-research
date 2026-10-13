@@ -1,0 +1,362 @@
+{
+  "patient": "Patient-048",
+  "source": {
+    "article_doi": "10.1038/s41597-022-01881-7",
+    "figshare_doi": "10.6084/m9.figshare.c.5904905.v1",
+    "use_condition": "Figshare files labelled CC0; the authors state that the dataset may only be used for non-commercial purposes (Suter et al. 2022, Usage Notes).",
+    "files": {
+      "LUMIERE-Demographics_Pathology.csv": "126c4fafd47da2fbe36fd16d4e00fe83362a2767e4f92a0dfcf1be6f85451cfb",
+      "LUMIERE-ExpertRating-v202211.csv": "2215db82453a3315d5b5f0e519849bd5079b25e6e4e555f3f7237cf77f7cd952",
+      "LUMIERE-MRinfo.csv": "c8b16f7c701d9d9f6af5a3db20139fce47504cf2a099916ed1562d8c7c9068c2",
+      "LUMIERE-datacompleteness.csv": "1bea2a3232b5b58ac38f39f7f9ee9b7b01f2d610e5e4aaa11b3427c11e68adcf"
+    },
+    "dates": "week counts relative to the pre-operative scan, as released"
+  },
+  "patient_level": {
+    "Survival time (weeks)": "58",
+    "Sex": "female",
+    "Age at surgery (years)": "52",
+    "IDH (WT: wild type)": "IDH1 neg, Sequencing required",
+    "IDH method": "Immuno",
+    "MGMT qualitative": "not methylated",
+    "MGMT quantitative": "0.00%"
+  },
+  "visits": [
+    {
+      "visit": "week-000-1",
+      "nominal_day": 0,
+      "rano_rating": "Pre-Op",
+      "rating_rationale": "",
+      "less_than_3_months": false,
+      "non_measurable_lesions": false,
+      "mri": [
+        {
+          "Sequence": "CT1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "FLAIR",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "2D",
+          "Slice thickness": "3",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T2",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        }
+      ],
+      "available": [
+        "CT1",
+        "T1",
+        "T2",
+        "FLAIR",
+        "DeepBraTumIA",
+        "HD-GLIO-AUTO",
+        "DeepBraTumIA-CoLlAGe",
+        "HD-GLIO-AUTO-CoLlAGe"
+      ]
+    },
+    {
+      "visit": "week-000-2",
+      "nominal_day": 0,
+      "rano_rating": "Post-Op",
+      "rating_rationale": "CRET",
+      "less_than_3_months": false,
+      "non_measurable_lesions": false,
+      "mri": [
+        {
+          "Sequence": "CT1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "FLAIR",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "2D",
+          "Slice thickness": "3",
+          "Voxel size": "0.4296875\\0.4296875"
+        },
+        {
+          "Sequence": "T1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T2",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1.00390625\\1.00390625"
+        }
+      ],
+      "available": [
+        "CT1",
+        "T1",
+        "T2",
+        "FLAIR",
+        "DeepBraTumIA",
+        "HD-GLIO-AUTO",
+        "DeepBraTumIA-CoLlAGe",
+        "HD-GLIO-AUTO-CoLlAGe"
+      ]
+    },
+    {
+      "visit": "week-013",
+      "nominal_day": 91,
+      "rano_rating": "SD",
+      "rating_rationale": "",
+      "less_than_3_months": false,
+      "non_measurable_lesions": false,
+      "mri": [
+        {
+          "Sequence": "CT1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "FLAIR",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "2D",
+          "Slice thickness": "3",
+          "Voxel size": "0.4296875\\0.4296875"
+        },
+        {
+          "Sequence": "T1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T2",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1.00390625\\1.00390625"
+        }
+      ],
+      "available": [
+        "CT1",
+        "T1",
+        "T2",
+        "FLAIR",
+        "DeepBraTumIA",
+        "HD-GLIO-AUTO",
+        "DeepBraTumIA-CoLlAGe",
+        "HD-GLIO-AUTO-CoLlAGe"
+      ]
+    },
+    {
+      "visit": "week-023",
+      "nominal_day": 161,
+      "rano_rating": "CR",
+      "rating_rationale": "",
+      "less_than_3_months": false,
+      "non_measurable_lesions": false,
+      "mri": [
+        {
+          "Sequence": "CT1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "FLAIR",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "2D",
+          "Slice thickness": "4",
+          "Voxel size": "0.4296875\\0.4296875"
+        },
+        {
+          "Sequence": "T1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "2D",
+          "Slice thickness": "5",
+          "Voxel size": "0.6875\\0.6875"
+        },
+        {
+          "Sequence": "T2",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1.00390625\\1.00390625"
+        }
+      ],
+      "available": [
+        "CT1",
+        "T1",
+        "T2",
+        "FLAIR",
+        "DeepBraTumIA",
+        "HD-GLIO-AUTO",
+        "DeepBraTumIA-CoLlAGe",
+        "HD-GLIO-AUTO-CoLlAGe"
+      ]
+    },
+    {
+      "visit": "week-045",
+      "nominal_day": 315,
+      "rano_rating": "PD",
+      "rating_rationale": "T2-Progr., new non-measurable L.",
+      "less_than_3_months": false,
+      "non_measurable_lesions": true,
+      "mri": [
+        {
+          "Sequence": "CT1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "FLAIR",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "2D",
+          "Slice thickness": "3",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T2",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Aera",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        }
+      ],
+      "available": [
+        "CT1",
+        "T1",
+        "T2",
+        "FLAIR",
+        "DeepBraTumIA",
+        "HD-GLIO-AUTO",
+        "DeepBraTumIA-CoLlAGe",
+        "HD-GLIO-AUTO-CoLlAGe"
+      ]
+    },
+    {
+      "visit": "week-049",
+      "nominal_day": 343,
+      "rano_rating": "PD",
+      "rating_rationale": "T2-Progr., Target L.: 29mm x 21mm, 30mm x 17mm, 11mm x 10mm, 25mm x 10mm, 12mm x 12mm, new non-measurable L.",
+      "less_than_3_months": false,
+      "non_measurable_lesions": true,
+      "mri": [
+        {
+          "Sequence": "CT1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "FLAIR",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "2D",
+          "Slice thickness": "3",
+          "Voxel size": "0.4296875\\0.4296875"
+        },
+        {
+          "Sequence": "T1",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1\\1"
+        },
+        {
+          "Sequence": "T2",
+          "Field strength": "1.5",
+          "Manufacturer": "SIEMENS",
+          "Model": "Avanto",
+          "Acquisition type": "3D",
+          "Slice thickness": "1",
+          "Voxel size": "1.00390625\\1.00390625"
+        }
+      ],
+      "available": [
+        "CT1",
+        "T1",
+        "T2",
+        "FLAIR",
+        "DeepBraTumIA",
+        "HD-GLIO-AUTO",
+        "DeepBraTumIA-CoLlAGe",
+        "HD-GLIO-AUTO-CoLlAGe"
+      ]
+    }
+  ]
+}

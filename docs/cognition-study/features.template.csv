@@ -1,0 +1,1 @@
+study_id,feature_name,feature_value,unit,visit,available_at_prediction,acquisition_relative_to_surgery_days,coordinate_space,label_definition,pipeline_version,pretrained_model_source,training_overlap_check,source_sha256,qc_status,evidence_status
