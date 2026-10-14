@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07", "08", "09")
+PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
 HELD_BACK = (
     "public/*",
     "paper/*",
@@ -128,7 +128,7 @@ def broken_links(files: dict[str, bytes]) -> list[str]:
         if not path.endswith((".md", ".ipynb")):
             continue
         for target in LINK.findall(content.decode("utf-8", errors="ignore")):
-            if "://" in target or target.startswith("mailto:"):
+            if "://" in target or target.startswith(("mailto:", "attachment:")):
                 continue
             resolved = os.path.normpath(os.path.join(os.path.dirname(path), target))
             if resolved not in paths:

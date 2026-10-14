@@ -6,6 +6,7 @@ import platform
 from pathlib import Path
 
 from glioma_ai.assistance import validate_record
+from glioma_ai.btc_cantab import fetch_btc
 from glioma_ai.cantab import fetch_release
 from glioma_ai.cantab_examples import write_cantab_example
 from glioma_ai.cgga_clinical import summarize_cgga_clinical
@@ -74,6 +75,10 @@ def main() -> None:
     figures.add_argument("--checkout", type=Path, required=True)
     acquisition = commands.add_parser("cantab-fetch", help="Explicitly fetch pinned public tables")
     acquisition.add_argument("--output", type=Path, default=Path("data/cantab/osf"))
+    btc = commands.add_parser(
+        "btc-fetch", help="Explicitly fetch the pinned OpenNeuro BTC participant tables"
+    )
+    btc.add_argument("--output", type=Path, default=Path("data/btc"))
     cognition = commands.add_parser(
         "cantab", help="Verify prepared behavioral data and make evidence"
     )
@@ -117,6 +122,8 @@ def main() -> None:
         result = prepare_published_figures(args.output, checkout=args.checkout)
     elif args.command == "cantab-fetch":
         result = fetch_release(args.output)
+    elif args.command == "btc-fetch":
+        result = fetch_btc(args.output)
     elif args.command == "cantab":
         result = write_cantab_example(
             args.release_dir, args.output, args.case_config, args.paper_dir

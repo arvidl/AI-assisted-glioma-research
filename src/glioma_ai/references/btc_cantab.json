@@ -1,0 +1,59 @@
+{
+  "schema": "glioma-btc-cantab-source-v1",
+  "checked_date": "2026-10-14",
+  "license": "CC0 (dataset_description.json of both OpenNeuro datasets)",
+  "citations": [
+    "Aerts H, Marinazzo D. BTC_preop. OpenNeuro ds001226 v5.0.1. doi:10.18112/openneuro.ds001226.v5.0.1",
+    "Aerts H, Marinazzo D. BTC_postop. OpenNeuro ds002080 v4.0.1. doi:10.18112/openneuro.ds002080.v4.0.1",
+    "Aerts H et al. Modeling brain dynamics in brain tumor patients using The Virtual Brain. eNeuro 2018;5:ENEURO.0083-18.2018. doi:10.1523/ENEURO.0083-18.2018",
+    "Aerts H et al. Modeling brain dynamics after tumor resection using The Virtual Brain. NeuroImage 2020;213:116738. doi:10.1016/j.neuroimage.2020.116738"
+  ],
+  "files": {
+    "ds001226_participants.tsv": {
+      "dataset": "ds001226",
+      "version": "5.0.1",
+      "session": "preop",
+      "doi": "10.18112/openneuro.ds001226.v5.0.1",
+      "git_commit": "359d372c5e972a161966312128adb365870df949",
+      "download_url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds001226/5.0.1/participants.tsv",
+      "sha256": "2ae814b3e90e5c45ea95342a3658e58ba21d3f2d7bf1caa83ef8f1c74986e71d",
+      "size_bytes": 10103,
+      "note": "Byte-identical to version 5.0.0, which the digital-twin project cites."
+    },
+    "ds002080_participants.tsv": {
+      "dataset": "ds002080",
+      "version": "4.0.1",
+      "session": "postop",
+      "doi": "10.18112/openneuro.ds002080.v4.0.1",
+      "git_commit": "4e7326e5c0bd01464cb8573f2bb277500c3a5881",
+      "download_url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds002080/4.0.1/participants.tsv",
+      "sha256": "58512dcbc17ef958d928aa39ec7e923ae4d12e187590990c9d7f47ffc404853f",
+      "size_bytes": 9967,
+      "note": "Byte-identical to version 4.0.0, which the digital-twin project cites."
+    },
+    "sub-PAT16_sessions.tsv": {
+      "dataset": "glioma-brain-digital-twin-public",
+      "version": "d0159ec273ac808d5f9b039a823e88e3b887d67b",
+      "session": "both",
+      "git_commit": "d0159ec273ac808d5f9b039a823e88e3b887d67b",
+      "download_url": "https://raw.githubusercontent.com/arvidl/glioma-brain-digital-twin-public/d0159ec273ac808d5f9b039a823e88e3b887d67b/data/BIDS_preop_postop/sub-PAT16/sub-PAT16_sessions.tsv",
+      "sha256": "cec1bcb937c6a3ff4af9139d481791006f2972c2e43ff418061d0c6a833144a8",
+      "size_bytes": 1274,
+      "note": "The digital-twin project's BIDS session table for sub-PAT16, derived from the two OpenNeuro tables (CC0)."
+    },
+    "sub-PAT16_sessions.json": {
+      "dataset": "glioma-brain-digital-twin-public",
+      "version": "d0159ec273ac808d5f9b039a823e88e3b887d67b",
+      "session": "both",
+      "git_commit": "d0159ec273ac808d5f9b039a823e88e3b887d67b",
+      "download_url": "https://raw.githubusercontent.com/arvidl/glioma-brain-digital-twin-public/d0159ec273ac808d5f9b039a823e88e3b887d67b/data/BIDS_preop_postop/sub-PAT16/sub-PAT16_sessions.json",
+      "sha256": "91df4ef3862fbb0f16430858eb0adc92196d09e0c575e38ab1c167d3ae82445f",
+      "size_bytes": 6446,
+      "note": "Column dictionary of the session table."
+    }
+  },
+  "twin_project_url": "https://github.com/arvidl/glioma-brain-digital-twin-public",
+  "missing_markers": ["n/a", "NA", ""],
+  "scope": "Group-level CANTAB and metadata of the Brain Tumor Connectomics cohort; sub-PAT16 shown individually. No norms, no causal surgical effect, no clinical prediction.",
+  "data_in_git": false
+}

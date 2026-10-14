@@ -1,6 +1,6 @@
 UV ?= uv
 
-.PHONY: setup demo check notebooks executed-notebooks clear-notebooks doctor published-figures published-figures-fetch cantab-fetch cantab lumiere-metadata lumiere-fetch lumiere-bundle lumiere-bundle-fetch hpgs-bundle hpgs-bundle-fetch
+.PHONY: setup demo check notebooks executed-notebooks clear-notebooks doctor published-figures published-figures-fetch cantab-fetch btc-fetch cantab lumiere-metadata lumiere-fetch lumiere-bundle lumiere-bundle-fetch hpgs-bundle hpgs-bundle-fetch
 
 setup:
 	$(UV) sync --locked --group notebooks
@@ -23,6 +23,9 @@ published-figures-fetch:
 # Explicit acquisition and a separate empirical workflow; defaults never fetch data.
 cantab-fetch:
 	$(UV) run --locked glioma-ai cantab-fetch --output data/cantab/osf
+
+btc-fetch:
+	$(UV) run --locked glioma-ai btc-fetch --output data/btc
 
 cantab:
 	$(UV) run --locked glioma-ai cantab --release-dir data/cantab/osf --case-config local/cantab-case.json --output outputs/cantab

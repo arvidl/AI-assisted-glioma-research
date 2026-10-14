@@ -74,6 +74,15 @@ with the local case configuration it builds the verified case figure. Without
 those inputs it gives an acquisition/configuration notice and does not replace
 the case with synthetic data. No notebook automatically fetches patient data.
 
+Since 14 October 2026 notebook 10 also reads the CC0 participant tables of the
+Brain Tumor Connectomics cohort (OpenNeuro ds001226 v5.0.1 and ds002080 v4.0.1)
+and the digital-twin project's sub-PAT16 session table, acquired explicitly with
+`make btc-fetch` (see [Data and provenance](data.md)). It shows group medians
+and quartiles, sub-PAT16's six CANTAB scores checked across OpenNeuro, the twin
+table and the OSF release, exploratory change indices against the ten retested
+controls with bootstrap intervals, and leave-one-out forecasts. Without these
+inputs it reports them absent; nothing is substituted.
+
 Clean source builds omit the empirical image and show a preparation notice.
 The illustrated local talk and paper contain the real example. The private
 source ZIP excludes acquired data and case configuration. A Colab user may

@@ -13,6 +13,7 @@ They do not represent patient observations.
 | [CGGA](https://doi.org/10.1016/j.gpb.2020.10.005) | Eligible clinical-table denominator | mRNAseq_693 clinical table dated 6 May 2020, TSV or its single-file ZIP; OS tested as finite nonnegative numeric field with censor 0/1; header gives no unit; no survival fit |
 | [TCGA-Reports](https://doi.org/10.1016/j.patter.2024.100933) | Term-presence checks | TCGA_Reports.csv.zip plus GDC GBM/LGG case list; aggregate output only; abbreviation presence is not a molecular result |
 | [CANTAB behavioral release](https://osf.io/5kfw3/) | Source-verified paired cognitive example and diagnosis-specific availability | Pinned data, legend and non-imputed analysis code; explicit local case link; source precision and assessment dates retained; no imaging linkage or prediction |
+| Brain Tumor Connectomics participant tables ([ds001226 v5.0.1](https://doi.org/10.18112/openneuro.ds001226.v5.0.1), [ds002080 v4.0.1](https://doi.org/10.18112/openneuro.ds002080.v4.0.1)) and the digital-twin session table of sub-PAT16 | CANTAB and metadata of the whole cohort for notebook 10 | CC0 (twin project MIT, derived from the CC0 tables). `make btc-fetch` downloads the four files pinned by version or commit and SHA-256 in `src/glioma_ai/references/btc_cantab.json` into ignored `data/btc/`. The notebook shows group summaries plus sub-PAT16's CANTAB scores and tumour type, location and volume; no other individual row and no individual age or sex (investigator decision, 14 October 2026) |
 | Brain Tumor Connectomics, sub-PAT16 ([ds001226 v5.0.0](https://doi.org/10.18112/openneuro.ds001226.v5.0.0), [ds002080 v4.0.0](https://doi.org/10.18112/openneuro.ds002080.v4.0.0)) | Real pre-/post-operative connectomes for notebook 12 | CC0. Tracked 82-region SIFT2 structural matrices, tumour-crossing weight, FC and provenance in `data/derived/sub-PAT16/`, derived by `make pat16-connectome PAT16_PROJECT=...` from the investigator's local pipeline outputs; upstream QC checklist unreviewed; images, tractograms and demographics stay local |
 
 These are separate datasets; no combined MRI/clinical/report cohort is constructed.
@@ -126,6 +127,16 @@ exact dates and demographics and retains released precision. No raw MRI,
 behavioral trial data, electrophysiology or trained cognitive model is acquired
 or run in this example. The proposed linked study needs a separate local
 participant manifest and verified acquisition/coordinate records.
+
+For the cohort analysis of notebook 10, `make btc-fetch` acquires the two BTC
+`participants.tsv` tables and the twin project's sub-PAT16 session table and
+column dictionary, refusing any file that differs from its pin and preserving an
+existing file that differs. `glioma_ai.btc_cantab` reads them strictly: header
+spaces are stripped, "n/a" and "NA" are missing, tumour labels map to GLI, MEN
+and CON by an explicit table (the ependymoma is GLI, as in the OSF release), and
+unknown labels, scores outside their scale, non-integer counts, follow-up rows
+without a baseline and label changes are errors. Change indices use the ten
+retested controls as an exploratory reference, not as norms.
 
 
 ## UCSF-PDGM cohort archive (notebook 01, Figure 3)

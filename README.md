@@ -33,8 +33,8 @@ each part after the investigator's review.
 | Part | Status |
 | --- | --- |
 | Python package `glioma_ai`, tests, notebook checker | Published (all modules) |
-| Notebooks 00–09 and executed copies of 01–09 | Published |
-| Notebooks 10–12 (CANTAB cognition, network disconnection, patient connectome) | In review; added one by one |
+| Notebooks 00–10 and executed copies of 01–10 | Published |
+| Notebooks 11–12 (network disconnection, patient connectome) | In review; added one by one |
 | Paper and slides | In preparation |
 | Data release `lumiere-p048-prepared-v1` | Published (see below) |
 
@@ -52,11 +52,13 @@ each part after the investigator's review.
 | 07 | When potassium clearance slows: a synthetic astrocyte potassium budget, the Nernst relation and what one trace cannot tell; interactive explorer | [executed](notebooks/executed/07_astrocytes_and_potassium.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/07_astrocytes_and_potassium.ipynb) |
 | 08 | Potential is not field: what an electrode records, what a cell feels and how far that is from cognition; field estimation from sampled potentials, a synthetic tumour–brain border, evidence and testable hypotheses; interactive explorer | [executed](notebooks/executed/08_lfp_fields_and_cognition.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/08_lfp_fields_and_cognition.ipynb) |
 | 09 | From tumour masks to brain networks: what segmentation measures, where the tumour ends and why cognition is not local; the published segmentation study with its tables and figures, Dice and HD95, hit-plots, a synthetic tumour–brain interface, networks, glia and brain waves, and the bridge to cognitive testing; interactive explorers | [executed](notebooks/executed/09_published_imaging_bridge.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/09_published_imaging_bridge.ipynb) |
+| 10 | Cognition before and after brain-tumour surgery: the CANTAB tests, the Brain Tumor Connectomics cohort (OpenNeuro ds001226/ds002080) as group summaries and the sub-PAT16 case; cross-source agreement, an audit of an AI-generated infographic and its verifiable reconstruction, measurement precision, reliable change against retested controls with bootstrap, forecasting baselines and a proposed study; three tracks (cognitive neuroscience, clinical, modeling); interactive explorers | [executed](notebooks/executed/10_cantab_cognitive_outcomes.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/10_cantab_cognitive_outcomes.ipynb) |
 
 The executed copies show figures on GitHub; animations and sliders need a
-running kernel. In Colab, notebooks 01–09 clone this repository in their first
+running kernel. In Colab, notebooks 01–10 clone this repository in their first
 cell, notebook 03 fetches the data release below when you run its Colab
-cell, and notebooks 01 and 09 fetch the published figures. See the [notebook map](notebooks/README.md).
+cell, notebooks 01 and 09 fetch the published figures, and notebook 10 fetches the
+pinned OpenNeuro participant tables (CC0) when you run its Colab cell. See the [notebook map](notebooks/README.md).
 
 ## Run locally
 
