@@ -19,15 +19,17 @@ regenerates them and refuses runs with local paths or missing inputs.
 | 06 | Does a glioma feed its own growth? Synthetic neuron–glioma feedback with a slow dimensionless signal, nested controls, sensitivity and confounding; well-mixed model with exact limits and phase plane; well-mixed and spatial explorers |
 | 07 | When potassium clearance slows: synthetic one-compartment potassium budget with astrocytic and other clearance, closed-form pulse landmarks, exact mass balance, the ideal Nernst relation, identifiability of the clearance split, glioma relevance; clearance explorer |
 | 08 | Potential is not field: a synthetic potential whose exact field is known; central differences, sampling and noise; potential–field ambiguity and the optimal spacing; a synthetic tumour–brain border with an activity drop and a conductivity step; evidence on fields, glioma circuitry and the border; a proposed clinical analysis; testable field hypotheses at the border; empirical cognitive anchor; field explorer |
+| 09 | From tumour masks to brain networks: the published segmentation and anatomical-profiling study (methods, accuracy with quartiles, hit-plot agreement, lobar and functional-anatomy involvement, published figures); what Dice and HD95 detect and miss; regional burden and small regions; a synthetic Fisher–Kolmogorov tumour–brain interface with the same enhancing boundary and different invisible tails; connectionism, structural and functional connectivity, disconnection and their critics; glia, fields and brain waves; measuring cognition; metric and burden explorers |
 
-Notebooks 09–12 are in review and will be added one by one. Notebooks 04–08
-have a clinical/biological (in 08: neuroscience and clinical) and a modeling
-track and checked references; 05–08 also have a glossary.
+Notebooks 10–12 are in review and will be added one by one. Notebooks 04–09
+have a clinical/biological (in 08 and 09: neuroscience and clinical) and a
+modeling track and checked references; 05–09 also have a glossary.
 
-**Google Colab.** Notebooks 01–08 can be opened directly in Colab: their first
+**Google Colab.** Notebooks 01–09 can be opened directly in Colab: their first
 code cell clones this repository and puts its package on the path, using
 Colab's own NumPy, Matplotlib and ipywidgets rather than the locked versions.
-Notebook 03 has a Colab-only cell that downloads the
+Notebooks 01 and 09 have a Colab-only cell that downloads the published
+figures (release `published-figures-v1`). Notebook 03 has a Colab-only cell that downloads the
 [data release](https://github.com/arvidl/AI-assisted-glioma-research/releases/tag/lumiere-p048-prepared-v1),
 checks its pinned SHA-256 and verifies every file. Notebook 00 instead runs
 everything in the locked environment.

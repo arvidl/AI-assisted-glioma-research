@@ -76,3 +76,21 @@ def test_fetch_verifies_every_figure_and_keeps_verified_copies(tmp_path, monkeyp
     with pytest.raises(ValueError, match="pinned"):
         published.fetch_published_figures(tmp_path / "other")
     assert not (tmp_path / "other").exists()
+
+
+def test_article_results_agree_with_the_abstract_and_carry_locators():
+    reference = published.published_imaging_reference()
+    article = reference["article_results"]
+    accuracy = article["segmentation_accuracy"]
+    for compartment, median in reference["evaluation"]["median_dice"].items():
+        value, low, high = accuracy["dice"][compartment]
+        assert round(value, 2) == median and low <= value <= high
+    for compartment, median in reference["evaluation"]["median_hd95_mm"].items():
+        value, low, high = accuracy["hd95_mm"][compartment]
+        assert round(value, 1) == median and low <= value <= high
+    for block in article.values():
+        if isinstance(block, dict):
+            assert block["locator"]
+    lobes = article["whole_tumor_lobar_involvement"]
+    assert all(count <= 50 for key, count in lobes.items() if key != "locator")
+    assert reference["clinical_utility_established"] is False

@@ -73,15 +73,32 @@ def blob_sweep(shift_mm, dilation_mm, blob_distance_mm, radii=tuple(range(9))) -
     }
 
 
+OVERLAY_COLOURS = {
+    "both": (0.35, 0.65, 0.45),
+    "prediction only": (0.85, 0.45, 0.3),
+    "reference only": (0.35, 0.5, 0.85),
+}
+
+
 def _overlay(axis, reference, prediction, title, extent=None):
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
+
     ref, pred = reference[:, :, 0].astype(bool), prediction[:, :, 0].astype(bool)
     image = np.ones((*ref.shape, 3))
-    image[ref & pred] = (0.35, 0.65, 0.45)
-    image[pred & ~ref] = (0.85, 0.45, 0.3)
-    image[ref & ~pred] = (0.35, 0.5, 0.85)
+    image[ref & pred] = OVERLAY_COLOURS["both"]
+    image[pred & ~ref] = OVERLAY_COLOURS["prediction only"]
+    image[ref & ~pred] = OVERLAY_COLOURS["reference only"]
     axis.imshow(np.transpose(image, (1, 0, 2)), origin="lower")
     axis.contour(ref.T.astype(float), levels=[0.5], colors="black", linewidths=0.8)
     axis.set(title=title, xlabel="Constructed x (mm)", ylabel="Constructed y (mm)")
+    handles = [
+        Patch(color=OVERLAY_COLOURS["both"], label="Both (TP)"),
+        Patch(color=OVERLAY_COLOURS["prediction only"], label="Prediction only (FP)"),
+        Patch(color=OVERLAY_COLOURS["reference only"], label="Reference only (FN)"),
+        Line2D([], [], color="black", linewidth=0.8, label="Reference boundary"),
+    ]
+    axis.legend(handles=handles, loc="upper right", fontsize=7.5, framealpha=0.85)
 
 
 def draw_segmentation_state(figure, run, sweep):
@@ -91,7 +108,7 @@ def draw_segmentation_state(figure, run, sweep):
         overlay,
         run["reference"],
         run["prediction"],
-        "Green: both; orange: prediction only; blue: reference only",
+        "Prediction versus reference",
     )
     overlay.text(
         2,
