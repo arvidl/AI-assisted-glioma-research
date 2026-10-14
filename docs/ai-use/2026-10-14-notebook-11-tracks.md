@@ -1,0 +1,11 @@
+# Notebook 11 with three reading tracks
+
+- Date: 14 October 2026.
+- Tool: Cursor agent; exact backend snapshot and settings not captured.
+- Request: the investigator asked for notebook 11 to have three tracks, as in notebook 10: a cognitive neuroscience track, a neuro-oncology/clinical track, and a data-analysis/modelling track, covering motivation, explanations, exercises and references.
+- Contribution: track paragraphs in the title, the motivation, sections 1, 3 and the readings of Figures 1 and 2, and the explorer; a glossary; exercises for each track, keeping the four controlled extensions that were already the closing section; a reference list grouped by track. A later pass the same day proofread the text, linked in-text citations, added section 5 as the introduction to notebook 12, and added further 2025–2026 references. The model, parameters and code cells were not changed. The title was kept.
+- References reused from notebook 10, where their abstracts had already been checked: Salvalaggio et al. 2025, Cayuela et al. 2025, Douw et al. 2026, Herbet 2024, Houskamp et al. 2025. Checked for this notebook against Crossref and the PubMed or publisher abstracts: Tykocki and Rakasz, Neurosurg Rev 2026;49:191 (doi:10.1007/s10143-025-04081-0); Noll et al., Neuro-Oncol Adv 2025;7:vdaf192 (doi:10.1093/noajnl/vdaf192); Nasiri et al., Brain Spine 2026;6:106254 (doi:10.1016/j.bas.2026.106254); Berger et al., Eur J Neurol 2026;33:e70708 (doi:10.1111/ene.70708); Kong and Wei, NMR Biomed 2026;39:e70391 (doi:10.1002/nbm.70391); Wang et al., J Neurosurg 2026:1–12 (doi:10.3171/2026.4.JNS26181). The Tykocki sentence reports the review's associations and does not copy its pooled odds ratios. The Noll sentence follows the abstract. Nasiri is cited for classifying frontal-aslant and arcuate integrity in 23 patients, not for an outcome. Wang is cited for the measurements and the prediction aim, not for a performance number.
+- Verification: recorded in `docs/validation.md`.
+- Decision: pending investigator review. The three unpushed publication commits for notebooks 11 and 12 were already on this branch; this change is not published.
+
+This is a retrospective development summary, not a captured verbatim dialogue.

@@ -2,8 +2,8 @@
 
 Only committed content is copied, never working copies. Files under public/
 replace their counterparts (README, notebook map, CI workflow, notebook 00).
-Held-back material (notebooks not yet reviewed, paper, talk, sub-PAT16
-matrices, Cursor rules, the manuscript plan and the internal release checklist)
+Held-back material (notebooks not yet reviewed, paper, talk, the sub-PAT16
+derivation script, Cursor rules, the manuscript plan and the internal release checklist)
 is left out, and Makefile targets that need it are dropped. Before anything is
 written, the snapshot is checked for local paths, data files and oversized
 files; relative links that point outside the snapshot are reported.
@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
+PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11")
 HELD_BACK = (
     "public/*",
     "paper/*",

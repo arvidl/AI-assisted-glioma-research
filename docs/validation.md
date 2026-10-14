@@ -901,3 +901,30 @@ The investigator asked to publish notebook 10 for Colab testing (record: `docs/a
 - Public clone: `scripts/public_snapshot.py` wrote 184 files (the two reported links outside the snapshot are the template strings in notebook 01, as before). After `make setup` (same platform): `make check` gave 242 passed and 5 skipped.
 - Colab simulation: notebook 10 from the public commit was executed outside any checkout in the Python 3.12 environment used for notebook 09 (NumPy, Matplotlib, ipywidgets, IPython, nbclient; no `glioma_ai`), with a stand-in `google.colab` module and the clone URL pointed at the local public clone. The setup cell cloned the local public commit; the Colab cell downloaded and verified the four files from GitHub ("Colab: 4 files verified; CC0 …"); all 22 code cells ran without errors in 11 s; the OSF cross-check and the paper's case figure printed their absent-input notices.
 - Hosted Colab: the investigator reported that notebook 10 runs fine in Google Colab (opened from the public repository). Runtime type, package versions and which cells or explorer controls were exercised were not reported.
+
+## 14 October 2026: notebooks 11 and 12 prepared for publication
+
+Antigravity session (record: `docs/ai-use/2026-10-14-publish-notebooks-11-12.md`). Notebooks 11 and 12 received the Colab badge, note and setup cell of notebook 10 and small review fixes; the investigator authorised `data/derived/sub-PAT16/` in the public snapshot.
+
+- Separation: both notebooks import only `glioma_ai`, IPython, NumPy and Matplotlib (and ipywidgets through the explorer of 11); their relative links point only to `docs/ai-use/` records that are in the snapshot. Neither downloads data in Colab; 12 reads the tracked matrices from the clone.
+- On a staged tree (local notebook copies 00–10 stashed; macOS 27.0.1, arm64, managed CPython 3.12.14, project `.venv` after `uv sync --locked --group notebooks`): `make notebooks` executed 01–12 (00 skipped as hosted Colab), all passed; during 11 the kernel log printed "KeyboardInterrupt caught in kernel", with no error output in any cell. The executed copies of 11 and 12 were re-exported (only `sub-PAT16` appears as a participant ID; the exporter found no local path and no missing-input notice). Before the re-export, `make check` failed only the executed-copy currency test; afterwards it passed (247 tests).
+- Public clone: `scripts/public_snapshot.py` wrote 197 files from `64f2c20` into a fresh clone of the public repository in a scratch directory (the two reported links outside the snapshot are the template strings in notebook 01, as before). It was committed there locally only and not pushed. After `make setup` (same platform): `make check` gave 244 passed and 3 skipped.
+- Colab simulation: notebooks 11 and 12 from that local commit were executed outside any checkout in a separate Python 3.12 environment (NumPy 2.5.4, Matplotlib 3.11.2, ipywidgets 8.1.9, IPython, ipykernel, nbclient; no `glioma_ai`) with a stand-in `google.colab` module; the setup cell's clone URL and `/content` path were redirected to the local public commit and a scratch directory. 11: 7 code cells, no errors, 8 s. 12: 5 code cells, no errors, 3 s; its CANTAB cell printed "CANTAB not shown: …" as intended.
+- Not done: hosted Colab; publication to public `main` (waits for the investigator); any review of the sub-PAT16 matrices or the upstream QC (still 0 of 37 items); review of the changed text by the investigator.
+
+## 14 October 2026: notebook 11 with three reading tracks
+
+The investigator asked for notebook 11 to follow notebook 10's three tracks (record: `docs/ai-use/2026-10-14-notebook-11-tracks.md`). Track paragraphs, a glossary, exercises and a reference list were added. The code cells are unchanged.
+
+- New citations: Tykocki and Rakasz, Neurosurg Rev 2026;49:191, and Noll et al., Neuro-Oncol Adv 2025;7:vdaf192, checked against Crossref and the published abstracts. Salvalaggio, Cayuela, Douw, Herbet and Houskamp are the notebook 10 citations, used within the summaries already checked there. The motivation does not repeat Tykocki's pooled odds ratios.
+- On a staged tree (macOS 27.0.1, arm64, managed CPython 3.12.14, separate environment): `make notebooks` executed 01–12 (00 skipped as hosted Colab); notebook 11 passed. The executed copy of 11 was re-exported. Its outputs contain no participant ID and no local path.
+- On that staged tree, `make check` passed (247 tests).
+- In the unstaged working copy, `make check` still fails the executed-copy kernelspec test, because notebooks 00–12 carry the local "Glioma AI (uv)" kernelspec. The staged source of 11 uses the repository kernelspec.
+
+### Proofread, notebook 12 introduction, and further 2025–2026 references
+
+The title was kept. Section 5 now introduces notebook 12: the open BTC MRI (ds001226 v5.0.0 and ds002080 v4.0.0, CC0), the tracked derived matrices rather than the volumes, the linear model carried over, the tumour-mask virtual resection, and the unreviewed upstream QC. Added, after Crossref and abstract checks: Nasiri et al. 2026, Berger et al. 2026, Kong and Wei 2026, Wang et al. 2026 (details in the record). Proofreading fixed the exercises' opening, the section cross-references and unlinked citations. Code cells were unchanged. On a staged tree (same platform and separate environment): `make notebooks` executed 01–12; the executed copy of 11 was re-exported. `make check` on that tree passed (247 tests).
+
+## 14 October 2026: publishing notebook 11
+
+The investigator was happy with notebook 11 for now and asked to commit and push it for a hosted Colab test. Notebook 12 stays in review, and `data/derived/sub-PAT16/` stays out of the public snapshot with it. Notebook 11's Colab cell only clones the repository; the network is constructed in code. The push to public `main` is made with the investigator's approval. Hosted Colab is the investigator's test.

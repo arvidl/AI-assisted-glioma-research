@@ -21,13 +21,15 @@ regenerates them and refuses runs with local paths or missing inputs.
 | 08 | Potential is not field: a synthetic potential whose exact field is known; central differences, sampling and noise; potential–field ambiguity and the optimal spacing; a synthetic tumour–brain border with an activity drop and a conductivity step; evidence on fields, glioma circuitry and the border; a proposed clinical analysis; testable field hypotheses at the border; empirical cognitive anchor; field explorer |
 | 09 | From tumour masks to brain networks: the published segmentation and anatomical-profiling study (methods, accuracy with quartiles, hit-plot agreement, lobar and functional-anatomy involvement, published figures); what Dice and HD95 detect and miss; regional burden and small regions; a synthetic Fisher–Kolmogorov tumour–brain interface with the same enhancing boundary and different invisible tails; connectionism, structural and functional connectivity, disconnection and their critics; glia, fields and brain waves; measuring cognition; metric and burden explorers |
 | 10 | Cognition before and after brain-tumour surgery: the six CANTAB measures with units and direction; the Brain Tumor Connectomics participant tables (OpenNeuro ds001226 and ds002080, CC0, SHA-256 pinned) shown only as group summaries, plus the sub-PAT16 case; a column audit; cross-source agreement with the digital-twin table and the OSF release; an AI-generated slide audited against the source and reconstructed verifiably; precision; exploratory reliable change against ten retested controls with three indices and a bootstrap; leave-one-out forecasting baselines; mechanisms and a proposed study; cognitive-neuroscience, clinical and modeling tracks with exercises; explorers |
+| 11 | Tumour in the network: a constructed structural network on the notebook 02 phantom; tract disconnection by the tissue-guided tumour; a constructed resection; exact functional connectivity of a linear network model with simulation controls; cognitive-neuroscience, clinical and modelling tracks, with a glossary, exercises and an introduction to the real-data companion; network explorer. No patient files |
 
-Notebooks 11–12 are in review and will be added one by one. Notebooks 04–09
+Notebooks 04–09
 have a clinical/biological (in 08 and 09: neuroscience and clinical) and a
 modeling track and checked references; 05–10 also have a glossary. Notebook 10
-has three tracks: cognitive neuroscience, clinical and modeling.
+has three tracks: cognitive neuroscience, clinical and modeling. Notebook 11
+has the same three tracks. Notebook 12, the real-data companion, is in review.
 
-**Google Colab.** Notebooks 01–10 can be opened directly in Colab: their first
+**Google Colab.** Notebooks 01–11 can be opened directly in Colab: their first
 code cell clones this repository and puts its package on the path, using
 Colab's own NumPy, Matplotlib and ipywidgets rather than the locked versions.
 Notebooks 01 and 09 have a Colab-only cell that downloads the published
@@ -36,7 +38,7 @@ figures (release `published-figures-v1`). Notebook 03 has a Colab-only cell that
 checks its pinned SHA-256 and verifies every file. Notebook 10 has a Colab-only
 cell that downloads the pinned OpenNeuro participant tables and the sub-PAT16
 session table (`make btc-fetch` locally); its OSF cross-check needs local
-inputs. Notebook 00 instead runs
+inputs. Notebook 11 constructs its network in code and downloads nothing. Notebook 00 instead runs
 everything in the locked environment.
 
 **Notebook 03 data.** Locally, run `make lumiere-bundle-fetch` and set
