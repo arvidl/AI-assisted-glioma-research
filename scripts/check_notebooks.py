@@ -65,7 +65,16 @@ def main() -> None:
         (spec / "kernel.json").write_text(
             json.dumps(
                 {
-                    "argv": [sys.executable, str(launcher), "-f", "{connection_file}"],
+                    # ipykernel 7.3's thread that forwards OS-level stdout/stderr can
+                    # deadlock and leave a finished cell unreported; Python-level output
+                    # is unaffected, and OS-level output goes to this process's stderr.
+                    "argv": [
+                        sys.executable,
+                        str(launcher),
+                        "-f",
+                        "{connection_file}",
+                        "--IPKernelApp.capture_fd_output=False",
+                    ],
                     "env": {
                         "IPYTHONDIR": str(spec_root / "ipython"),
                         "JUPYTER_CONFIG_DIR": str(spec_root / "jupyter"),
