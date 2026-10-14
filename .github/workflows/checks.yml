@@ -29,4 +29,5 @@ jobs:
       - run: uv run --locked --python ${{ matrix.python }} ruff format --check .
       - run: uv run --locked --python ${{ matrix.python }} pytest
       - run: uv run --locked --group notebooks --python ${{ matrix.python }} python scripts/check_notebooks.py
+        timeout-minutes: 15
       - run: uv run --locked --python ${{ matrix.python }} glioma-ai demo --output outputs/demo

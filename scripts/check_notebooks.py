@@ -1,6 +1,7 @@
 """Validate notebook source and execute teaching notebooks in this uv Python."""
 
 import ast
+import faulthandler
 import json
 import sys
 import tempfile
@@ -14,10 +15,14 @@ from nbclient import NotebookClient
 from glioma_ai.lumiere_dynamics import configured_case_inputs
 from glioma_ai.lumiere_slice import lumiere_p048_root
 
-ISOLATED_KERNEL_LAUNCHER = """\
+STALL_SECONDS = 240
+
+ISOLATED_KERNEL_LAUNCHER = f"""\
+import faulthandler
 import sys
 
 del sys.path[0]
+faulthandler.dump_traceback_later({STALL_SECONDS}, repeat=True)
 
 from IPython.core import application
 
@@ -95,9 +100,14 @@ def main() -> None:
                 timeout=300,
                 resources={"metadata": {"path": str(root)}},
             )
+            print(f"Executing {path.name}", flush=True)
+            # Notebooks normally finish in seconds; a run that outlives the cell timeout
+            # hangs outside cell execution, so dump every thread's stack while it waits.
+            faulthandler.dump_traceback_later(STALL_SECONDS, repeat=True)
             try:
                 client.execute()
             finally:
+                faulthandler.cancel_dump_traceback_later()
                 if manager.has_kernel:
                     manager.shutdown_kernel(now=True)
                 if client.kc is not None:
