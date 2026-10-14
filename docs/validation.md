@@ -928,3 +928,7 @@ The title was kept. Section 5 now introduces notebook 12: the open BTC MRI (ds00
 ## 14 October 2026: publishing notebook 11
 
 The investigator was happy with notebook 11 for now and asked to commit and push it for a hosted Colab test. Notebook 12 stays in review, and `data/derived/sub-PAT16/` stays out of the public snapshot with it. Notebook 11's Colab cell only clones the repository; the network is constructed in code. The push to public `main` is made with the investigator's approval. Hosted Colab is the investigator's test.
+
+### US spelling of tumor in notebook 11
+
+The investigator asked for US **tumor** in the title and prose of notebook 11, matching notebooks 01–02, while keeping citation titles and “Brain Tumor Connectomics” unchanged. One retained British form remains in the Douw et al. reference title (“tumour biology”). Code cells were unchanged. On a staged tree (same platform and separate environment): notebook 11 alone was executed and its executed copy re-exported; `make check` passed (247 tests). Public `main` was refreshed with the investigator's approval.
