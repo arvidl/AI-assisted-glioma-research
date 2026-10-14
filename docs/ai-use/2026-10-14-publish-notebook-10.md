@@ -6,6 +6,6 @@
 - Investigator decisions (answers to the assistant's questions): a Colab-only cell that downloads the pinned OpenNeuro participant tables and the sub-PAT16 session table with `fetch_btc` (SHA-256 checked) and does nothing outside Colab; the OSF release is not fetched in Colab, so the OSF cross-check and the paper's case figure show their notices there.
 - Contribution: an "Open in Colab" badge and Colab note under the title, the Colab setup cell of notebook 09 before the first code cell, and the Colab-only note and fetch cell before the data cell. No other cell changed. `scripts/public_snapshot.py` now publishes 00–10 and no longer reports `attachment:` links as file links; the public README and notebook map list 10.
 - Verification: recorded in `docs/validation.md`.
-- Decision: the investigator asked for the publication; the push to public `main` is made with the investigator's approval; hosted Colab runs are the investigator's.
+- Decision: the investigator asked for the publication; the push to public `main` (`0ed8551`) is made with the investigator's approval. The investigator then reported that the notebook runs fine in hosted Colab; runtime type, package versions and which cells were exercised were not reported.
 
 This is a retrospective development summary, not a captured verbatim dialogue.
