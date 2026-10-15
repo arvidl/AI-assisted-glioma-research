@@ -16,6 +16,7 @@ from glioma_ai.imaging import summarize_labels
 from glioma_ai.lumiere_bundle import fetch_bundle
 from glioma_ai.lumiere_fetch import fetch_patient
 from glioma_ai.lumiere_slice import write_lumiere_slice_illustration
+from glioma_ai.paper_assets import write_paper_assets
 from glioma_ai.published import fetch_published_figures, prepare_published_figures
 from glioma_ai.runtime import device_report
 from glioma_ai.tcga_reports import summarize_tcga_reports
@@ -86,6 +87,12 @@ def main() -> None:
     cognition.add_argument("--case-config", type=Path)
     cognition.add_argument("--output", type=Path, default=Path("outputs/cantab"))
     cognition.add_argument("--paper-dir", type=Path)
+    paper = commands.add_parser(
+        "paper-assets", help="Write the paper's figures and number macros, notebook by notebook"
+    )
+    paper.add_argument("--output", type=Path, default=Path("outputs/paper"))
+    paper.add_argument("--paper-dir", type=Path, default=Path("paper/generated"))
+    paper.add_argument("--btc-dir", type=Path, default=Path("data/btc"))
     record = commands.add_parser("validate-record", help="Check assistance record completeness")
     record.add_argument("path", type=Path)
     args = parser.parse_args()
@@ -128,6 +135,8 @@ def main() -> None:
         result = write_cantab_example(
             args.release_dir, args.output, args.case_config, args.paper_dir
         )
+    elif args.command == "paper-assets":
+        result = write_paper_assets(Path.cwd(), args.output, args.paper_dir, args.btc_dir)
     else:
         validate_record(json.loads(args.path.read_text()))
         result = {"record_complete": True, "scientific_quality_evaluated": False}

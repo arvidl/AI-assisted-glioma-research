@@ -1,0 +1,1245 @@
+% !TEX program = pdflatex
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,booktabs,tabularx}
+\usepackage[section]{placeins}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
+\newcommand{\draftnotice}[1]{\par\smallskip\noindent\textit{Draft: #1}\par\smallskip}
+\newcommand{\aicontribution}[5]{\par\nobreak\smallskip\noindent
+\begin{minipage}{\linewidth}\small
+\noindent\textbf{Question:} #1\par
+\noindent\textbf{AI contribution:} #2\par
+\noindent\textbf{Investigator choices:} #3\par
+\noindent\textbf{Verification:} #4\par
+\noindent\textbf{Evidence status:} #5\par\end{minipage}\par\smallskip}
+\IfFileExists{generated/numbers.tex}{\input{generated/numbers.tex}}{}
+\IfFileExists{generated/published_numbers.tex}{\input{generated/published_numbers.tex}}{}
+
+\title{AI-assisted glioma research: a perspective with reproducible examples
+in imaging and clinical evidence}
+\author{Arvid Lundervold\\
+\small Department of Biomedicine, University of Bergen, Norway}
+\date{6 October 2026\\\small Working perspective draft}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Glioma research must connect anatomical tumor burden with the cells and neural
+circuits that occupy the same brain. This perspective identifies two AI roles:
+trained imaging models for compartment measurement, and generative research
+assistance for constructing inspectable code, controls, figures and prose.
+Our published MRI segmentation and subject-specific anatomical-profiling study
+provides attributed imaging results and public-data illustrations. A retrospective
+potassium-clearance case connects the investigator's question, assisted
+implementation, independent checks and unresolved biological interpretation.
+Reproducible CPU examples address imaging sensitivity, niche-dependent state
+composition, potassium clearance, extracellular potential gradients and
+tumor-growth feedback. Inputs and coefficients are prescribed, with explicit
+units and separate timescales; none is a calibrated patient model. Experimental
+literature motivates questions about astrocytes, neuron--glioma interactions
+and cognitive function. Analog cognition and cytoelectric coupling remain
+research perspectives, with field effects, cytoskeletal evidence and clinical
+associations distinguished. A source-verified CANTAB case anchors cognition
+in observed task performance. A proposed study asks whether preoperative
+network/dynamics information adds to baseline cognition and anatomical burden.
+Shared Python code generates notebook results, manuscript numbers and talk
+figures. Conventional solvers reproduce specified equations without a language
+model call. A proposed matched-task pilot separates quality-qualified completion
+time, independently reviewed scientific quality and artifact relevance.
+Biological calibration, human scientific review, clinical evaluation and
+comparative measurement of AI benefit remain further work.
+\end{abstract}
+
+\noindent\textbf{Keywords:} glioma; tumor microenvironment; cancer neuroscience;
+astrocytes; cognition; MRI; AI assistance; reproducibility
+
+\section{Introduction}
+
+The value of a computational glioma figure depends on the question it answers.
+A segmentation may define a region for measurement, an equation may construct
+a trajectory, and a clinical table may identify a candidate analysis population.
+Each can be useful without supporting a treatment conclusion.
+
+An image-analysis model, such as one developed using nnU-Net, maps an image
+to labels and requires validation of that mapping~\cite{isensee2021}.
+A generative research assistant can help formulate questions, write code,
+inspect artifacts, and revise prose. A numerical solver advances a specified
+equation. The solver is not an imaging model, and correctness of its update
+does not validate the assistant that helped implement it.
+
+Our focus is understanding glioma through AI-assisted imaging and modeling.
+This perspective accompanies a talk entitled \emph{AI-Assisted Glioma
+Research: Imaging, Tumor Dynamics and Clinical Evidence}. We organize the
+examples by clinical research questions rather than by software products.
+The aim is to connect a contribution to a check and a claim another
+researcher can assess.
+
+The central question is what happens at the interface between glioma and
+surrounding brain. Imaging, tissue assays, and physiological measurements
+observe different aspects of that interface. Our worked models ask how local
+signals could change state composition or growth, and which observations
+would be needed to distinguish these explanations. Evidence from these worked
+models is synthetic; experimental findings are cited separately from our simulations.
+A separately verified behavioral case supplies empirical cognitive observations.
+
+The clinical motivation includes preservation of language and other cognitive
+functions alongside control of tumor burden. Anatomical proximity, physiological
+recruitment and task performance are distinct observations. Their integration
+is a research question, rather than a consequence of segmentation accuracy.
+
+\subsection{Two AI roles in a reproducible research workflow}
+\textbf{Imaging AI} maps MRI to compartment labels. Its evidence concerns
+the trained model's agreement with appropriate reference segmentations and
+the geometry and meaning of its outputs. Our published SegResNet study
+provides this component~\cite{lundervold2026}; its attributed results are
+distinct from the synthetic measurement exercise.
+
+\textbf{Generative research assistance} helps translate an investigator's
+question into code, comparisons, figures and evidence-bounded prose. In this
+project Codex contributed to these artifacts, as documented retrospectively.
+The potassium example makes that contribution concrete without claiming an
+independent biological discovery or an improvement over unassisted work.
+The investigator supplies the research direction and remains responsible
+for reviewing assumptions and interpretation. Development choices are not
+presented as investigator-approved physiological estimates.
+
+Conventional numerical solvers then reproduce the specified equations on
+CPU. Rebuilding makes no language-model call. Each executable example below
+identifies its question, AI contribution, investigator choices, verification
+and evidence status. A check of the calculation supports implementation;
+biological calibration and a comparative evaluation of assistance are
+separate requirements. The proposed pilot in Section~\ref{sec:ai-pilot}
+addresses research productivity and artifact quality, not patient outcomes.
+
+\section{Measuring and locating a tumor}
+
+\subsection{A published imaging foundation}
+
+\aicontribution
+{Where are MRI-defined compartments relative to subject anatomy (notebook 09)?}
+{Trained SegResNet segmentation in the published study; research assistance here with attributed evidence and figure reuse.}
+{The investigator requested this bridge; study methods belong to the source and interpretation needs review.}
+{Published reference-mask Dice/HD95, compartment definitions, attribution and asset hashes.}
+{Reported imaging study; no new inference, accuracy benchmark or clinical-utility result.}
+
+
+Our recent feasibility study combines multiparametric MRI tumor segmentation
+with subject-specific anatomical parcellation~\cite{lundervold2026}.
+Intersecting compartments with anatomical regions produces volumes and
+regional-burden \textit{hit-plots}. The companion code is available at
+\url{https://github.com/arvidl/high-precision-glioma-segmentation}.
+\IfFileExists{generated/published_numbers.tex}{
+In the published UCSF-PDGM cohort of \PublishedImagingN{} subjects, reported
+median Dice values were \PublishedDiceWT{} for whole tumor,
+\PublishedDiceTC{} for tumor core, and \PublishedDiceET{} for enhancing tumor.
+}{\draftnotice{Run make paper to load the attributed publication values.}}
+These values describe agreement with the study's reference masks.
+They are quoted published aggregates; that pipeline is not rerun here.
+A longitudinal public-data illustration demonstrates descriptive change in
+compartment volumes and regional burden.
+
+The study's stated scope is feasibility and infrastructure, with no
+patient-outcome or clinical-utility evaluation~\cite{lundervold2026}.
+Its regional burden supplies anatomical context for biological questions,
+without measuring malignant-cell programs, neuron--glioma synapses, or
+functional eloquence. Relating those profiles to tissue assays, physiology,
+or outcomes is proposed follow-up work. The executable construction below
+teaches measurement sensitivity without importing patient images or labels.
+
+\subsection{Methods, reported results and illustrations}
+The published study uses co-registered T1, contrast-enhanced T1, T2 and FLAIR,
+a trained deep-learning segmentation model (the unified MONAI BraTS
+three-compartment SegResNet pipeline), and subject-specific
+FreeSurfer anatomical parcellation~\cite{lundervold2026}. Native-space
+intersections preserve each subject's anatomical labels. The study separates
+segmentation agreement, anatomical localization and quantitative regional
+profiling. Dataset reference masks provide the segmentation comparison;
+they are not histological ground truth.
+
+\begin{table}[htbp]
+\centering
+\caption{Reported median agreement in the published n=50 UCSF-PDGM
+IDH-wildtype, WHO grade 4 glioblastoma cohort~\cite{lundervold2026}.
+Values are the rounded abstract values, exported from a checked publication
+record. No imaging inference or new benchmark was performed here.}
+\begin{tabular}{@{}lrr@{}}\toprule
+Compartment & Dice & HD95 (mm)\\\midrule
+Whole tumor (WT) & \PublishedDiceWT & \PublishedHDWT\\
+Tumor core (TC) & \PublishedDiceTC & \PublishedHDTC\\
+Enhancing tumor (ET) & \PublishedDiceET & \PublishedHDET\\\bottomrule
+\end{tabular}
+\end{table}
+WT combines NCR, ED/FLAIR abnormality and ET; TC combines NCR and ET.
+The longitudinal LUMIERE illustration is one subject with six visits.
+These results support feasibility of the measurement infrastructure, with
+clinical outcomes and utility outside the study's evaluated scope.
+
+\IfFileExists{generated/hpgs_mri_pipeline.png}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/hpgs_mri_pipeline.png}
+\caption{Published imaging illustration: multiparametric MRI, dataset-reference
+compartment masks and subject-specific anatomy for public UCSF-PDGM-0085. Original
+Figure 1 asset from Lundervold et al.~\cite{lundervold2026}, CC BY 4.0;
+reused without altering the image. This illustration supplies anatomical
+context, not a physiological or molecular measurement.}
+\label{fig:published-pipeline}
+\end{figure}
+}{\draftnotice{Published illustrations need the explicit local
+\texttt{make published-figures HPGS\_REPO=...} import from the author checkout.}}
+
+\IfFileExists{generated/hpgs_regional_anatomy.png}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/hpgs_regional_anatomy.png}
+\caption{Published public UCSF-PDGM-0020 illustration of tumor contours
+and native anatomical labels. Original Figure 4a--b asset from
+Lundervold et al.~\cite{lundervold2026}, CC BY 4.0. Anatomical labels
+locate a possible functional question; they do not measure eloquence.}
+\label{fig:published-anatomy}
+\end{figure}
+}{}
+\IfFileExists{generated/hpgs_hitplot_reference.png}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=0.94\textwidth]{generated/hpgs_hitplot_reference.png}
+\caption{Published regional overlap volumes for public UCSF-PDGM-0020,
+original Figure 4c asset~\cite{lundervold2026}, CC BY 4.0. NCR, ED and ET
+retain the source legend and mL units. The upstream label \texttt{source=gt}
+identifies dataset reference masks, rather than deep-learning predictions
+or histological ground truth. The displayed top twelve regions are the
+published selection, not a new analysis or an outcome association.}
+\label{fig:published-hitplot}
+\end{figure}
+}{}
+The image assets remain local and are checked against source hashes.
+Their author-manuscript revision is recorded separately from the cleaned
+public code revision, which does not distribute these manuscript assets.
+No restricted BGO-D illustration or acquired patient file is imported.
+
+\subsection{Constructed compartments}
+
+\aicontribution
+{How do geometry and mask perturbations change measurement (notebook 01)?}
+{Research assistance adapting unit-explicit measurement code and teaching controls.}
+{Imaging was requested; grid, labels and perturbations are prescribed construction choices.}
+{Affine volume, Dice, matched grids and refusal of ambiguous geometry.}
+{Synthetic masks; independent of the trained imaging model.}
+
+
+The imaging construction is an ellipsoid on a
+$1.2\times1.2\times2.0$\,mm grid. Nested compartments use explicit labels
+1, 2, and 4 as constructed analogues of necrosis or non-enhancing tumor,
+edema or FLAIR abnormality, and enhancing tumor, arranged as in a typical
+glioblastoma: necrotic core, enhancing rim, surrounding edema. These definitions describe
+a construction; they are not histologically observed tissue.
+
+For a binary region $M$ and a voxel-to-world affine $A$ in millimetres,
+\begin{equation}
+ V(M)=\frac{|M|\,|\det A_{1:3,1:3}|}{1000}\quad\mathrm{mL}.
+\end{equation}
+The determinant handles rotation, reflection, and shear. The NIfTI reader
+requires a coded transform, established units, and finite integer labels.
+It rejects conflicting coded qform and sform transforms. Comparisons require
+the same physical grid; the program does not silently register or resample.
+
+A four-voxel translation is compared with a 12\% increase in each ellipsoid
+radius. These perturbations were prescribed. Translation changes overlap
+without changing voxel count in this construction. Expansion changes the
+selected volume.
+
+\IfFileExists{generated/numbers.tex}{
+The reference volume is \ExampleReferenceML{}\,mL.
+The translated mask has Dice \ExampleTranslatedDice{}, and the expanded
+mask has Dice \ExampleExpandedDice{} with a volume increase of
+\ExampleExpandedPercent{}\%.
+}{\draftnotice{Run make paper to generate the measurement values.}}
+
+\IfFileExists{generated/imaging.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/imaging.pdf}
+\caption{Overlap and volume respond differently to two small segmentation
+errors (synthetic construction). \textbf{(A)} Mid-plane of a constructed
+ellipsoid (semi-axes 10, 12 and 16\,mm) on a $64\times64\times40$ grid of
+$1.2\times1.2\times2.0$\,mm voxels, with three nested, mutually exclusive
+labels in BraTS numbering: label~1, necrotic core or non-enhancing tumor
+(purple); label~4, enhancing rim (orange); label~2, edema or FLAIR
+abnormality (teal). The labels are prescribed regions, not observed tissue
+or the output of a trained network. \textbf{(B)} Reference whole tumor
+(labels 1+2+4; grey; \ExampleReferenceML{}\,mL) with the same mask
+translated by four voxels (4.8\,mm) along $x$ (magenta) and an ellipsoid
+with every semi-axis enlarged by 12\% (blue; about one voxel at the
+boundary). \textbf{(C)} Whole-tumor volume, signed volume error $\Delta V$
+and Dice relative to the reference. The translation preserves volume but
+lowers Dice to \ExampleTranslatedDice{}; the expansion keeps Dice at
+\ExampleExpandedDice{} yet increases volume by \ExampleExpandedPercent{}\%,
+close to the continuous expectation $1.12^3-1\approx40.5\%$. Volumes use
+voxel counts and the affine determinant; Dice is computed on the identical
+grid without registration or resampling. Axes give millimetres from the
+ellipsoid centre, not patient anatomy.}
+\label{fig:imaging}
+\end{figure}
+}{\draftnotice{Synthetic imaging figure has not been generated.}}
+
+\subsection{Clinical relevance and proposed public example}
+
+An overlay should be interrogated before interpreting a number: which
+compartment, label convention, grid, and source produced it? Anatomical
+context can inform a research question, while structural proximity alone
+does not establish functional risk. Generated inpainted anatomy must remain
+identified as generated.
+
+The reused published public-data illustrations demonstrate the study's
+anatomical profiling. A new case analysis would still require source images,
+preparation records and independent imaging review. The reuse does not
+constitute a new review of segmentation or anatomical accuracy.
+
+\section{Cells, neural dynamics and cognition at the glioma--brain interface}
+
+\subsection{Biological questions and levels of evidence}
+
+The tumor microenvironment includes immune and vascular compartments and
+the surrounding neural tissue. Macrophage-associated signaling can drive
+MES-like glioblastoma cell-state transitions in experimental systems
+~\cite{hara2021}; the associated figure correction is recorded
+~\cite{hara2025correction}. Hypoxia-associated macrophage niches and
+vascular interactions illustrate the spatial nature of this ecosystem
+~\cite{wang2024}. These findings motivate biological questions rather
+than supplying coefficients for our constructions.
+
+Cancer neuroscience offers a bridge to neurosurgery and tumor biology
+~\cite{winkler2023,monje2025}.
+Synaptic and electrical neuron--glioma interactions have experimental
+support~\cite{venkatesh2019}. Neuron--glioma synapses show plasticity
+regulated by BDNF--TrkB signaling, and greater depolarizing current promotes
+glioma proliferation in experimental models~\cite{taylor2023}. Human
+cortical-tissue experiments connect
+neuronal excitability, glioma synaptic activity, and proliferation
+~\cite{mcalpine2026}. A study combining recordings, biopsies, and experimental
+work also links tumor functional connectivity with cognition and patient
+survival~\cite{krishna2023}. Its patient associations do not demonstrate that
+altering connectivity improves survival. Evidence from particular glioma
+subtypes and preparations should retain those boundaries.
+
+Tumor microtubes add a cellular network level~\cite{osswald2015}. In
+experimental models they help glioma networks resist surgical lesions and
+chemotherapy~\cite{weil2017}, carry neuron--glioma synapses
+~\cite{venkataramani2019}, take part in neuron-like brain invasion
+~\cite{venkataramani2022}, and connect rhythmically active pacemaker-like cells
+whose KCa3.1-dependent activity drives network growth~\cite{hausmann2023}.
+They are detected mainly by intravital two-photon microscopy in mouse models,
+with confirmation in resected tissue, and are far below MRI resolution. A
+transcriptional connectivity signature that includes CHI3L1 now estimates
+network connectivity in patient samples; high connectivity is associated with
+the mesenchymal subtype and shorter survival~\cite{hai2024}.
+
+\subsection{Astrocytes as physiological and tumor partners}
+Non-malignant astrocytes regulate the extracellular environment and support
+synaptic activity. Hippocampal-slice experiments with glial-conditional Kir4.1
+perturbation link astroglial potassium clearance to short-term synaptic
+responses~\cite{sibille2014}. These physiological observations motivate a
+clearance example; they do not supply its assumed rates or demonstrate the
+same behavior in tumor-infiltrated human cortex.
+
+Astrocyte--glioblastoma connections also have metabolic consequences.
+Watson and colleagues demonstrated GAP43-dependent astrocyte-to-glioblastoma
+mitochondrial transfer and enhanced tumorigenicity in experimental systems
+~\cite{watson2023}. The work includes University of Bergen investigators.
+That process is distinct from potassium clearance. An astrocyte-like
+malignant-cell transcriptional program likewise does not identify a
+non-malignant or reactive astrocyte. Cell identity, state and compartment
+must remain explicit when proposing a model.
+
+\subsection{Local field potentials and electric fields}
+LFPs record extracellular potential relative to a reference electrode.
+Transmembrane currents, especially synaptic currents, together with cellular
+geometry, synchrony and volume conduction contribute to the measured signal
+~\cite{buzsaki2012}. A potential in volts and its spatial gradient in volts
+per metre are different quantities:
+\begin{equation} \mathbf E=-\nabla\phi.\label{eq:field}\end{equation}
+A temporal trace at one electrode does not determine that gradient.
+Cortical-slice experiments establish that weak extracellular fields can
+influence membrane potential and spike timing under the tested conditions
+~\cite{anastassiou2011}. These ephaptic effects do not alone establish
+cortex-wide cognitive organization or a field-mediated glioma mechanism.
+
+\subsection{An empirical clinical anchor: source-verified CANTAB}
+\label{sec:cantab}
+
+\aicontribution
+{What cognitive performance was observed before surgery and at follow-up (notebook 10)?}
+{Research assistance retrieving and pinning the behavioral release, checking score precision, and implementing the shared figure.}
+{The investigator requested an empirical anchor; four cognitive domains were selected for teaching, with interpretation pending review.}
+{Source SHA-256, explicit case match, visit chronology, units, missingness, diagnosis groups and agreement at released precision.}
+{Descriptive real-data example; no reliable-change classification, causal surgical effect or evaluated predictor.}
+
+The CANTAB behavioral release supplies an empirical anchor distinct from our
+synthetic neuroglial models. Aerts and colleagues assessed patients and caregivers
+before surgery and several months afterwards~\cite{aerts2019,aertsosf}.
+We pinned the released data, legend and non-imputed analysis code, preserving
+source definitions and day/month/year assessment dates. The behavioral resource
+is distinct from the selected T1, diffusion and resting-state BOLD MRI
+cohort~\cite{aerts2022}; participant linkage and imaging QC cannot be inferred
+from equal row positions or assumed cohort identity.
+
+\IfFileExists{generated/cantab_numbers.tex}{\input{generated/cantab_numbers.tex}}{}
+\ifdefined\CantabBehavioralN
+The behavioral table contains \CantabBehavioralN{} records: \CantabGliomaN{}
+glioma, \CantabMeningiomaN{} meningioma and \CantabControlN{} caregiver controls.
+Complete paired scores across the four cognitive domains are available for
+\CantabGliomaPairedN{}, \CantabMeningiomaPairedN{} and \CantabControlPairedN{}
+participants, respectively. These are code-generated behavioral availability
+counts, before any imaging linkage or QC exclusions. Diagnoses remain separate.
+\fi
+
+The illustration uses RTI five-choice reaction time in milliseconds, RVP
+sensitivity (A prime), SOC problems solved in minimum moves, and SSP spatial
+span. They retain their own scales. Lower reaction time means a faster
+response; higher sensitivity, planning count and span generally indicate better
+task performance. Neither a directional difference nor a percentage change
+establishes clinically reliable change. Compatible normative and retest
+information is not supplied by this release. The small repeated caregiver
+sample supports exploratory comparison, rather than a validated normative
+database or isolation of a surgical effect.
+
+\IfFileExists{generated/cantab_case.pdf}{
+The investigator's local case table was checked against one explicitly matched
+glioma row. \CantabVerifiedMetricN{} of its \CantabLocalMetricN{} CANTAB measures
+are represented in this release, including motor screening.
+Of the paired shared cells, \CantabExactCells{} agree exactly and
+\CantabPrecisionCells{} agrees at released decimal precision. The figure uses
+released values throughout. In particular, the small attention difference in
+the more precise local table is not resolved by the release; the displayed
+attention scores are equal. The assessments were \CantabCaseInterval{} days
+apart. This is an assessment interval, not a measured postoperative interval.
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/cantab_case.pdf}
+\caption{Source-verified single-case CANTAB example. Each panel retains its
+native scale and the released decimal precision; values come from code, not
+manual transcription. Assessment interval: \CantabCaseInterval{} days.
+RTI uses the released five-choice measure without guessing mean versus median.
+The paired scores describe observations across surgery, recovery and intervening
+care. Reliable change and causal effects are not assessed. Source:
+OSF Data.csv revision 2 and Legend.csv revision 1~\cite{aertsosf}, CC BY 4.0.
+The local source-case identifier and exact dates are omitted.}
+\label{fig:cantab}
+\end{figure}
+}{\draftnotice{The empirical CANTAB figure requires explicit acquisition and
+local case configuration, followed by make cantab. No synthetic case substitutes
+for missing empirical inputs.}}
+
+Treatment, seizures, medication, fatigue, emotional state, practice effects
+and assessment conditions may contribute to the observed differences.
+Two perioperative visits cannot identify tumor-growth effects or a pure
+resection effect. A prospective growth investigation needs serial imaging and
+cognition with appropriate treatment timing. This example contains no
+electrophysiological, astrocytic or microtubule measurements.
+
+Our published segmentation methods provide an imaging and quality-control
+bridge~\cite{lundervold2026}. Their T1/T1c/T2/FLAIR SegResNet inputs are not all
+available in BTC T1/diffusion/BOLD. The four-input trained model therefore
+cannot be directly applied to that resource. No missing contrast is synthesized
+or silently substituted; supplied masks, T1 anatomy and connectomics require
+their own reviewed provenance.
+
+\subsection{Cognitive function and the analog-cognition perspective}
+The language-task recordings and tumor studies of Krishna and colleagues
+provide a disease-specific connection among glioma, circuit remodeling and
+cognitive performance~\cite{krishna2023}. Their patient language and survival
+associations retain the limitations of association, including causal direction.
+Cognition therefore belongs in the clinical research agenda as an explicitly
+assessed outcome, rather than a label attached to a simulated activity index.
+
+Miller, Brincat and Roy propose a hybrid synapse/spike/wave framework in which
+rhythmic fields and wave dynamics organize context-dependent neural activity
+~\cite{miller2026}. The article is a theoretical review. It motivates asking
+how glioma-related perturbations of organized neural dynamics might affect
+cognition beyond anatomical burden; that glioma application is our proposed
+question. Its broader consciousness interpretation remains a theoretical
+horizon, with language and other prespecified cognitive outcomes as the
+practical focus here. The investigator's September 2026 HBF presentation is
+an educational companion, rather than an independent biological validation.
+
+\subsection{Cytoelectric coupling and cytoskeletal evidence}
+Pinotsis, Fridman and Miller propose that electric fields could influence
+cytoskeletal organization through electrodiffusion and mechanotransduction
+~\cite{pinotsis2023}. Their cytoelectric-coupling perspective explicitly
+calls for LFP recordings linked to molecular-level imaging as a direct test.
+In prefrontal recordings, Pinotsis and Miller report that field-to-neuron
+(ephaptic) influences were stronger than neuron-to-field influences and
+correlated with trial-by-trial changes in oscillatory power~\cite{pinotsis2026};
+the finding concerns neural activity, not glioma cells.
+A field-to-microtubule-to-glioma-growth or cognition pathway is therefore
+a proposed hypothesis in this manuscript, without a fitted coupling term.
+
+A separate glioblastoma study disrupted cytoplasmic connexin-43--microtubule
+interactions and reduced glioblastoma stem-like cell survival and xenograft
+growth~\cite{smyth2025}. It supplies experimental cytoskeletal relevance;
+it does not establish a physiological LFP-driven mechanism. Intracellular
+microtubules are tubulin polymers, whereas tumor microtubes are cell
+projections supporting intercellular glioma networks~\cite{osswald2015}.
+Their names must not be used interchangeably.
+
+\section{Reproducible constructions across timescales}
+The examples deliberately resolve different quantities and timescales.
+They are not parts of one calibrated multiscale simulator. In particular,
+seconds-scale extracellular potassium, a spatial potential illustration
+and a day-scale dimensionless growth signal are not interchangeable.
+
+\subsection{A niche signal changes composition at fixed abundance}
+
+\aicontribution
+{Can composition change at fixed local abundance (notebook 05)?}
+{Research assistance implementing the model, comparisons, tests and figures.}
+{Biological modeling was requested; states, reversibility, cue and rates await scientific review.}
+{Exact solution, conservation, equilibrium, no-cue limit and partition invariance.}
+{Synthetic composition; no observed phenotype or fitted niche effect.}
+
+
+Let $P$ aggregate other tumor states and $M$ represent a MES-like program
+analogue, both dimensionless normalized abundance. A prescribed spatial
+cue $s\in[0,1]$ gives
+\begin{equation}
+ \frac{dM}{dt}=k_f sP-k_rM,\qquad
+ \frac{dP}{dt}=-\frac{dM}{dt}.
+ \label{eq:niche}
+\end{equation}
+The model conserves $P+M$ locally. The cue is neither an immune-cell count
+nor a measured cytokine concentration. Reversibility is an assumed teaching
+choice; no transition rate is inferred from the cited experiments.
+The fixed-cue system has an exact solution, used by the package.
+Growth, migration, death, and immune-cell dynamics are excluded.
+
+A constructed 61-by-61 plane uses 1\,mm spacing, a Gaussian abundance profile,
+an initially uniform 10\% MES-like fraction, and an off-center Gaussian cue.
+With $k_f=0.08$/day and $k_r=0.02$/day over ten prescribed days,
+\IfFileExists{generated/numbers.tex}{
+the overall MES-like fraction becomes \ExampleNicheFractionPercent{}\%
+with the cue and \ExampleNicheNoCuePercent{}\% in the no-cue comparator.
+}{\draftnotice{Run make paper to generate the niche values.}}
+These are constructed compositions, not patient measurements.
+Both scenarios retain the same total abundance.
+
+\IfFileExists{generated/microenvironment.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/microenvironment.pdf}
+\caption{Synthetic niche construction. The cue changes the distribution
+of a MES-like program analogue while total normalized abundance is fixed.
+The line plot compares a prescribed cue with its absence under the same
+reverse rate. Axes, indices, and rates are constructed; neither molecular
+state nor MRI appearance is inferred.}
+\label{fig:niche}
+\end{figure}
+}{\draftnotice{The niche figure has not been generated.}}
+
+This example separates abundance from state composition. It supplies no
+MRI forward model and cannot establish that two biological tumors would
+have identical scans. A molecular or protein assay would be required
+to investigate the states; a suitable perturbation would be needed to
+test a causal signaling explanation.
+
+\subsection{Seconds-scale astrocytic potassium clearance}
+
+\aicontribution
+{What changes under fixed release and altered clearance (notebook 07)?}
+{Codex helped formulate and implement the excess-K/Nernst example and checks.}
+{The investigator requested astrocytes; volume, rates, pulses and concentrations are prescribed implementation choices.}
+{Independent analytic solution, concentration balance, limiting cases, clearance ambiguity and Nernst limits.}
+{Synthetic physiology; actual contribution summarized retrospectively, with scientific review pending.}
+
+Notebook 07 introduces a one-compartment excess extracellular K concentration
+$k$ in mM above a fixed 3\,mM reference:
+\begin{equation}
+ \frac{dk}{dt}=q(t)-(\lambda_a+\lambda_o)k.
+ \label{eq:potassium}
+\end{equation}
+Release $q$ is prescribed in mM/s; lumped astrocytic and other clearance rates
+are in s$^{-1}$. The exact constant-input solution advances each interval.
+The receiving reservoir is implicit; Kir4.1 kinetics, spatial buffering,
+intracellular storage, rerelease and firing are omitted. Cumulative release,
+retained excess and clearance share the same fixed extracellular reference
+volume, supporting an explicit flux-balance check.
+
+Release is 0.6\,mM/s during $[2,6)$ and $[10,14)$ seconds and zero otherwise.
+Other clearance is fixed at 0.1\,s$^{-1}$, while astrocytic clearance is
+0.8, 0.2 or 0\,s$^{-1}$. Starting from zero excess, 0.01-second intervals
+cover 24 seconds. These are prescribed conditions, not fitted healthy or
+impaired astrocytes. The ideal K-selective Nernst equilibrium uses a fixed
+intracellular concentration of 140\,mM and 37\,$^\circ$C:
+\begin{equation}
+ E_K=\frac{RT}{F}\ln\frac{[K]_{out}}{[K]_{in}}.
+\end{equation}
+Concentrations replace activities as an ideal-solution assumption.
+$E_K$ is neither a simulated membrane voltage nor a cognitive endpoint.
+
+\IfFileExists{generated/numbers.tex}{
+Peak excess concentrations are \ExampleKReferencePeak{} and
+\ExampleKReducedPeak{}\,mM for reference and reduced astrocytic clearance.
+Their maximal equilibrium shifts are \ExampleKReferenceShift{} and
+\ExampleKReducedShift{}\,mV.
+}{}
+
+\IfFileExists{generated/astrocyte_potassium.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/astrocyte_potassium.pdf}
+\caption{Synthetic potassium-clearance construction. Release intervals
+are shaded and all scenarios retain identical release and other clearance.
+The right panel computes a change in ideal K equilibrium voltage, not
+membrane potential, firing or cognition. No glioma or astrocyte observation
+was used to set the coefficients.}
+\label{fig:potassium}
+\end{figure}
+}{}
+
+The K trajectory depends only on $\lambda_a+\lambda_o$. Alternative
+clearance attribution with the same sum gives the same trajectory, a
+numerically checked ambiguity. Measuring K alone would not identify
+astrocytic clearance within this model family. The construction is separate
+from the slow activity-associated tumor-growth model below.
+
+\subsubsection{Worked AI-assisted development case: retrospective evidence}
+The saved development summary records the investigator's request to include
+astrocytes, LFPs and cognition. Codex helped narrow that direction to the
+clearance question and implement the package, comparison, tests and figures.
+The one-compartment equation and rates are inspectable implementation choices,
+not recorded approvals by the investigator. The original development record
+is preserved; \path{docs/worked-ai-potassium.md} connects it to source and
+verification. Notebook 04 provides the compact executable demonstration,
+and notebook 07 retains the full comparison.
+
+The chain is question, assisted implementation, checks, interpretation and
+remaining uncertainty. In particular, accounting verifies
+\begin{equation}
+ k(0)+\int_0^t q(u)\,du
+ =k(t)+C_a(t)+C_o(t),
+\end{equation}
+where both cleared quantities use the fixed extracellular reference volume.
+An independent constant-input solution supplies a second check.
+Equal-total-clearance ambiguity constrains interpretation even when both
+checks pass. Physiological measurements and selective perturbations would
+be needed to distinguish release from clearance contributions.
+
+This retrospective case documents a contribution and its acceptance evidence;
+it supplies no captured dialogue, rejected suggestion, elapsed-time comparison
+or independent scientific approval. Human biological review remains pending,
+and the Nernst calculation supplies no membrane-voltage or cognitive prediction.
+
+\subsection{Extracellular potential as an observation problem}
+
+\aicontribution
+{Does potential identify a spatial field or cognitive mechanism (notebook 08)?}
+{Research assistance with the spatial derivative, controlled examples and evidence map.}
+{The investigator requested LFPs/cognition; profiles and sampling are prescribed teaching choices.}
+{Analytic derivative, sign, V/m conversion, offset invariance and primary-source scope.}
+{Synthetic static fields; cited experiments and hypotheses remain separate.}
+
+Notebook 08 prescribes two static one-dimensional sinusoidal potentials on
+an explicit $[-5,5]$\,mm line. Both have 100\,$\mu$V amplitude; wavelengths
+are 10 and 2.5\,mm. A second-order finite-difference derivative converts
+microvolts and millimetres to one field component in V/m. A common voltage
+offset leaves that derivative unchanged. The analytic derivative supplies
+an independent comparison; no neuronal current source or volume conductor
+is inferred.
+
+\IfFileExists{generated/numbers.tex}{
+The analytic peak fields are \ExampleFieldLong{} and
+\ExampleFieldShort{}\,V/m.
+}{}
+
+At the central position both potentials are zero, while their gradients
+differ by approximately a factor of four. Equal potential amplitudes or a
+single instantaneous voltage therefore do not identify the field gradient.
+A real estimate would need spatial sampling, reference and noise treatment,
+a defined conductivity/source model where relevant, and an account of
+cellular geometry. The illustration has no temporal oscillation frequency.
+
+\IfFileExists{generated/lfp_field.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/lfp_field.pdf}
+\caption{Synthetic spatial potentials and their gradients. These curves
+are prescribed, not recorded LFPs or a cortical wave reconstruction. The
+computed field is one spatial component; intracellular fields, ephaptic
+responses, microtubule changes, tumor growth and cognition are not computed.}
+\label{fig:lfp}
+\end{figure}
+}{}
+
+This example clarifies a measurement requirement for any future field-based
+hypothesis. It supplies no coefficient linking fields to the cytoskeleton
+or to the normalized growth signal.
+
+\subsection{Day-scale reaction--diffusion baseline}
+
+Serial MRI observes a glioma through boundaries, delineated manually or
+automatically and each with error. Between examinations they may expand,
+shift, shrink after treatment or split into separate regions. Whether such
+observations can support forecasts of growth in space and time has been
+framed by analogy with numerical weather prediction~\cite{yankeelov2015}.
+Weather forecasting now combines physics-based ensembles with machine-learned
+models that match or exceed operational skill, including for tropical cyclone
+tracks~\cite{price2025,bodnar2025,rasp2026}. Those models learned from decades
+of dense, global observations assimilated by physics-based models. A glioma is
+seen in a few scans months apart, its course is deliberately altered by
+treatment, and pseudoprogression after radiotherapy can mimic
+growth~\cite{wen2023}. Unlike a compact cyclone with a trackable centre, a
+diffuse glioma's infiltrating margin is the part that is hardest to see.
+
+The tumor is also coupled to the brain around it. Neuronal activity can
+promote glioma growth through synaptic and electrical
+integration~\cite{venkatesh2019}; tumor cells form microtube-connected
+networks~\cite{osswald2015}; tumor functional connectivity is associated with
+cognition and survival~\cite{krishna2023}; and compression injures neurons and
+promotes glial neuroinflammation in experimental models~\cite{zarodniuk2026}.
+A clinically useful forecast would concern this tumor--brain system, including
+function and cognition, not only a boundary. The baseline below is a first,
+deterministic step, with no data assimilation, ensemble, learned component or
+coupling to the brain.
+
+\subsubsection{A prescribed two-dimensional experiment}
+
+\aicontribution
+{How do diffusion and growth assumptions change density (notebook 02)?}
+{Research assistance adapting solver interfaces, controls and explanation.}
+{Tumor dynamics was requested; coefficients, geometry and boundaries are prescribed.}
+{No-change/diffusivity comparators, conservation without growth, analytic limits and step constraints.}
+{Synthetic day-scale model; no fitted patient trajectory.}
+
+
+The baseline dynamics construction advances normalized density $c$ on a synthetic plane:
+\begin{equation}
+\frac{\partial c}{\partial t}
+=\nabla\cdot(D\nabla c)+\rho c(1-c).
+\label{eq:dynamics}
+\end{equation}
+This is the Fisher--Kolmogorov--Petrovsky--Piskunov equation, whose fronts
+travel at speed $2\sqrt{D\rho}$~\cite{fisher1937,kpp1937}; Murray develops its
+biological and brain-tumor applications~\cite{murray2003}. Swanson, Alvord and
+Murray used the proliferation--invasion form with faster migration in white
+than grey matter~\cite{swanson2000} and examined its implications for
+treatment~\cite{swanson2004}. Our logistic term is a bounded teaching variant.
+Diffusivity $D$ is in mm$^2$/day, proliferation $\rho$ is per day, and
+coordinates are millimetres. A binary disk of radius 7\,mm is the initial
+condition. The boundary is no flux. The explicit finite-difference update
+uses $D=0.35$, $\rho=0.035$, a 1\,mm grid, and a 0.25-day step for 20 days.
+The comparison doubles $D$ while retaining the other inputs.
+This is the compact construction used for the figure; notebook 02 extends it
+with an initial occupancy of 0.65, 28 days, separate reaction and diffusion
+controls, and a comparison of $D$ and $\rho$ with published patient
+estimates~\cite{wang2009}.
+
+The implementation rejects time increments outside its diffusion stability
+bound,
+\begin{equation}
+\Delta t\leq
+\frac{1}{2\max(D)(\Delta x^{-2}+\Delta y^{-2})}.
+\end{equation}
+Tests include conservation of total density for $\rho=0$, invalid steps,
+and directional diffusivity. Thresholds 0.5 and 0.05 are display choices;
+neither is calibrated to MRI visibility. Coefficients are prescribed, not
+estimated from a patient's scans.
+
+\IfFileExists{generated/numbers.tex}{
+The constructed initial area is \ExampleInitialArea{}\,mm$^2$.
+The prescribed solution covers \ExampleVisibleArea{}\,mm$^2$ at threshold
+0.5 and \ExampleLowArea{}\,mm$^2$ at threshold 0.05.
+The doubled-diffusivity solution covers
+\ExampleAlternativeArea{}\,mm$^2$ at threshold 0.5.
+}{\draftnotice{Run make paper to generate the dynamics values.}}
+
+\IfFileExists{generated/dynamics.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{generated/dynamics.pdf}
+\caption{Constructed density and prescribed dynamics after 20 days.
+The middle and right panels use different prescribed diffusivities.
+Cyan and white contours indicate thresholds 0.05 and 0.5.
+The initial disk is a no-change comparator. This is a numerical experiment,
+not an MRI prediction or an inferred growth rate.}
+\label{fig:dynamics}
+\end{figure}
+}{\draftnotice{Synthetic dynamics figure has not been generated.}}
+
+\subsubsection{Connecting the experiment to longitudinal MRI}
+
+\aicontribution
+{How does a prescribed step compare with a later prepared label (notebook 03)?}
+{Research assistance adapting the local recipe; trained labels are supplied upstream.}
+{Prepared-case selection, anatomy and permitted inputs require investigator review.}
+{Explicit preparation, geometry, labels, visit interval and numerical comparators.}
+{Optional single-slice workflow, not executed here; no new response or recurrence result.}
+
+
+LUMIERE supplies longitudinal glioblastoma MRI, automated segmentations,
+and expert RANO evaluations~\cite{suter2022}. The optional local recipe
+adapts the predecessor's Patient-048 slice workflow. It expects an explicitly
+configured prepared grid and MONAI bundle label records. It verifies the
+geometry and label scheme but performs no segmentation or registration.
+Its step is between two later visits and does not cross the resection.
+
+That recipe is available for reproduction; this initial draft does not
+import the predecessor's real-data numbers as new results. A checked
+six-visit montage and native-space compartment trajectory are proposed
+extensions. They would require a documented case-selection rationale,
+preparation records, and review of the source images.
+
+Measured imaging change and clinical response require different evidence.
+RANO 2.0 provides criteria for glioma trials that incorporate imaging
+alongside clinical and treatment context~\cite{wen2023}. It remains the
+current MRI-based framework. PET RANO 1.0 adds amino-acid PET response
+criteria~\cite{albert2024}, updated RANO/EANO recommendations cover clinical
+PET use in glioma~\cite{galldiks2025}, and a progress report describes the
+wider RANO effort, including extent-of-resection classification and an AI
+working group~\cite{vandenbent2025}.
+Overlap with a later automated label does not establish recurrence
+prediction, response category, or a mechanism of treatment resistance.
+
+\subsection{A coarse-grained neuron--glioma feedback experiment}
+
+\aicontribution
+{What separates one-way growth modulation from feedback (notebook 06)?}
+{Research assistance implementing the model, nested controls and sensitivity.}
+{Cancer neuroscience was requested; the slow index and coefficients are prescribed choices.}
+{Uncoupled limit, analytic constant-signal case, conservation, refinement and growth confounding.}
+{Synthetic day-scale density/signal, with no fitted physiology or cognitive endpoint.}
+
+
+The growth-focused construction adds a slow activity-associated growth-signal index
+$a\in[0,1]$ to normalized density $c$:
+\begin{align}
+ \frac{\partial c}{\partial t}
+ &=\nabla\cdot(D\nabla c)+\rho(1+\kappa a)c(1-c),\\
+ \frac{\partial a}{\partial t}
+ &=\frac{b-a}{\tau}+\beta c(1-a).
+ \label{eq:neural}
+\end{align}
+Here $b$ is a prescribed dimensionless external drive, $\kappa$ is a
+dimensionless signal-to-growth coupling, $\beta$ is a density-to-signal
+feedback rate per day, and $\tau$ is a relaxation time in days.
+The index $a$ is not voltage, firing frequency, EEG, or synapse count.
+Its day-scale relaxation represents a constructed slow signal; the
+model resolves neither electrophysiology nor specific growth factors.
+These equations are our phenomenological teaching choice, not an
+experimentally validated reduction of the cited biological studies.
+
+The plane and spacing match the niche illustration, but the initial density
+and drive are separately constructed Gaussians. Initial density peaks at
+0.35, and $b$ ranges from approximately 0.1 to 0.8. We prescribe
+$D=0.2$\,mm$^2$/day, $\rho=0.04$/day, $\kappa=1.5$, $\beta=0.12$/day,
+and $\tau=4$\,days. A 0.1-day explicit step advances twenty prescribed days.
+Density has no-flux boundaries; the signal has no transport.
+Both updates use the previous fields.
+
+Three nested comparisons hold the initial density, drive, diffusion,
+basal growth, grid, and duration fixed:
+\begin{enumerate}
+ \item Baseline: $\kappa=\beta=0$, recovering the existing density solver.
+ \item One-way: $\kappa=1.5$, $\beta=0$, retaining a fixed growth-modulating signal.
+ \item Feedback: $\kappa=1.5$, $\beta=0.12$/day, allowing density to alter the signal.
+\end{enumerate}
+The explicit implementation rejects steps outside the sufficient bound
+\begin{equation}
+ \Delta t\leq\min\left\{
+ [2D(\Delta x^{-2}+\Delta y^{-2})+\rho(1+\kappa)]^{-1},
+ [\tau^{-1}+\beta]^{-1}\right\}.
+\end{equation}
+This includes reaction and feedback, not only diffusion. Inputs are bounded
+and no output is silently clipped. Tests check the uncoupled limit,
+conservation without reaction, an analytic constant-signal logistic solution,
+and step refinement.
+
+The integral $\sum c\,\Delta x\Delta y$ has units mm$^2$ on this plane.
+It is not cell number or clinical tumor volume.
+\IfFileExists{generated/numbers.tex}{
+Its final values are \ExampleNeuralBaselineIntegral{},
+\ExampleNeuralOneWayIntegral{}, and \ExampleNeuralFeedbackIntegral{}\,mm$^2$
+for baseline, one-way, and feedback. The feedback-to-baseline ratio is
+\ExampleNeuralFeedbackRatio{}. Halving the step changes the feedback
+integral by \ExampleNeuralStepDifferencePercent{}\%.
+The additional feedback changes the integral by
+\ExampleNeuralFeedbackOverOneWayPercent{}\% relative to the one-way case,
+so the total comparison with baseline must not be attributed entirely to
+feedback.
+}{\draftnotice{Run make paper to generate the neural-model values.}}
+These differences describe the prescribed equations and inputs.
+They do not estimate a neuronal effect in a patient.
+
+\IfFileExists{generated/neuron_glioma.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=0.88\textwidth]{generated/neuron_glioma.pdf}
+\caption{Synthetic neuron--glioma construction. Final baseline and feedback
+densities share a color scale. The signal-change panel compares the feedback
+index with its prescribed initial drive. The traces include the one-way
+comparator, separating growth modulation from the additional feedback
+assumption. No field is a measured neural or imaging signal.}
+\label{fig:neural}
+\end{figure}
+}{\draftnotice{The neuron--glioma figure has not been generated.}}
+
+\subsection{Sensitivity and identifiable explanations}
+
+A small grid varies $\kappa$ over 0, 0.75, and 1.5 and $\beta$ over
+0, 0.06, and 0.12/day. Each result is divided by the same baseline integral.
+When $\kappa=0$, density is independent of the signal even when the signal
+changes. This is an executable limiting case, not biological validation.
+Notebook 06 additionally shows that a constant one-way signal can be
+absorbed into $\rho_{\mathrm{effective}}=\rho(1+\kappa b)$.
+The same density trajectory can therefore leave the mechanism
+undetermined within this model family.
+
+\IfFileExists{generated/neuron_glioma_sensitivity.pdf}{
+\begin{figure}[htbp]
+\centering\includegraphics[width=0.62\textwidth]{generated/neuron_glioma_sensitivity.pdf}
+\caption{Prescribed sensitivity in the synthetic model. Ratios concern
+normalized-density integrals and are neither treatment effects nor
+patient risk estimates. Coupling coefficients are varied, not inferred.}
+\label{fig:sensitivity}
+\end{figure}
+}{\draftnotice{The sensitivity figure has not been generated.}}
+
+\section{Clinical evidence and a proposed cognitive study}
+
+Imaging and biological measurements require an explicit observation model
+before they can calibrate these constructions. Structural MRI does not
+directly identify immune composition or neuron--glioma synapses.
+Functional connectivity is not interchangeable with synapse count.
+The phenomenological index $a$ has no established mapping to EEG or MEG.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Proposed measurements for testing hypotheses. These are research
+requirements, not observations collected for this perspective.}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Measurement & Question it could address & Further requirement\\
+\midrule
+Reviewed longitudinal MRI & Geometry and change in defined compartments
+& Treatment context, uncertainty, and an observation model\\
+Spatial RNA/protein assays & Cell programs and niche composition
+& Source validation, tissue sampling, subtype, and spatial correspondence\\
+Physiological recordings & Aspects of activity and connectivity
+& A justified relation to the modeled signal and confounding assessment\\
+Functional perturbation & Whether a proposed interaction changes behavior
+& Suitable controls and evidence beyond association\\
+Clinical follow-up & Patient-relevant performance or benefit
+& An eligible population, held-out evaluation, and an appropriate comparison\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+RANO 2.0 supplies clinical-trial response-assessment context
+~\cite{wen2023}; a simulated density change is not a response category.
+Clinical-record eligibility and source interpretation remain essential but
+are not exercised here. No survival model, genotype inference, or
+MRI--behavior cohort linkage is introduced.
+
+\subsection{A proposed question about cognitive function}
+
+\aicontribution
+{Do preoperative network/dynamics features add information about later cognitive performance (notebooks 08/10)?}
+{Proposed compact predictive AI and assistance with source linkage, feature definitions and leakage checks; neither predictor nor benefit is evaluated.}
+{SSP follow-up span is a candidate primary endpoint; eligibility, window, feature budget and clinical review must be frozen prospectively.}
+{Compare persistence, clinical baseline, anatomy and added network information using patient-level held-out evaluation and training-fold-only preprocessing.}
+{Study design for a larger linked glioma cohort; the present behavioral example is not predictive validation.}
+
+We propose asking whether preoperative network and dynamics information adds
+predictive value beyond baseline cognition, clinical information and reviewed
+anatomy. Candidate primary outcome is follow-up CANTAB SSP span, with baseline
+SSP included as a predictor; RTI, RVP and SOC are secondary outcomes with their
+own units. The endpoint and follow-up window require neuropsychological and
+investigator review. The current behavioral availability audit is too small
+for credible flexible model comparison and does not establish imaging linkage.
+A larger linked glioma cohort and prospectively justified feature budget are
+required. No molecular subtype is inferred from historical grade.
+
+A persistence prediction retains baseline SSP. Subsequent comparisons add
+available preoperative clinical variables, a prespecified anatomical feature,
+then a few reviewed structural/functional-connectivity summaries or
+independently fitted baseline dynamics parameters. A compact regularized
+supervised model is the proposed predictive AI component. Keeping the same
+model family across feature sets distinguishes added information from added
+flexibility. Conventional connectivity analysis and The Virtual Brain
+simulation remain distinct from AI. Earlier virtual-resection work showed
+variable agreement with postoperative functional connectivity, rather than
+established cognitive prediction~\cite{aerts2020}.
+
+All predictors must be available at the preoperative prediction time.
+Actual postoperative treatment, resection cavities and follow-up connectivity
+cannot enter that forecast. A separate retrospective analysis could relate
+their changes to cognitive changes, explicitly as association. Assessment
+timing, treatment, seizures, medication, baseline function, education, subtype,
+motion and hemodynamic-response handling need explicit documentation.
+
+Use common eligible held-out patients for model comparisons. Scaling,
+imputation, data-driven selection and tuning belong inside training folds;
+all visits from one person remain together. Report held-out absolute errors
+in span units, paired error differences against baselines, prediction failures,
+missingness and uncertainty. Validation folds and repeats do not increase the
+number of independent patients. Sample size and model complexity should be
+chosen prospectively through justified simulation; this perspective supplies
+no assumed effect size or achieved predictive result. Blank local study
+schemas and the detailed protocol accompany the code.
+
+An EEG/MEG/ECoG extension could test whether measured wave organization adds
+information, where appropriate recordings exist. BOLD and fitted neural-mass
+parameters are not direct LFP or field measurements. The present CANTAB
+example motivates behavioral endpoints for analog-cognition hypotheses;
+it does not discriminate that account from other network explanations.
+Predictive accuracy would not alone establish mechanism or patient benefit.
+
+Testing cytoelectric coupling is a separate experimental problem. Spatial
+extracellular measurements would need concurrent molecular imaging and
+controlled perturbation, specifying field gradient, frequency, orientation,
+exposure and cell type. Controls would distinguish direct field effects from
+altered spiking, synaptic/ionic signaling, temperature and viability.
+Correlation alone would not establish the proposed intracellular mechanism.
+
+\section{Methods and evidence boundaries}
+
+\subsection{Shared code and reproducible outputs}
+
+The code uses Python and a uv lockfile. Scientific functions live in
+\texttt{src/glioma\_ai/}; notebooks call the same functions as the command-line
+interface. The default examples run on CPU without patient files, weights,
+API credentials, or a model endpoint. Each run records units, parameters,
+software versions, source hashes, and generated-file hashes.
+
+The intended primary workstation is a 128\,GB MacBook Pro with M4 Max.
+Its capacity is a resource description, not a performance measurement.
+Optional PyTorch device checks are separate from the NumPy examples. A
+private-repository source archive provides a Colab path without embedding
+GitHub credentials. A platform is called validated only after an executed
+check is recorded; configuration alone is not a passed run.
+
+\subsection{Roles and acceptance evidence}
+
+\aicontribution
+{What makes a contribution inspectable (notebook 04)?}
+{Research assistance recording actual development and connecting the potassium record to checks.}
+{The investigator requested explicit roles; human scientific approval remains a separate decision.}
+{Record completeness and independent analytic/balance checks; neither supplies review by itself.}
+{Retrospective development record; no comparative assistance experiment completed.}
+
+
+\begin{table}[htbp]
+\centering\small
+\caption{Roles kept separate in the workflow. Initial synthetic examples
+do not run a trained imaging model or a language model.}
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}XX@{}}
+\toprule
+Role & Artifact & Relevant check\\
+\midrule
+Imaging model & Compartment label map & Label definitions, geometry, source
+images, and appropriate reference evaluation\\
+Proposed cognitive predictor & Follow-up spatial-span forecast & Held-out
+patient errors against cognitive/anatomical baselines, uncertainty and failures\\
+Research assistant & Proposed task, code, or prose & Source verification,
+independent expected values, and researcher review\\
+Numerical solver & Prescribed density trajectory & Discretization,
+stability, conservation where applicable, and parameter sensitivity\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The assistance record retains the task, permitted inputs, visible tool
+information, contribution, artifact reference, checks, decision, and unresolved
+questions. Human decisions name a reviewer only when review has occurred.
+A record validator checks completeness, not truth. Retrospective development
+summaries are labeled as summaries; they are not experimental transcripts.
+
+The three unmeasured endpoints are productivity, scientific quality, and
+clinical utility. Prospective timing and correction effort could address
+productivity. Independent artifact review could assess scientific quality.
+Patient benefit would require a patient-relevant endpoint and an appropriate
+comparison. A correct figure does not by itself establish improved care.
+
+\subsection{Prospective evaluation of research assistance}
+\label{sec:ai-pilot}
+The proposed protocol in \path{docs/ai-benefit-evaluation.md} separates
+productivity, scientific quality and clinical relevance. A feasibility pilot
+would involve two investigators, each completing six matched task pairs:
+24 planned sessions, not collected observations or a powered efficacy study.
+One distinct version of each pair permits a specified generative assistant;
+the other uses the same code, editor, documentation and sources with
+generative assistance disabled. Version assignment and condition order would
+be counterbalanced and randomized before work begins. New tasks, practice
+sessions and recorded prior expertise reduce avoidable learning effects;
+carryover remains a limitation.
+
+Task families cover imaging measurement, potassium, field units, growth
+controls, fabricated clinical eligibility and evidence communication.
+Freeze the task packets, independent acceptance key, tool information and
+protocol before collection. Record only identifiers and settings actually
+visible, retaining prompts and corrections locally where permitted.
+
+The primary measure is quality-qualified completion time with a 60-minute
+cap, including assistant latency, verification and self-correction. An
+unaccepted or unfinished submission receives the cap. After submission,
+independent reviewers blinded to condition would rate units/geometry,
+correctness, controls/reproducibility, provenance and evidence boundaries
+on 0--2 scales. Acceptance requires mandatory checks, at least 8/10 and
+no critical error. Preserve independent ratings and disagreement resolution.
+
+Report every assisted-minus-unassisted paired difference, within-investigator
+medians, acceptance and critical-error counts. Do not exclude failed attempts
+or treat sessions as independent participants. Quality scores and written
+clinical-relevance judgments are separate outcomes; no patient outcome is
+measured. Blank recording forms are supplied, with no assignments, timings
+or reviews. Participants, task packets, reviewers and applicable institutional
+requirements remain to be finalized before any pilot begins.
+
+\section{Discussion and research agenda}
+
+The contribution of these examples is a chain another researcher can
+inspect: question, specification, contribution, decision, check, and output.
+The default program creates deterministic constructions small enough for
+teaching. The package and notebook interface reduce ambiguity about which
+code produced a number, while the provenance record identifies the source
+and environment of a run.
+
+The potassium case connects an actual retrospective contribution with code,
+independent checks and interpretation. It does not resolve the missing
+interaction-level history. Future work should retain prospective inputs,
+proposals, decisions and resulting artifacts as they occur, including the
+possibility that no correction is necessary. The matched-task protocol makes
+comparative benefit testable without inventing failures or approvals.
+
+The source-verified CANTAB example adds empirical task performance to this
+chain. Verification narrowed what the prepared table can support: extra local
+digits cannot establish a change finer than the original release. Native
+domain scales, assessment timing and missingness remain visible. These
+observations anchor the clinical question without identifying a surgical or
+growth effect. A linked network/dynamics study would test added predictive
+information beyond baseline cognition and anatomy; the present availability
+audit is not sufficient predictive validation.
+
+For the conference, the glioma--brain interface organizes the narrative.
+A niche example establishes why composition matters; potassium clearance and slow growth
+feedback supply separate worked models. Imaging and clinical questions
+anchor interpretation, while software mechanics and record-counting exercises
+move to backup material. A proposed collaboration would combine reviewed
+imaging with appropriate biological measurements and independent model review;
+no such study is reported as agreed or completed.
+
+The limitations are substantial. Synthetic shapes omit biological,
+acquisition, and treatment variability. The density equation has prescribed
+coefficients, no treatment term and no coupling to the surrounding brain.
+Forecasting growth in the sense of weather prediction would further require
+data assimilation from serial scans, uncertainty ensembles and validation
+against held-out follow-up examinations. The niche construction aggregates
+cell states and assumes reversibility; the neural extension has no explicit
+neurons, synapses, or immune dynamics. The potassium construction has no
+spatial buffering or explicit cells; the potential example supplies no
+intracellular field. Neither predicts cognitive performance. The analog
+cognition and cytoelectric interpretations remain hypotheses. No biological calibration or MRI
+forward model is supplied. The source-presence test is narrower
+than a clinical extractor. Optional public workflows depend on separately
+prepared data. None of these artifacts measures the comparative benefit
+of AI assistance.
+
+The proposed pilot compares distinct matched tasks with independent quality
+criteria and recorded time. Its small within-investigator design cannot
+establish general superiority. Clinical utility would require an eligible
+population, patient-relevant endpoints and an appropriate comparison in a
+separate clinical study.
+
+\section{Conclusion}
+The glioma--brain interface connects published anatomical imaging with
+questions about cell states, astrocytes, neural dynamics and cognitive function.
+The executable models keep their units, timescales and observation boundaries
+explicit. Experimental mechanisms, patient associations and emerging
+field/cytoskeleton theories motivate different tests. AI assistance supports
+inspectable research artifacts; comparative research benefit and clinical
+utility remain unmeasured. The source-verified CANTAB example anchors cognition
+in measured task performance. A proposed compact AI predictor would test
+whether preoperative network information adds value beyond baseline cognition
+and anatomy in a larger linked glioma cohort. Electrophysiological and
+cellular hypotheses require their own measurements and controlled tests.
+
+\section*{Declarations}
+
+\paragraph{AI assistance.}
+A Codex desktop assistant helped design this repository and draft the
+adapted code, examples, notebooks, tests, documentation, and manuscript.
+The development notes and worked potassium case are retrospective summaries.
+The current framing and pilot design have a separate contribution record.
+The empirical CANTAB verification, implementation and prediction-study design
+also have a separate retrospective record, with endpoint and model choices
+pending investigator and neuropsychological review.
+The saved records do not identify an exact backend snapshot or sampling settings.
+Rebuilding the examples does not call a language model. Human scientific
+review remains pending.
+
+\paragraph{Code and data.}
+The development repository is
+\url{https://github.com/arvidl/AI-assisted-glioma-research-dev}, initially
+private. Selected helpers were adapted under the retained MIT license
+from the predecessor repository at commit
+\path{f8a37993d11f595135f407638750442041422391}.
+No acquired patient files, original presentations, agenda, or invitation
+are included. Selected published public-data illustrations are reused locally
+under the article's CC BY 4.0 license, with attribution and a checked source
+manifest. They are distinct from generated synthetic results. Public data
+have their own release terms.
+The CANTAB source revisions are pinned separately. Acquired behavioral tables,
+local case identifiers, exact dates, individual scores and the generated
+empirical case figure remain local and excluded from Git/source archives.
+The local illustrated PDFs are separate from the source-only build variant.
+
+\paragraph{Authorship, funding, and competing interests.}
+The author and University of Bergen affiliation follow the investigator's
+instructions. Collaborator contributions, funding, competing interests,
+and target journal remain to be agreed and completed. No co-author
+approval or clinical evaluation is asserted.
+
+\appendix
+\section{Reproduction and educational notebooks}
+
+Install the locked environment and run:
+\begin{verbatim}
+uv sync --locked --group notebooks
+make published-figures HPGS_REPO=/path/to/author-checkout
+make check
+make notebooks
+make paper
+make talk
+\end{verbatim}
+The published-figure import is optional. To prepare the empirical cognition
+branch, explicitly run \texttt{make cantab-fetch}, create ignored
+\path{local/cantab-case.json} with an explicit source ID and prepared session-table
+path, then run \texttt{make cantab} before the notebooks and PDF builds.
+The preparation instructions retain source revisions, hashes and license.
+Without those inputs, the builds show notices rather than an empirical figure.
+Notebook 01 covers imaging measurements and coordinate geometry; 02 supplies
+the density baseline; 04 covers assistance records; 05 covers a
+niche-dependent state transition; 06 is the slow growth-feedback experiment;
+07 covers astrocytic potassium clearance; 08 covers potential, field and
+cognitive-evidence boundaries; 09 supplies the published imaging bridge and
+optional attributed illustrations; 11 covers network disconnection and model
+functional connectivity on a synthetic connectome; 12 applies that model
+descriptively to one patient's openly licensed (CC0) pre- and postoperative
+connectomes, without reviewed upstream quality control. The main learning route is
+04, 09, 01, 05, 07, 08, 02, 11, 12, 06, 10: first inspect the AI roles and worked record,
+then follow imaging into biological modeling. Notebook 03 requires explicit
+local public-data configuration. Notebook 00 provides the upload-based Colab path.
+Notebook 10 checks the pinned behavioral source, local score agreement and
+cohort availability; its empirical case needs the explicit make cantab preparation.
+No acquisition or synthetic substitution occurs when local inputs are absent.
+\aicontribution
+{How can a private source archive reproduce the examples (notebook 00)?}
+{Research assistance with bootstrap code and provenance documentation.}
+{The investigator requested uv and Colab compatibility; permitted cloud inputs remain a decision.}
+{Locked installation, source revision and local export reproduction.}
+{One hosted Colab CPU session completed every cell before the notebooks were renumbered; no language model is called during rebuilding.}
+Executed copies of notebooks 01--12 are tracked in \path{notebooks/executed/}
+with their source licences; other generated results remain local. The
+validation document records actual execution and skips.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}
