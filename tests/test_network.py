@@ -25,6 +25,7 @@ from glioma_ai.network import (
     resection_state,
     spectral_radius,
     tract_integrity,
+    walk_shares,
 )
 from glioma_ai.network_figures import (
     DEFAULT_GROWTH,
@@ -97,6 +98,24 @@ def test_linear_fc_is_exact_and_rejects_instability():
     assert np.allclose(np.diag(correlation), 1)
     with pytest.raises(ValueError):
         linear_fc(w, coupling=1.05)
+
+
+def test_walk_shares_match_the_neumann_series_of_a_three_node_chain():
+    w = np.array([[0, 1, 0], [1, 0, 1], [0, 1, 0]]) / np.sqrt(2)
+    g = 0.8
+    a2 = g**2 / 2
+    ends = np.zeros((3, 3), dtype=bool)
+    ends[0, 2] = ends[2, 0] = True
+    shares = walk_shares(w, g, max_length=6, pairs=ends)
+    assert shares[0] == 0 and shares[1] == 0
+    assert np.isclose(shares[2], 1 - 2 * a2)
+    _, correlation = linear_fc(w, g)
+    assert np.isclose(correlation[0, 2], a2 / (1 - a2))
+    _, _, network = setting()
+    full = walk_shares(network.weight / spectral_radius(network.weight), g, max_length=200)
+    assert np.all(np.diff(full) >= 0) and np.isclose(full[-1], 1)
+    with pytest.raises(ValueError):
+        walk_shares(w, 0.0)
 
 
 def test_simulation_controls_separate_step_bias_and_sampling_error():

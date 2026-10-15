@@ -301,6 +301,36 @@ def linear_fc(scaled: ArrayLike, coupling: float = 0.8, noise: float = 1.0):
     return covariance, covariance / np.outer(scale, scale)
 
 
+def walk_shares(
+    scaled: ArrayLike, coupling: float = 0.8, max_length: int = 10, pairs: ArrayLike | None = None
+) -> NDArray[np.float64]:
+    """Cumulative share of the exact covariance carried by walks of length 1..k.
+
+    (I - gW)^-1 = sum_k (gW)^k, a Neumann series that converges exactly when
+    g rho(W) < 1, the stability condition of linear_fc. Entry k of the result
+    is the summed (gW)^1..(gW)^k over the selected pairs (default: every
+    off-diagonal pair) divided by the summed exact (I - gW)^-1 over the same
+    pairs; entry 0 is 0. With nonnegative W every term is nonnegative, so the
+    shares rise monotonically towards 1. The noise factor sigma^2 / 2 cancels.
+    """
+    w = np.asarray(scaled, dtype=float)
+    covariance, _ = linear_fc(w, coupling)
+    if not 0 <= int(max_length) == max_length:
+        raise ValueError("Maximum walk length must be a nonnegative integer.")
+    mask = ~np.eye(len(w), dtype=bool) if pairs is None else np.asarray(pairs, dtype=bool)
+    if mask.shape != w.shape or np.diag(mask).any() or not mask.any():
+        raise ValueError("Pairs must select off-diagonal entries of the weight matrix.")
+    exact = 2.0 * covariance[mask].sum()
+    if exact <= 0:
+        raise ValueError("No covariance between the selected pairs (coupling or weights zero).")
+    term, total, shares = np.eye(len(w)), 0.0, [0.0]
+    for _ in range(int(max_length)):
+        term = term @ (float(coupling) * w)
+        total += term[mask].sum()
+        shares.append(total / exact)
+    return np.asarray(shares)
+
+
 def simulate_linear(
     scaled: ArrayLike, coupling: float, *, duration: float, dt: float, noise: float = 1.0, seed=0
 ) -> NDArray[np.float64]:
