@@ -1,0 +1,12 @@
+---
+description: Scientific guidance for this glioma perspective
+alwaysApply: true
+---
+
+Read AGENTS.md, README.md, and docs/paper-plan.md.
+Use src/glioma_ai for scientific logic, uv for the environment, and the package
+from notebooks and the paper. CPU is the default. Keep units, labels,
+coordinates, and sources explicit. Never invent assistant transcripts or
+clinical findings. Keep data, weights, keys, and outputs local. Run make check,
+make notebooks, and make paper as applicable. Record substantive assistance and
+actual validation.

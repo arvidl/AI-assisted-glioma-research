@@ -31,3 +31,33 @@ jobs:
       - run: uv run --locked --group notebooks --python ${{ matrix.python }} python scripts/check_notebooks.py
         timeout-minutes: 15
       - run: uv run --locked --python ${{ matrix.python }} glioma-ai demo --output outputs/demo
+  paper:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.23"
+          python-version: "3.12"
+      - run: uv sync --locked
+      - name: Fetch the pinned public inputs
+        run: |
+          uv run --locked glioma-ai btc-fetch --output data/btc
+          uv run --locked glioma-ai published-figures-fetch --output paper/generated
+          uv run --locked glioma-ai hpgs-bundle-fetch --output data
+          uv run --locked glioma-ai lumiere-bundle-fetch --output data
+          mkdir -p local
+          echo "{\"checkout\": \"$PWD/data/ucsf_pdgm_cohort50\"}" > local/hpgs.json
+          echo "{\"prepared_root\": \"$PWD/data/lumiere_p048_prepared\"}" > local/lumiere-case.json
+      - run: uv run --locked glioma-ai paper-assets --output outputs/paper --paper-dir paper/generated
+      - run: sudo apt-get update && sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended
+      - run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+        working-directory: paper
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper
+          path: |
+            paper/main.pdf
+            paper/generated/assets.json

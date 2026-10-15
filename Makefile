@@ -1,6 +1,8 @@
 UV ?= uv
+LATEXMK ?= latexmk
+export PATH := /Library/TeX/texbin:$(PATH)
 
-.PHONY: setup demo check notebooks executed-notebooks clear-notebooks doctor published-figures published-figures-fetch cantab-fetch btc-fetch cantab lumiere-metadata lumiere-fetch lumiere-bundle lumiere-bundle-fetch hpgs-bundle hpgs-bundle-fetch
+.PHONY: setup demo check notebooks executed-notebooks clear-notebooks paper paper-assets doctor published-figures published-figures-fetch cantab-fetch btc-fetch cantab lumiere-metadata lumiere-fetch lumiere-bundle lumiere-bundle-fetch hpgs-bundle hpgs-bundle-fetch
 
 setup:
 	$(UV) sync --locked --group notebooks
@@ -28,7 +30,7 @@ btc-fetch:
 	$(UV) run --locked glioma-ai btc-fetch --output data/btc
 
 cantab:
-	$(UV) run --locked glioma-ai cantab --release-dir data/cantab/osf --case-config local/cantab-case.json --output outputs/cantab
+	$(UV) run --locked glioma-ai cantab --release-dir data/cantab/osf --case-config local/cantab-case.json --output outputs/cantab --paper-dir paper/generated
 
 # Explicit local extraction of the tracked LUMIERE Patient-048 metadata from the
 # released CSV tables (LUMIERE_DIR holds the four LUMIERE tables).
@@ -69,10 +71,20 @@ notebooks:
 	$(UV) run --locked --group notebooks python scripts/check_notebooks.py
 
 # Investigator-authorized tracked executed copies of notebooks 01-12 in
-# notebooks/executed/; needs the local inputs of 03, 09, 10 and 12 (see
-# docs/public-release.md).
+# notebooks/executed/; needs the fetched inputs of 01, 03, 09 and 10 and the
+# local CANTAB inputs of 10 and 12 (see docs/data.md).
 executed-notebooks: notebooks
 	$(UV) run --locked --group notebooks python scripts/export_executed_notebooks.py
 
 clear-notebooks:
 	$(UV) run --locked python scripts/clear_notebook_outputs.py
+
+# Figures and number macros for the paper. Synthetic examples and the tracked
+# sub-PAT16 matrices are always built; fetched inputs (make btc-fetch,
+# hpgs-bundle-fetch, lumiere-bundle-fetch, published-figures-fetch) are used
+# when present, and paper/generated/assets.json lists what was skipped.
+paper-assets:
+	$(UV) run --locked glioma-ai paper-assets --output outputs/paper --paper-dir paper/generated
+
+paper: paper-assets
+	cd paper && $(LATEXMK) -pdf -interaction=nonstopmode -halt-on-error main.tex

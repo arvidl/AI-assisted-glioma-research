@@ -1,7 +1,7 @@
 # Working together
 
-This project connects a perspective, educational examples, and a conference
-talk. Start with the manuscript plan. Use a small branch for a coherent change;
+This project connects a perspective paper and educational examples. Start with
+the paper plan (docs/paper-plan.md). Use a small branch for a coherent change;
 assistant-created branches use codex/. Open a pull request when ready for review.
 
 Clinical reviewers assess relevance, terminology, and interpretation. Imaging
