@@ -11,6 +11,7 @@ input is reported in assets.json and the paper shows a notice in its place.
 """
 
 import json
+import math
 import shutil
 from pathlib import Path
 
@@ -19,7 +20,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-from glioma_ai.btc_cantab import btc_reference, load_cohort  # noqa: E402
+from glioma_ai import lumiere_biology  # noqa: E402
+from glioma_ai.btc_cantab import btc_reference, cohort_counts, load_cohort  # noqa: E402
 from glioma_ai.btc_cantab_figures import draw_cohort  # noqa: E402
 from glioma_ai.connectome import homotopic_summary, load_case  # noqa: E402
 from glioma_ai.connectome_figures import write_connectome_experiment  # noqa: E402
@@ -126,8 +128,20 @@ def cohort_assets(repo_root: Path, output: Path, paper_dir: Path, synthetic: dic
     checkout = companion_checkout(repo_root)
     if checkout is None:
         return {"notebook": "01", "status": "skipped", "needs": "make hpgs-bundle-fetch"}
-    write_cohort_figure(checkout, cohort_table(checkout), synthetic, output)
+    record = write_cohort_figure(checkout, cohort_table(checkout), synthetic, output)
     shutil.copy2(output / "hpgs_cohort.png", paper_dir / "hpgs_cohort.png")
+    medians = record["medians"]
+    values = {"CohortN": str(record["n_subjects"])}
+    for key, name in (("WT", "WT"), ("TC", "TC"), ("ET", "ET")):
+        values[f"CohortDice{name}"] = f"{medians[key]['dice']:.3f}"
+        values[f"CohortDV{name}"] = f"{medians[key]['volume_error_percent']:.1f}"
+        values[f"CohortSmaller{name}"] = str(medians[key]["n_model_smaller"])
+        values[f"CohortLarge{name}"] = str(medians[key]["n_abs_volume_error_ge_40_percent"])
+    _macros(
+        paper_dir / "cohort_numbers.tex",
+        "Recomputed from UCSF-PDGM reference and published-model masks; no inference rerun.",
+        values,
+    )
     return {"notebook": "01", "status": "built"}
 
 
@@ -135,8 +149,19 @@ def cantab_cohort_assets(btc_dir: Path, paper_dir: Path) -> dict:
     """Notebook 10 group summaries with the sub-PAT16 case, from the pinned CC0 tables."""
     if not all((Path(btc_dir) / name).is_file() for name in btc_reference()["files"]):
         return {"notebook": "10", "status": "skipped", "needs": "make btc-fetch"}
+    cohort = load_cohort(btc_dir)
+    counts = cohort_counts(cohort)
+    _macros(
+        paper_dir / "btc_numbers.tex",
+        "Counted from the pinned CC0 OpenNeuro participant tables.",
+        {
+            f"Btc{group.title()}{kind}": str(counts[group][key])
+            for group in ("GLI", "MEN", "CON")
+            for kind, key in (("Baseline", "baseline_with_cantab"), ("Followup", "followup_rows"))
+        },
+    )
     figure = plt.figure(figsize=(13, 8))
-    draw_cohort(figure, load_cohort(btc_dir))
+    draw_cohort(figure, cohort)
     figure.savefig(paper_dir / "btc_cohort.pdf", bbox_inches="tight")
     plt.close(figure)
     return {"notebook": "10", "status": "built"}
@@ -150,6 +175,26 @@ def lumiere_assets(repo_root: Path, output: Path, paper_dir: Path) -> dict:
     write_observation_figures(case, output)
     result = run_case_experiment(case, output, selected_labels=(1, 4))
     write_case_paper_assets(result, output, paper_dir)
+    revision = lumiere_biology.run_two_level(case)
+    lumiere_biology.write_two_level_figure(case, revision, output, "lumiere_two_level")
+    shutil.copy2(output / "lumiere_two_level.pdf", paper_dir / "lumiere_two_level.pdf")
+    split = revision["split"]
+    distant = float(split["distant_whole"].sum())
+    later = float((split["local_whole"] | split["distant_whole"]).sum())
+    best = lumiere_biology.calibration_grid(case)["best"]
+    _macros(
+        paper_dir / "lumiere_revision_numbers.tex",
+        "Generated from the prepared public LUMIERE case; automated-label observations.",
+        {
+            "LumiereDistantArea": f"{distant * case.dx_mm * case.dy_mm:.0f}",
+            "LumiereDistantPercent": f"{100 * distant / later:.0f}",
+            "LumiereRevisionScore": f"{revision['model']['local_score']:.3f}",
+            "LumiereFitD": f"{best['diffusivity_mm2_per_day']:.3f}",
+            "LumiereFitRho": f"{best['rho_per_day']:.3f}",
+            "LumiereFitDoubling": f"{math.log(2) / best['rho_per_day']:.1f}",
+            "LumiereFitScore": f"{best['local_score']:.3f}",
+        },
+    )
     return {"notebook": "03", "status": "built"}
 
 

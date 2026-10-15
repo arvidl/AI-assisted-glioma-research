@@ -1,7 +1,8 @@
 # Validation record
 
-Written in the private development repository `arvidl/AI-assisted-glioma-research-dev`;
-commit hashes and links into that repository are not publicly accessible.
+Written in the private development repository `arvidl/AI-assisted-glioma-research-dev`
+until 15 October 2026, and in this public repository from then on; commit hashes and
+links into the private repository are not publicly accessible.
 
 ## 6 October 2026: initial repository
 
@@ -965,3 +966,15 @@ Record: `docs/ai-use/2026-10-15-notebook-12-tracks.md`. The analyses of sections
 
 The investigator stated that they had quickly reviewed notebook 12 and run its explorer by hand locally, and asked to publish it with the upstream QC stated as unreviewed (0 of 37 items), as authorized on 14 October (record: `docs/ai-use/2026-10-15-notebook-12-tracks.md`). `scripts/public_snapshot.py` again publishes notebooks 00–12 and `data/derived/sub-PAT16/`; `scripts/derive_pat16_connectome.py` and `docs/sub-pat16-qc-review.md` stay held back. The public README and notebook map list notebook 12 under its new title and describe the matrices. The investigator's IDE outputs in the source notebook (no cell text changed) were discarded with `git restore`. `make check` passed (253 tests) on the same platform as above.
 - Public clone: `scripts/public_snapshot.py` wrote 202 files from `039b9e0` (the two reported links outside the snapshot are the template strings in notebook 01, as before); the changes were notebook 12 and its executed copy, `data/derived/sub-PAT16/`, `glioma_ai.connectome_interactive` and its tests, `glioma_ai.connectome`, the public README and notebook map, the snapshot script and the records. `scripts/derive_pat16_connectome.py`, `docs/sub-pat16-qc-review.md` and `AGENTS.md` were absent, and the notebook 12 files and matrices contain no local paths. After `make setup` (same platform): `make check` gave 250 passed and 3 skipped. Notebook 12 executed in the public clone with the validation kernel of `scripts/check_notebooks.py` (all cells, about 7 s); `make notebooks` was not run there. Hosted Colab was not tested.
+
+## 15 October 2026: public working repository and the restructured paper
+
+Record: `docs/ai-use/2026-10-15-public-working-repository-and-paper.md`. From this date the public repository is the working repository; branch `codex/paper-public`.
+
+- Platform: macOS 27.0.1, arm64, uv 0.13.1, CPython 3.12.2 in the project `.venv`; Latexmk 4.86a with TeX Live at `/Library/TeX/texbin`.
+- Optional inputs fetched before the build: `make btc-fetch`, `make published-figures-fetch`, `make hpgs-bundle-fetch` and `make lumiere-bundle-fetch`, each checked against its pinned SHA-256, with the ignored `local/hpgs.json` and `local/lumiere-case.json` pointing at the fetched directories.
+- `make paper-assets`: every asset group built; the new macros reproduce the values printed by the notebooks (cohort median Dice 0.901, 0.941 and 0.862; distant lesion 665 mm², 24%; fit D 0.251 mm²/day, ρ 0.106 day⁻¹, local score 0.841; BTC baseline counts 11, 14 and 10 with CANTAB scores).
+- `make paper`: `paper/main.pdf`, 25 pages, no undefined citations or references; all pages inspected as thumbnails, and two pages at reading resolution.
+- References: every cited DOI in `paper/references.bib` resolved through doi.org on 15 October 2026 (Crossref; DataCite for the four OpenNeuro versions and the OSF release); title, first author and year were compared with each entry. Differences were registry formatting only (accented and split family names; the Springer book record carries the series title). The arXiv preprint was checked against the arXiv API. The 1937 Kolmogorov–Petrovsky–Piskunov paper has no DOI and was not checked.
+- `make check`: Ruff lint and format passed; 255 passed.
+- Not done: `make notebooks` (no notebook changed); hosted Colab; the CI `paper` job before the first push of this branch; investigator, clinical and citation-context review of the paper.
