@@ -994,3 +994,10 @@ Record: `docs/ai-use/2026-10-15-notebook-runner-stall.md`. Branch `codex/noteboo
 - ipykernel 7.3.0 → 7.4.0 (investigator-approved, `uv lock --upgrade-package ipykernel`): only the ipykernel entry of `uv.lock` changed (its `psutil` requirement was dropped; psutil stays locked through another package). `make check`: 257 passed. `make executed-notebooks` executed 01–12 with no retry recorded in `outputs/notebooks/execution.json`. Every exported copy matched the tracked copy except `language_info.version` (3.12.2 here, 3.12.14 in the tracked exports) and, in notebook 11, the tracked one-time Matplotlib font-cache message; as no notebook changed, the tracked executed copies were restored unchanged.
 - `[IPKernelApp] ERROR | KeyboardInterrupt caught in kernel.` lines on stderr come from the interrupt that jupyter_client 8.10 sends before every kernel shutdown, when it reaches a kernel still in a handler; the notebooks had already been executed.
 - Not done: hosted Colab (uses Colab's own kernel, not the locked one); enough CI reruns to estimate any remaining stall rate.
+
+## 15 October 2026: notebook 03 on a local Ubuntu laptop
+
+- Reported by the investigator: on a Dell Precision laptop running Ubuntu (release, Python and kernel not recorded), section 3 of notebook 03 printed "Real-data example not run: configure an explicit prepared root or paired slice bundle." The same notebook displays the Patient-048 figure on the investigator's Mac.
+- Cause, from reading `glioma_ai.lumiere_dynamics.configured_case_inputs` on macOS: the Ubuntu checkout has neither the ignored `local/lumiere-case.json` nor `data/lumiere_p048_prepared/`, and `LUMIERE_P048_ROOT` was not set in the kernel, so the loader returns no case by design. The Mac's configuration file cannot be copied, because it holds an absolute `/Users/...` path.
+- Steps on Ubuntu: `make lumiere-bundle-fetch`, then `local/lumiere-case.json` with the absolute Linux path of `data/lumiere_p048_prepared`, then a kernel restart. No code changed.
+- Not done: running these steps and notebook 03 on Ubuntu; `make check` and `make notebooks` on Ubuntu.
