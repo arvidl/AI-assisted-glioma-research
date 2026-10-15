@@ -20,17 +20,17 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11")
+PUBLISHED_NOTEBOOKS = ("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
 HELD_BACK = (
     "public/*",
     "paper/*",
     "talk/*",
-    "data/derived/*",
     ".cursor/*",
     "AGENTS.md",
     "docs/perspective-plan.md",
     "docs/public-release.md",
     "docs/notebook-review-checklist.md",
+    "docs/sub-pat16-qc-review.md",
     "scripts/colab_bundle.py",
     "scripts/derive_pat16_connectome.py",
     "scripts/export_talk_pptx.mjs",

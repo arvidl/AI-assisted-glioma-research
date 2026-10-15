@@ -1,4 +1,4 @@
-"""One patient's connectome before and after glioma surgery, and the linear network model.
+"""One patient's brain network before and after glioma surgery, and the linear network model.
 
 The case is sub-PAT16 of the Brain Tumor Connectomics data (Aerts, Marinazzo;
 OpenNeuro ds001226 v5.0.0 and ds002080 v4.0.0, CC0). Its 82-region matrices are
@@ -378,6 +378,45 @@ def shuffled_resection_null(case: CaseConnectome, coupling: float, count=200, se
         change = predicted_fc_change(pre, pre * (1 - shuffled), coupling)
         values.append(correlation(upper(change), measured))
     return np.array(values)
+
+
+def homotopic_summary(case: CaseConnectome, coupling: float = 0.8) -> dict:
+    """Mean structural weight, measured FC and model FC by kind of region pair, per session.
+
+    Kinds: homotopic (the same region in both hemispheres), other interhemispheric
+    and intrahemispheric pairs. Model FC uses each session's own spectral radius.
+    """
+    index = {name: k for k, name in enumerate(case.names)}
+    left = case.hemisphere == "L"
+    homotopic = np.zeros((case.size, case.size), dtype=bool)
+    for name in case.names:
+        if name.startswith("L-"):
+            homotopic[index[name], index[f"R-{name[2:]}"]] = True
+    upper_half = np.triu(np.ones_like(homotopic), 1)
+    across = (np.outer(left, ~left) | np.outer(~left, left)) & upper_half
+    kinds = {
+        "homotopic": homotopic,
+        "other_interhemispheric": across & ~homotopic & ~homotopic.T,
+        "intrahemispheric": ~across & upper_half,
+    }
+    result = {}
+    for session in SESSIONS:
+        w = model_weights(case.sc[session])
+        _, model = linear_fc(w / spectral_radius(w), coupling)
+        sc = case.sc[session]
+        result[session] = {
+            "interhemispheric_weight_percent": 100 * float(sc[across].sum() / sc[upper_half].sum()),
+            **{
+                kind: {
+                    "pairs": int(mask.sum()),
+                    "mean_sc": float(sc[mask].mean()),
+                    "mean_fc": float(case.fc[session][mask].mean()),
+                    "mean_model_fc": float(model[mask].mean()),
+                }
+                for kind, mask in kinds.items()
+            },
+        }
+    return result
 
 
 def fisher_standard_error(volumes: int) -> float:

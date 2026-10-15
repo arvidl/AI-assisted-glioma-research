@@ -1,0 +1,160 @@
+{
+  "case": "sub-PAT16",
+  "source_datasets": [
+    "doi:10.18112/openneuro.ds001226.v5.0.0",
+    "doi:10.18112/openneuro.ds002080.v4.0.0"
+  ],
+  "license": "CC0 (BIDS dataset_description.json of the source subset)",
+  "upstream_project": "glioma-brain-digital-twin (local; derivatives not in Git)",
+  "upstream_qc": {
+    "checklist": "derivatives/pipeline_qc_checklist.md",
+    "items_checked": 0,
+    "items_total": 37
+  },
+  "nodes": "82 Desikan-Killiany cortical and subcortical regions of FreeSurfer aparc+aseg",
+  "structural": {
+    "weight": "sum of tcksift2 weights of streamlines between two regions (arbitrary units)",
+    "endpoint_assignment": "voxel containing the endpoint, else nearest region voxel centre within 4 mm; otherwise unassigned",
+    "space": "session-specific native T1w (fMRIPrep), parcellation per session",
+    "tumour_crossing": "streamlines with any point in the pre-operative TumorSynth tumour mask (pre-operative session only)"
+  },
+  "functional": {
+    "source": "upstream compute_fc.py: confound regression (6 motion + derivatives, 5 aCompCor, 3 cosine), 0.01-0.1 Hz band-pass, scrubbing FD > 0.5 mm, Pearson correlation, zero diagonal"
+  },
+  "tumour_mask": {
+    "path": "derivatives/tumorsynth/sub-PAT16/ses-preop/sub-PAT16_ses-preop_tumorsynth_tumor_mask.nii.gz",
+    "sha256": "378a2ad810e68766ae8fcce4e9774343a28987045282fc07acc0edc2f1aba6f6",
+    "volume_ml": 53.250114262104034
+  },
+  "sessions": {
+    "preop": {
+      "streamlines": 10000000,
+      "assigned_between_regions_fraction": 0.4283469,
+      "assigned_weight_fraction": 0.413994285451256,
+      "tractogram": {
+        "mrtrix_version": "3.0.8-21-g8b3d398a",
+        "method": "iFOD2",
+        "count": "10000000",
+        "total_count": "18228840",
+        "max_dist": "250",
+        "min_dist": "10",
+        "step_size": "0.5",
+        "max_angle": "45",
+        "threshold": "0.06",
+        "lmax": "8"
+      },
+      "inputs": {
+        "aparc": {
+          "path": "derivatives/registered_t1w/sub-PAT16/ses-preop/aparc+aseg_space-T1w.nii.gz",
+          "sha256": "b2c8148d99c80a240968df6b811b759828aec843aa759fe73a53fe73482b71e7"
+        },
+        "tck": {
+          "path": "derivatives/registered_t1w/sub-PAT16/ses-preop/whole_brain_space-T1w.tck",
+          "sha256": "47244a4c80ba64ab5d43e041624258bc2de88781e08d093e8b694aef1a3736ba"
+        },
+        "weights": {
+          "path": "derivatives/registered_t1w/sub-PAT16/ses-preop/sift2_weights.txt",
+          "sha256": "6b893a5e52a1e0c1e37ba2074cdb61f04f3d57d95d373715814123211df06240"
+        },
+        "fc": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-preop/fc_pearson.npy",
+          "sha256": "0e22ac30fd64a43ca3a2fc711aa58788e8edc09539f9a4d65d74a7d5a800e2af"
+        },
+        "fc_names": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-preop/fc_roi_names.json",
+          "sha256": "5d93ed17a93184a09436cafd7ff87a3882e98ebd309915a6731e6b5a126051e2"
+        },
+        "timeseries": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-preop/roi_timeseries.npy",
+          "sha256": "f6225a61a907a83afcb9c58885164efb49c5ba7fbc5decfaaac4bcbf01f393f1"
+        },
+        "upstream_sc": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-preop/sc_sift2.npy",
+          "sha256": "a160bb9dc2548414ec69b7125ecad3bfd47f3e110222d73ce8e452a5a0f2f87a"
+        }
+      },
+      "streamlines_through_tumour_fraction": 0.0907992,
+      "bold": {
+        "volumes": 180,
+        "clean_volumes": 157,
+        "repetition_time_s": 2.4
+      },
+      "upstream_all_label_check": {
+        "upstream_total": 6718379.607857,
+        "rebuilt_total": 6725640.557040099,
+        "edge_correlation": 0.9999590293856488,
+        "max_abs_difference": 3700.3576710465713,
+        "upstream_max": 329923.0
+      },
+      "seconds": 120.3
+    },
+    "postop": {
+      "streamlines": 10000000,
+      "assigned_between_regions_fraction": 0.4405875,
+      "assigned_weight_fraction": 0.42960554178830196,
+      "tractogram": {
+        "mrtrix_version": "3.0.8-21-g8b3d398a",
+        "method": "iFOD2",
+        "count": "10000000",
+        "total_count": "17083986",
+        "max_dist": "250",
+        "min_dist": "10",
+        "step_size": "0.5",
+        "max_angle": "45",
+        "threshold": "0.06",
+        "lmax": "8"
+      },
+      "inputs": {
+        "aparc": {
+          "path": "derivatives/registered_t1w/sub-PAT16/ses-postop/aparc+aseg_space-T1w.nii.gz",
+          "sha256": "e8cccf3e6275c112538129dc84ec2506fefd2c709553a1fb480e95cdfe456200"
+        },
+        "tck": {
+          "path": "derivatives/registered_t1w/sub-PAT16/ses-postop/whole_brain_space-T1w.tck",
+          "sha256": "0c4e3ba2efe6a6e9a777014e2ee280c3b147d1374754e016c82b140491777882"
+        },
+        "weights": {
+          "path": "derivatives/registered_t1w/sub-PAT16/ses-postop/sift2_weights.txt",
+          "sha256": "95643a8b2ca06aa8cdee00deef2c2c7a7351d4da8be61947af2ca0e7ba2e5b8c"
+        },
+        "fc": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-postop/fc_pearson.npy",
+          "sha256": "40ef2e205f062fde58d0b81e5e29084c8f9130c41b435990ff3622294dc367db"
+        },
+        "fc_names": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-postop/fc_roi_names.json",
+          "sha256": "5d93ed17a93184a09436cafd7ff87a3882e98ebd309915a6731e6b5a126051e2"
+        },
+        "timeseries": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-postop/roi_timeseries.npy",
+          "sha256": "f4d8b7a601bd19d1d58c0a40a6baf898a7f7da9016115f0c2b5e9a005de7b3d4"
+        },
+        "upstream_sc": {
+          "path": "derivatives/connectivity/sub-PAT16/ses-postop/sc_sift2.npy",
+          "sha256": "1590359bada3da7a4c0218cfc5a050f293f2c631007e8c228f8307c01e1da58d"
+        }
+      },
+      "bold": {
+        "volumes": 180,
+        "clean_volumes": 160,
+        "repetition_time_s": 2.4
+      },
+      "upstream_all_label_check": {
+        "upstream_total": 6545281.931539,
+        "rebuilt_total": 6545461.577898654,
+        "edge_correlation": 0.999869523017854,
+        "max_abs_difference": 5347.868265784171,
+        "upstream_max": 381300.0
+      },
+      "seconds": 31.1
+    }
+  },
+  "files": {
+    "fc_postop.tsv": "7098d20b46fd64f364ba4e4cdb6dfa6a68d04c4955596f512f871869c2037e81",
+    "fc_preop.tsv": "4d6974d7bf1cc9692c951cd8264ba64275805553b05f72af95fbc9d4733c7151",
+    "regions.tsv": "84adfc24c705ddf1b4c359bb8e1ce090eef11507519856b17b1d04560dd4f56c",
+    "sc_postop.tsv": "b93099e97dd46bedb25f12f64a262305c109bf46da3bb97b3b5115d5de068559",
+    "sc_preop.tsv": "8a08eb9918e40a9cffb464ad44f0f0e09c4674f55245e8d43b51544f54056a2a",
+    "sc_preop_tumour.tsv": "3028ee384aeb5797c6a85bd545bb65455495ae91b425e96dcabbccfe53f02b54"
+  }
+}

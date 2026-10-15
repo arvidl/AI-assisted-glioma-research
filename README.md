@@ -33,8 +33,8 @@ each part after the investigator's review.
 | Part | Status |
 | --- | --- |
 | Python package `glioma_ai`, tests, notebook checker | Published (all modules) |
-| Notebooks 00–11 and executed copies of 01–11 | Published |
-| Notebook 12 (one patient's connectome) and `data/derived/sub-PAT16/` | In review |
+| Notebooks 00–12 and executed copies of 01–12 | Published |
+| `data/derived/sub-PAT16/` (notebook 12's matrices; upstream QC not reviewed) | Published |
 | Paper and slides | In preparation |
 | Data release `lumiere-p048-prepared-v1` | Published (see below) |
 
@@ -54,13 +54,15 @@ each part after the investigator's review.
 | 09 | From tumour masks to brain networks: what segmentation measures, where the tumour ends and why cognition is not local; the published segmentation study with its tables and figures, Dice and HD95, hit-plots, a synthetic tumour–brain interface, networks, glia and brain waves, and the bridge to cognitive testing; interactive explorers | [executed](notebooks/executed/09_published_imaging_bridge.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/09_published_imaging_bridge.ipynb) |
 | 10 | Cognition before and after brain-tumour surgery: the CANTAB tests, the Brain Tumor Connectomics cohort (OpenNeuro ds001226/ds002080) as group summaries and the sub-PAT16 case; cross-source agreement, an audit of an AI-generated infographic and its verifiable reconstruction, measurement precision, reliable change against retested controls with bootstrap, forecasting baselines and a proposed study; three tracks (cognitive neuroscience, clinical, modeling); interactive explorers | [executed](notebooks/executed/10_cantab_cognitive_outcomes.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/10_cantab_cognitive_outcomes.ipynb) |
 | 11 | Tumor in the network: a constructed structural network on the notebook 02 phantom, tract disconnection by the tissue-guided tumor, a constructed resection, and exact functional connectivity of a linear model; cognitive-neuroscience, clinical and modeling tracks; interactive explorer. No patient files | [executed](notebooks/executed/11_network_disconnection.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/11_network_disconnection.ipynb) |
+| 12 | Can a virtual resection predict one patient's post-operative brain network? sub-PAT16 (OpenNeuro ds001226/ds002080, CC0) structural and functional connectivity before and after surgery, structure–function agreement of notebook 11's model, a virtual resection of tumour-crossing streamlines against the measured post-operative network, a size-and-location resection explorer with an assumed (unsourced) map to CANTAB domains, the patient's CANTAB scores, and a section marked as speculation on connectomics and analog cognition; clinical and modelling tracks; upstream QC not reviewed, descriptive only | [executed](notebooks/executed/12_patient_connectome.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/12_patient_connectome.ipynb) |
 
 The executed copies show figures on GitHub; animations and sliders need a
-running kernel. In Colab, notebooks 01–11 clone this repository in their first
+running kernel. In Colab, notebooks 01–12 clone this repository in their first
 cell, notebook 03 fetches the data release below when you run its Colab
 cell, notebooks 01 and 09 fetch the published figures, and notebook 10 fetches the
 pinned OpenNeuro participant tables (CC0) when you run its Colab cell. Notebook 11
-downloads nothing. See the [notebook map](notebooks/README.md).
+downloads nothing. Notebook 12 reads the sub-PAT16 matrices that come with the clone;
+its CANTAB cell needs local inputs and shows a notice in Colab. See the [notebook map](notebooks/README.md).
 
 ## Run locally
 
@@ -116,6 +118,19 @@ make hpgs-bundle-fetch   # download, check the pinned SHA-256, extract to data/
 then set `HPGS_REPO=<absolute path>/data/ucsf_pdgm_cohort50`. In Colab the
 notebook fetches it itself.
 
+## sub-PAT16 connectome matrices
+
+Notebook 12 reads small matrices in `data/derived/sub-PAT16/`: 82-region
+structural (SIFT2) and functional connectivity before and after surgery, the
+pre-operative weight through the tumour mask, `regions.tsv` and
+`provenance.json` with input and file SHA-256 hashes. They were derived from
+sub-PAT16 of the Brain Tumor Connectomics data (OpenNeuro
+[ds001226 v5.0.0](https://doi.org/10.18112/openneuro.ds001226.v5.0.0) and
+[ds002080 v4.0.0](https://doi.org/10.18112/openneuro.ds002080.v4.0.0), CC0)
+by a local pipeline whose quality control has **not** been reviewed (0 of 37
+checklist items). Every number derived from them is provisional. Images,
+tractograms and demographics are not included.
+
 ## Repository layout
 
 ~~~text
@@ -124,7 +139,7 @@ notebooks/       Teaching notebooks (output-free) and executed/ copies
 tests/           Numerical, unit, geometry and provenance checks
 scripts/         Notebook checker and exporters, data build scripts
 docs/            Data, environment, validation and AI-assistance records
-data/            Acquisition notes and an example manifest; data are not tracked
+data/            Acquisition notes and the small sub-PAT16 matrices; other data are not tracked
 ~~~
 
 Validation records and AI-assistance records in `docs/` were written in the
