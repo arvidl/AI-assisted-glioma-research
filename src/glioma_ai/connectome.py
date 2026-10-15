@@ -2,8 +2,9 @@
 
 The case is sub-PAT16 of the Brain Tumor Connectomics data (Aerts, Marinazzo;
 OpenNeuro ds001226 v5.0.0 and ds002080 v4.0.0, CC0). Its 82-region matrices are
-derived once from local tractograms by scripts/derive_pat16_connectome.py and
-tracked in data/derived/sub-PAT16 with their provenance. The upstream processing
+derived once from local tractograms by scripts/derive_pat16_connectome.py, which
+stays in the archived development repository, and tracked in data/derived/sub-PAT16
+with their provenance. The upstream processing
 (FreeSurfer, fMRIPrep, QSIPrep, MRtrix3) has not been quality-reviewed; every
 result inherits that status. One patient supports description, not inference.
 """

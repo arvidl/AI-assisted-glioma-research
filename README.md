@@ -34,7 +34,9 @@ working repository; changes arrive through reviewed pull requests.
 | Notebooks 00–12 and executed copies of 01–12 | Published |
 | `data/derived/sub-PAT16/` (notebook 12's matrices; upstream QC not reviewed) | Published |
 | Paper: LaTeX source, bibliography and built PDF in `paper/` | In preparation |
-| Data release `lumiere-p048-prepared-v1` | Published (see below) |
+| Data release `lumiere-p048-prepared-v1` (notebook 03) | Published (see below) |
+| Data release `ucsf-pdgm-cohort50-v1` (notebook 01, Figure 3) | Published (see below) |
+| Release `published-figures-v1` (notebooks 01 and 09, paper) | Published: three unmodified CC BY 4.0 figures of Lundervold et al. 2026, fetched with `make published-figures-fetch` |
 
 ## Notebooks
 
@@ -113,8 +115,30 @@ SegResNet label maps and metrics records, and one subject's T1c (201 files,
 make hpgs-bundle-fetch   # download, check the pinned SHA-256, extract to data/
 ~~~
 
-then set `HPGS_REPO=<absolute path>/data/ucsf_pdgm_cohort50`. In Colab the
-notebook fetches it itself.
+then set `HPGS_REPO=<absolute path>/data/ucsf_pdgm_cohort50`, or write
+`{"checkout": "<absolute path>/data/ucsf_pdgm_cohort50"}` to the ignored
+`local/hpgs.json`. In Colab the notebook fetches it itself.
+
+## CANTAB data
+
+Notebook 10 and the paper's cognition figure use the Brain Tumor Connectomics
+participant tables (OpenNeuro ds001226 v5.0.1 and ds002080 v4.0.1, CC0) and the
+sub-PAT16 session table of the digital-twin project, pinned by SHA-256:
+
+~~~sh
+make btc-fetch      # download and check the pinned files into data/btc/
+~~~
+
+Notebook 10's cross-check against the authors' OSF behavioural release
+(CC BY 4.0), and the CANTAB cell of notebook 12, also need
+
+~~~sh
+make cantab-fetch   # pinned OSF release into data/cantab/osf/
+~~~
+
+and the ignored `local/cantab-case.json` described in
+[the CANTAB example](docs/cantab-example.md). Without them these cells print a
+notice; nothing is substituted.
 
 ## sub-PAT16 connectome matrices
 
@@ -127,7 +151,9 @@ sub-PAT16 of the Brain Tumor Connectomics data (OpenNeuro
 [ds002080 v4.0.0](https://doi.org/10.18112/openneuro.ds002080.v4.0.0), CC0)
 by a local pipeline whose quality control has **not** been reviewed (0 of 37
 checklist items). Every number derived from them is provisional. Images,
-tractograms and demographics are not included.
+tractograms and demographics are not included. The derivation script reads the
+investigator's local pipeline outputs and stays in the archived development
+repository.
 
 ## Paper
 
