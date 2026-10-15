@@ -932,3 +932,14 @@ The investigator was happy with notebook 11 for now and asked to commit and push
 ### US spelling of tumor in notebook 11
 
 The investigator asked for US **tumor** in the title and prose of notebook 11, matching notebooks 01–02, while keeping citation titles and “Brain Tumor Connectomics” unchanged. One retained British form remains in the Douw et al. reference title (“tumour biology”). Code cells were unchanged. On a staged tree (same platform and separate environment): notebook 11 alone was executed and its executed copy re-exported; `make check` passed (247 tests). Public `main` was refreshed with the investigator's approval.
+
+- Hosted Colab: the investigator reported that notebook 11 works well in Google Colab (opened from the public repository). Runtime type, package versions and which cells or explorer controls were exercised were not reported.
+
+## 15 October 2026: Actions budget, notebook cleanup and public-page fixes
+
+Record: `docs/ai-use/2026-10-15-ci-budget-and-public-fixes.md`. GitHub reported that 90% of the included Actions minutes were used. On the last private run each macOS job took about 1.7 minutes, billed at ten times the Ubuntu rate; there were 84 runs since 1 October.
+
+- The private workflow now runs only on manual dispatch, on Ubuntu (Python 3.11–3.13) plus the manuscript job, with superseded runs cancelled. Its YAML was not executed remotely in this step. The public workflow is unchanged.
+- Notebooks 00–11 in the working copy differed from `HEAD` only in outputs, execution counts, empty trailing cells and the local kernelspec (checked cell by cell); they were restored to the committed versions.
+- `make check` (macOS 27.0.1, arm64, managed CPython 3.12.14, project `.venv`): 247 passed.
+- Public clone: `scripts/public_snapshot.py` wrote 190 files from `004cbfc` (the two reported links outside the snapshot are the template strings in notebook 01, as before); the changes were the README line, this record and the assistance record. After `make setup` (same platform): `make check` gave 242 passed and 5 skipped. The public "About" description was changed with `gh repo edit` and read back.

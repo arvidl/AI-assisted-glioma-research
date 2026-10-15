@@ -124,7 +124,7 @@ notebooks/       Teaching notebooks (output-free) and executed/ copies
 tests/           Numerical, unit, geometry and provenance checks
 scripts/         Notebook checker and exporters, data build scripts
 docs/            Data, environment, validation and AI-assistance records
-data/            Acquisition notes and the small sub-PAT16 matrices; other data are not tracked
+data/            Acquisition notes and an example manifest; data are not tracked
 ~~~
 
 Validation records and AI-assistance records in `docs/` were written in the
