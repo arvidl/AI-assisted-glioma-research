@@ -149,6 +149,36 @@ Checked against Crossref metadata (authors, year, title, journal, volume, pages)
 
 Aerts et al. (2020, NeuroImage) and Aerts et al. (2022, Sci Data), already in the paper's bibliography, are cited for pre-/post-operative modelling with The Virtual Brain and the open cohort.
 
+### Notebook 11 references (15 October 2026)
+
+Added with the graph-theory primer and the revised tracks. Each DOI was resolved through the Crossref API, and authors, year, title, journal, volume and pages were compared with the entry. "Abstract" means the PubMed abstract was read and the notebook's statement follows it; "metadata" means the work is cited for its general subject only. Griffis et al. (2019) and Duffau (2014) were also added to the paper, in the network section, for the statements given here.
+
+| Reference | Primary source | Check | Use in notebook 11 |
+| --- | --- | --- | --- |
+| Katz, Psychometrika 18, 39–43 (1953) | [Status index](https://doi.org/10.1007/BF02289026) | Metadata | Walk counting attenuated by length; the same series as the model covariance |
+| Watts & Strogatz, Nature 393, 440–442 (1998) | [Small-world networks](https://doi.org/10.1038/30918) | Metadata | History of network science |
+| Newman, SIAM Rev 45, 167–256 (2003) | [Complex networks review](https://doi.org/10.1137/S003614450342480) | Metadata | Review of network science |
+| Sporns, Tononi & Kötter, PLoS Comput Biol 1, e42 (2005) | [The human connectome](https://doi.org/10.1371/journal.pcbi.0010042) | Abstract | Proposal of a connection matrix of the human brain |
+| Bullmore & Sporns, Nat Rev Neurosci 10, 186–198 (2009) | [Complex brain networks](https://doi.org/10.1038/nrn2575) | Metadata | Review of graph analysis of structural and functional networks |
+| Rubinov & Sporns, NeuroImage 52, 1059–1069 (2010) | [Network measures](https://doi.org/10.1016/j.neuroimage.2009.10.003) | Metadata | Measures deliberately not used (clustering, modularity, hubs) |
+| Zalesky et al., NeuroImage 50, 970–983 (2010) | [Choice of nodes](https://doi.org/10.1016/j.neuroimage.2009.12.027) | Abstract | Network parameters vary with nodal scale; compare only at the same scale |
+| van den Heuvel & Sporns, Trends Cogn Sci 17, 683–696 (2013) | [Network hubs](https://doi.org/10.1016/j.tics.2013.09.012) | Abstract | Hubs support integration and are points of vulnerability |
+| Fornito, Zalesky & Bullmore, Academic Press (2016) | [Textbook](https://doi.org/10.1016/C2012-0-06036-X) | Metadata; the Crossref record lists no authors, which were not checked against a registry | Textbook of brain network analysis |
+| Bassett & Sporns, Nat Neurosci 20, 353–364 (2017) | [Network neuroscience](https://doi.org/10.1038/nn.4502) | Metadata | Network neuroscience as a field |
+| Honey & Sporns, Hum Brain Mapp 29, 802–809 (2008) | [Lesions in cortical networks](https://doi.org/10.1002/hbm.20579) | Abstract | Lesion effects extend beyond the immediate neighbours in macaque-based models |
+| Griffis et al., Cell Rep 28, 2527–2540.e9 (2019) | [Structural disconnection after stroke](https://doi.org/10.1016/j.celrep.2019.07.100) | Abstract | In 114 stroke patients, disconnection measures explained FC disruption better than focal damage; interhemispheric disconnection linked to deficits in several domains |
+| Herbet & Duffau, Physiol Rev 100, 1181–1228 (2020) | [Meta-networking theory](https://doi.org/10.1152/physrev.00033.2019) | Abstract | Cognition from interacting distributed networks; accounts for postlesional compensation |
+| Bartolomei et al., Clin Neurophysiol 117, 2039–2049 (2006) | [Graph analysis in brain tumour patients](https://doi.org/10.1016/j.clinph.2006.05.018) | Abstract | Resting MEG, 17 patients and 15 controls: non-focal FC changes and altered small-world architecture |
+| Duffau, Cortex 58, 325–337 (2014) | [Plasticity and connectomics in glioma surgery](https://doi.org/10.1016/j.cortex.2013.08.005) | Abstract | Extensive cortical reorganisation, with white-matter connectivity as a main limit of plasticity |
+| Derks, Reijneveld & Douw, Curr Opin Oncol 26, 627–633 (2014) | [Networks and cognitive deficits](https://doi.org/10.1097/CCO.0000000000000126) | Abstract | General cognitive deficits reflected in whole-brain network disturbances; network change after resection goes with cognitive outcome |
+| Stam, Nat Rev Neurosci 15, 683–695 (2014) | [Network science of neurological disorders](https://doi.org/10.1038/nrn3801) | Abstract | Hub overload and failure as a possible common pathway |
+| Fornito, Zalesky & Breakspear, Nat Rev Neurosci 16, 159–172 (2015) | [Connectomics of brain disorders](https://doi.org/10.1038/nrn3901) | Abstract | Diaschisis, degeneracy, reserve and compensation |
+| Aerts et al., Brain 139, 3063–3083 (2016) | [Brain networks under attack](https://doi.org/10.1093/brain/aww194) | Abstract | Review of lesion studies including brain tumours; effects depend on the network position of the lesion |
+| Deco, Jirsa & McIntosh, Nat Rev Neurosci 12, 43–56 (2011) | [Resting-state dynamics](https://doi.org/10.1038/nrn2961) | Metadata | Review of dynamical models of resting-state activity |
+| Abdelnour, Voss & Raj, NeuroImage 90, 335–347 (2014) | [Network diffusion model](https://doi.org/10.1016/j.neuroimage.2013.12.039) | Abstract | A linear graph-diffusion model captured the structure–function relation better than earlier nonlinear approaches |
+
+Euler's 1736 paper on the Königsberg bridges is mentioned in the notebook for history and is not cited.
+
 ### Notebook 12 (formerly 11b) references (10 October 2026)
 
 Checked against Crossref metadata (authors, year, title, journal, volume, pages; abstract where deposited). Not added to the paper.
