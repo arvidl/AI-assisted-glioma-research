@@ -1036,3 +1036,11 @@ Same record (follow-up section). Branch `codex/paper-notebook-13`, on top of `co
 - The three new bibliography entries were written from Crossref and PubMed metadata read earlier the same day; a fresh Crossref lookup was blocked by the agent's network review and not repeated.
 - PR [#5](https://github.com/arvidl/AI-assisted-glioma-research/pull/5) CI (notebook 13) passed on every job (Ubuntu and macOS, Python 3.11–3.13) before this follow-up.
 - `make check`: Ruff lint and format passed; 263 passed.
+
+## 19 October 2026: README introduction with the talk as context
+
+Record: `docs/ai-use/2026-10-19-readme-talk-context.md`. Branch `codex/readme-talk-context`; same platform as above.
+
+- The five related repositories linked from the talk's title slide returned HTTP 200 and `public` visibility through the GitHub API; their README descriptions follow their GitHub descriptions.
+- The rendered README was not inspected on GitHub before the push; the `#notebooks` anchor matches the `## Notebooks` heading.
+- `make check`: Ruff lint and format passed; 263 passed. `make notebooks` and `make paper` were not run (no notebook, paper text, figure or number changed).

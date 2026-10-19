@@ -1,10 +1,43 @@
 # AI-assisted glioma research
 
+**Companion to the talk** *AI-assisted Glioma Research: Imaging, Tumor–Brain
+Interactions, and Cognition* (Arvid Lundervold), 2026 China–Europe Neurosurgery
+Academic Symposium, Jinan, 22–25 October 2026. A 20-minute talk can only point
+to the ideas; here they are worked out as thirteen runnable notebooks (Google
+Colab, CPU only), a tested Python package and the LaTeX source of an
+accompanying perspective paper.
+
 **Paper (in preparation):** AI-assisted glioma research: a perspective with reproducible examples in imaging and clinical evidence.
 
-Thirteen educational notebooks, a tested Python package and the LaTeX source of
-the perspective paper they accompany. Arvid Lundervold, Department of
-Biomedicine, University of Bergen, Norway.
+Arvid Lundervold, Department of Biomedicine, University of Bergen, and Mohn
+Medical Imaging and Visualization Centre, Department of Radiology, Haukeland
+University Hospital, Bergen, Norway.
+
+**Where to start, by theme of the talk**
+
+| Theme | Notebooks |
+| --- | --- |
+| Imaging: measuring and locating a tumour | 01, 09, 03 |
+| Tumour–brain interactions: growth, cells, physiology, networks | 02, 05, 06, 07, 08, 11 |
+| Cognition before and after surgery | 10, 12 |
+| AI in the research process | 04, 13 |
+
+New to the notebooks? Open [notebook 13](notebooks/13_research_workflow_examples.ipynb)
+for an overview of AI assistance from idea to reporting, or open any notebook
+from its Colab link in the [table below](#notebooks).
+
+**Related repositories** (linked from the talk's title slide):
+[high-precision-glioma-segmentation](https://github.com/arvidl/high-precision-glioma-segmentation)
+(code and manuscript sources for Lundervold et al., JMET 2026);
+[glioma-growth](https://github.com/arvidl/glioma-growth) (segmentation and
+localization of glioma growth in longitudinal multiparametric MRI);
+[brainweb_fisher_kpp](https://github.com/arvidl/brainweb_fisher_kpp) (a
+standalone BrainWeb Fisher–KPP tumour-growth explorer);
+[glioma-brain-digital-twin-public](https://github.com/arvidl/glioma-brain-digital-twin-public)
+(a single-patient proof of concept of a glioma brain digital twin: multimodal
+MRI, brain mechanics, network dynamics and cognitive outcome);
+[glioma-connectivity-and-cognition](https://github.com/arvidl/glioma-connectivity-and-cognition)
+(the sub-PAT16 connectivity and cognition case study).
 
 The scientific thread is the **glioma–brain interface**: how to measure a
 tumour on MRI, how a growth model's assumptions shape what it predicts, and how
@@ -192,8 +225,9 @@ Validation records and AI-assistance records in `docs/` dated up to 15 October
 `arvidl/AI-assisted-glioma-research-dev`, now archived. Commit hashes they cite,
 links into that repository (for example to its GitHub Actions runs) and
 mentions of talk material refer to that repository and are not publicly
-accessible. The talk and its slides were not carried over; later records cite
-commits and runs of this repository.
+accessible. The talk's slides and other talk material were not carried over
+(the talk is named above as context only); later records cite commits and runs
+of this repository.
 
 ## Licence and attribution
 

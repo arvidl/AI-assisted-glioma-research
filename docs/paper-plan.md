@@ -7,7 +7,9 @@ University of Bergen. Source in `paper/`; figures and numbers from
 
 This is a perspective with worked examples, not a completed clinical study or an
 evaluation of AI benefit. The talk that the paper first accompanied is not part
-of this repository (investigator decision, 15 October 2026).
+of this repository (investigator decision, 15 October 2026). Since 19 October
+2026 the README names the talk as context for visitors, without its slides
+(investigator decision).
 
 ## Argument
 
