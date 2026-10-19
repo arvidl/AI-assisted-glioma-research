@@ -1015,3 +1015,14 @@ Record: `docs/ai-use/2026-10-15-notebook-11-graph-theory.md`. Branch `codex/note
 - Rendering: the executed copy was converted to HTML and the glossary tables and the formulas of section 1 were inspected in a browser.
 - Not done: `make paper` (no manuscript text, figure or number changed); hosted Colab; investigator review of the new text and of the claims attributed to the added references.
 - Follow-up (same day, same platform): README rows for notebook 11, the bibliography record, and one sentence in the paper's network section citing Griffis et al. 2019 and Duffau 2014. Their BibTeX entries were taken from the Crossref records (authors, issue, pages). `make paper`: `paper/main.pdf`, 25 pages, no undefined citations or references; the PDF text contains the new sentence and both entries ([47], [48]). The paper pages were not inspected visually. `make check`: 258 passed with the committed notebooks. With the investigator's uncommitted IDE copy of notebook 03 in place (kernel display name `.venv`), the executed-copy test failed on that file's metadata; that copy is not part of this change.
+
+## 19 October 2026: notebook 13, AI assistance at each stage of a research workflow
+
+Record: `docs/ai-use/2026-10-19-notebook-13-research-workflow.md`. Branch `codex/notebook-13-research-workflow`.
+
+- Platform: macOS 27.0.1, arm64, uv 0.13.1, CPython 3.12.2 in the project `.venv`. Notebook execution and the test suite ran outside the agent sandbox, which blocks local kernel sockets.
+- `make check`: Ruff lint and format passed; 263 passed (five new tests in `tests/test_research_workflow.py`). A first run failed on a code line of notebook 13 longer than 100 characters, and then on the executed copy's link to this record before the record existed; both were fixed.
+- `make notebooks`: 01–13 executed (00 skipped as documented). Notebook 13 printed the synthetic table stated in its text (4.22 mL reference; shifted sphere Dice 0.56, volume error +0%; enlarged sphere Dice 0.86, +33%), the record check (repository record valid, constructed copy refused: "A human decision requires a named reviewer.") and the notice that the reference check was not run. The exercise in section 7 was checked: `radius_mm=8` gives Dice 0.82 and +43%.
+- Only notebook 13's executed copy was exported (`scripts/export_executed_notebooks.py 13_research_workflow_examples.ipynb`; 1.0 MB, no local paths); the other executed copies were left unchanged. Figure 1 and a highlighted stage figure were inspected as images.
+- References: the notebook's reference-check cell, run once with `CHECK_DOIS = True` outside the notebook run, found all 24 DOIs at doi.org with the cited first author and year.
+- Not done: hosted Colab; `make paper` (no manuscript text, figure or number changed; the paper still describes twelve notebooks); investigator, clinical or ethics review of the text.

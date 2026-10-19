@@ -1,7 +1,7 @@
 # Repository guidance
 
 This is a perspective paper with reproducible examples and an educational
-codebase of twelve notebooks (01–12, plus the Colab quickstart 00). Read
+codebase of thirteen notebooks (01–13, plus the Colab quickstart 00). Read
 README.md and docs/paper-plan.md before changing scope. The paper title is
 stated there.
 
@@ -20,7 +20,7 @@ stated there.
 - Keep data, weights, credentials, patient details and numerical/figure inputs
   out of Git. The investigator authorized tracking:
   - paper/main.pdf, as a curated export rebuilt only with make paper;
-  - executed copies of notebooks 01–12 in notebooks/executed/, with their
+  - executed copies of notebooks 01–13 in notebooks/executed/, with their
     licence notes, regenerated only with make executed-notebooks after a
     notebook changes;
   - the CC0-derived sub-PAT16 matrices and provenance in data/derived/sub-PAT16/

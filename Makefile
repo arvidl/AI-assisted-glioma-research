@@ -70,7 +70,7 @@ check:
 notebooks:
 	$(UV) run --locked --group notebooks python scripts/check_notebooks.py
 
-# Investigator-authorized tracked executed copies of notebooks 01-12 in
+# Investigator-authorized tracked executed copies of notebooks 01-13 in
 # notebooks/executed/; needs the fetched inputs of 01, 03, 09 and 10 and the
 # local CANTAB inputs of 10 and 12 (see docs/data.md).
 executed-notebooks: notebooks

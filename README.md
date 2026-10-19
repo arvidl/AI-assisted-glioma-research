@@ -2,7 +2,7 @@
 
 **Paper (in preparation):** AI-assisted glioma research: a perspective with reproducible examples in imaging and clinical evidence.
 
-Twelve educational notebooks, a tested Python package and the LaTeX source of
+Thirteen educational notebooks, a tested Python package and the LaTeX source of
 the perspective paper they accompany. Arvid Lundervold, Department of
 Biomedicine, University of Bergen, Norway.
 
@@ -31,7 +31,7 @@ working repository; changes arrive through reviewed pull requests.
 | Part | Status |
 | --- | --- |
 | Python package `glioma_ai`, tests, notebook checker | Published (all modules) |
-| Notebooks 00–12 and executed copies of 01–12 | Published |
+| Notebooks 00–13 and executed copies of 01–13 | Published |
 | `data/derived/sub-PAT16/` (notebook 12's matrices; upstream QC not reviewed) | Published |
 | Paper: LaTeX source, bibliography and built PDF in `paper/` | In preparation |
 | Data release `lumiere-p048-prepared-v1` (notebook 03) | Published (see below) |
@@ -55,14 +55,17 @@ working repository; changes arrive through reviewed pull requests.
 | 10 | Cognition before and after brain-tumour surgery: the CANTAB tests, the Brain Tumor Connectomics cohort (OpenNeuro ds001226/ds002080) as group summaries and the sub-PAT16 case; cross-source agreement, an audit of an AI-generated infographic and its verifiable reconstruction, measurement precision, reliable change against retested controls with bootstrap, forecasting baselines and a proposed study; three tracks (cognitive neuroscience, clinical, modeling); interactive explorers | [executed](notebooks/executed/10_cantab_cognitive_outcomes.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/10_cantab_cognitive_outcomes.ipynb) |
 | 11 | Tumor in the network: a graph-theory primer (walks, efficiency, spectra, Neumann series) and its use in neuroscience and neuro-oncology; a constructed structural network on the notebook 02 phantom, tract disconnection by the tissue-guided tumor, a constructed resection, and exact functional connectivity of a linear model; cognitive-neuroscience, clinical and modeling tracks; interactive explorer. No patient files | [executed](notebooks/executed/11_network_disconnection.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/11_network_disconnection.ipynb) |
 | 12 | Can a virtual resection predict one patient's post-operative brain network? sub-PAT16 (OpenNeuro ds001226/ds002080, CC0) structural and functional connectivity before and after surgery, structure–function agreement of notebook 11's model, a virtual resection of tumour-crossing streamlines against the measured post-operative network, a size-and-location resection explorer with an assumed (unsourced) map to CANTAB domains, the patient's CANTAB scores, and a section marked as speculation on connectomics and analog cognition; clinical and modelling tracks; upstream QC not reviewed, descriptive only | [executed](notebooks/executed/12_patient_connectome.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/12_patient_connectome.ipynb) |
+| 13 | From idea to reporting: AI assistance at each of nine stages of a research workflow (idea, literature review, research questions, study design, applications, implementation, data analysis, reporting, further studies) in glioma research; AI support, collaborator and agent modes; published examples, actual examples from this repository's development, a running teaching scenario, pitfalls, checks and example prompts; a synthetic Dice-versus-volume example and an optional DOI check. Mainly text; no patient data | [executed](notebooks/executed/13_research_workflow_examples.ipynb) · [Colab](https://colab.research.google.com/github/arvidl/AI-assisted-glioma-research/blob/main/notebooks/13_research_workflow_examples.ipynb) |
 
 The executed copies show figures on GitHub; animations and sliders need a
-running kernel. In Colab, notebooks 01–12 clone this repository in their first
+running kernel. In Colab, notebooks 01–13 clone this repository in their first
 cell, notebook 03 fetches the data release below when you run its Colab
 cell, notebooks 01 and 09 fetch the published figures, and notebook 10 fetches the
 pinned OpenNeuro participant tables (CC0) when you run its Colab cell. Notebook 11
 downloads nothing. Notebook 12 reads the sub-PAT16 matrices that come with the clone;
-its CANTAB cell needs local inputs and shows a notice in Colab. See the [notebook map](notebooks/README.md).
+its CANTAB cell needs local inputs and shows a notice in Colab. Notebook 13
+downloads nothing; its optional reference check queries doi.org only when
+switched on. See the [notebook map](notebooks/README.md).
 
 ## Run locally
 

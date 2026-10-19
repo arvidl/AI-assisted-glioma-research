@@ -23,6 +23,7 @@ regenerates them and refuses runs with local paths or missing inputs.
 | 10 | Cognition before and after brain-tumour surgery: the six CANTAB measures with units and direction; the Brain Tumor Connectomics participant tables (OpenNeuro ds001226 and ds002080, CC0, SHA-256 pinned) shown only as group summaries, plus the sub-PAT16 case; a column audit; cross-source agreement with the digital-twin table and the OSF release; an AI-generated slide audited against the source and reconstructed verifiably; precision; exploratory reliable change against ten retested controls with three indices and a bootstrap; leave-one-out forecasting baselines; mechanisms and a proposed study; cognitive-neuroscience, clinical and modeling tracks with exercises; explorers |
 | 11 | Tumor in the network: a graph-theory primer (walks, efficiency, spectra, Neumann series) and its use in neuroscience and neuro-oncology; a constructed structural network on the notebook 02 phantom; exact functional connectivity of a linear network model, split by walk length, with simulation controls; tract disconnection by the tissue-guided tumor; a constructed resection; cognitive-neuroscience, clinical and modeling tracks, with a glossary, exercises and an introduction to the real-data companion; network explorer. No patient files |
 | 12 | Real-data companion of 11, asking whether a virtual resection can predict one patient's post-operative brain network: sub-PAT16 (OpenNeuro ds001226/ds002080, CC0) pre- and post-operative connectomes from small tracked matrices; structure–function agreement of the same linear model with a shuffled-region null; homotopic pairs; a virtual resection of tumour-crossing streamlines against the measured post-operative network with a placement null; a spherical resection explorer calibrated against the measured tumour-crossing weight, with an assumed (unsourced) map from CANTAB measures to regions; the patient's CANTAB scores when local inputs are configured; a section marked as speculation on connectomics, travelling waves and analog cognition; references; upstream QC not reviewed, descriptive only |
+| 13 | From idea to reporting: the nine stages of the investigator's research-workflow slide (idea, literature review, research questions, study design, applications with ethics approval and financing, implementation, data analysis, reporting, further studies and teaching), each with what happens, where AI can help as support, collaborator or agent, a published glioma example, an actual example from this repository's development, a running teaching scenario (proposed work), pitfalls and checks, and an exercise or example prompt; the workflow redrawn in code with the notebooks that illustrate each stage; a synthetic Dice-versus-volume example; a record-validator check; an optional doi.org reference check; summary table, glossary and references. Mainly text; no patient data |
 
 Notebooks 04–09
 have a clinical/biological (in 08 and 09: neuroscience and clinical) and a
@@ -31,7 +32,7 @@ has three tracks: cognitive neuroscience, clinical and modeling. Notebook 11
 has the same three tracks. Notebook 12, the real-data companion, has a clinical and a
 modelling track and a glossary.
 
-**Google Colab.** Notebooks 01–12 can be opened directly in Colab: their first
+**Google Colab.** Notebooks 01–13 can be opened directly in Colab: their first
 code cell clones this repository and puts its package on the path, using
 Colab's own NumPy, Matplotlib and ipywidgets rather than the locked versions.
 Notebooks 01 and 09 have a Colab-only cell that downloads the published
@@ -42,7 +43,8 @@ cell that downloads the pinned OpenNeuro participant tables and the sub-PAT16
 session table (`make btc-fetch` locally); its OSF cross-check needs local
 inputs. Notebook 11 constructs its network in code and downloads nothing. Notebook 12 reads the
 sub-PAT16 matrices in `data/derived/sub-PAT16/`, which come with the clone; its CANTAB
-cell needs local inputs and shows a notice in Colab. Notebook 00 instead runs
+cell needs local inputs and shows a notice in Colab. Notebook 13 downloads nothing; its
+optional reference check queries doi.org only when switched on. Notebook 00 instead runs
 everything in the locked environment.
 
 **Notebook 03 data.** Locally, run `make lumiere-bundle-fetch` and set

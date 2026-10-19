@@ -3,7 +3,7 @@
 Reads the copies that `make notebooks` wrote to outputs/notebooks/, removes
 volatile execution metadata, adjusts markdown links that leave notebooks/ to
 the deeper folder, and refuses outputs that contain local paths.
-Every numbered notebook present is exported (01-12 here, fewer in a staged
+Every numbered notebook present is exported (01-13 here, fewer in a staged
 public snapshot); 00 (Colab bootstrap) never is. Notebooks 03, 09, 10 and 12
 show openly licensed real or published data with their licence notes; a run in
 which their local inputs were absent is refused, so tracked figures are never
