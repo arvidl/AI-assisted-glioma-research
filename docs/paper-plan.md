@@ -33,10 +33,12 @@ observations; synthetic constructions; hypotheses; proposed work.
 | Physiology at the interface | 07, 08 | Potassium clearance; potential and field |
 | Networks and cognition | 11, 12, 10 | Constructed disconnection and resection; sub-PAT16 connectome, virtual resection and sphere scenario; CANTAB cohort |
 | Auditing AI-assisted research | 04 | Table of checks and what each catches |
-| Discussion and research agenda; conclusion | — | — |
+| Discussion and research agenda; conclusion | 13 | One paragraph placing the examples in the nine-stage research workflow; no figure, no number macros |
 | Appendix: reproduction | all | Commands and inputs |
 
-Each notebook subsection states its question, what was constructed or observed,
+Notebook 13 is a guide without new results, so it has a row in the notebook
+table and a Discussion paragraph rather than a subsection (investigator
+decision, 19 October 2026). Each notebook subsection states its question, what was constructed or observed,
 the figure, key numbers (as generated macros), limits, and the five
 contribution fields (question, AI contribution, investigator choices,
 verification, evidence status).

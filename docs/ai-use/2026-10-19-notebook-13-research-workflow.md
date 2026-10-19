@@ -16,4 +16,10 @@
 - Verification: recorded in `docs/validation.md`.
 - Decision: pending investigator review; branch `codex/notebook-13-research-workflow`.
 
+## Follow-up: notebook 13 in the paper (same day)
+
+- Request: asked whether notebook 13 belongs in the paper, the assistant recommended a light inclusion (a row in the notebook table and one Discussion paragraph, no subsection, figure or number macros). The investigator asked for these edits on a new `codex/` branch, `make paper` and `make check`, a coherence check of READMEs and documentation, and a commit and push to `main`.
+- Contribution: `paper/main.tex` now says thirteen notebooks in the abstract, introduction, table caption and conclusion, adds a notebook 13 row (evidence "published; records; proposed", placed in the Discussion, which gained the label `sec:discussion`), a Discussion paragraph on the nine stages and three modes with two observations from this project's records and three citations (Walters and Wilder 2023, Kapoor and Narayanan 2023, Messeri and Crockett 2024, added to `paper/references.bib`), Cursor sessions of 15 and 19 October in the AI-assistance declaration, and executed copies 01–13 in the reproduction appendix. `docs/paper-plan.md`, `docs/bibliography-check.md`, `docs/ai-workflow.md` and the notebook map were aligned. The investigator's IDE outputs in the notebook 13 source (no cell text changed) were set aside and the committed version restored.
+- Not done: investigator review of the new paragraph; a fresh Crossref lookup for the three bibliography entries (blocked by the agent's network review; the entries use metadata read earlier that day).
+
 This is a retrospective development summary, not a captured verbatim dialogue.

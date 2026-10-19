@@ -1026,3 +1026,13 @@ Record: `docs/ai-use/2026-10-19-notebook-13-research-workflow.md`. Branch `codex
 - Only notebook 13's executed copy was exported (`scripts/export_executed_notebooks.py 13_research_workflow_examples.ipynb`; 1.0 MB, no local paths); the other executed copies were left unchanged. Figure 1 and a highlighted stage figure were inspected as images.
 - References: the notebook's reference-check cell, run once with `CHECK_DOIS = True` outside the notebook run, found all 24 DOIs at doi.org with the cited first author and year.
 - Not done: hosted Colab; `make paper` (no manuscript text, figure or number changed; the paper still describes twelve notebooks); investigator, clinical or ethics review of the text.
+
+### Notebook 13 in the paper
+
+Same record (follow-up section). Branch `codex/paper-notebook-13`, on top of `codex/notebook-13-research-workflow`; same platform, with Latexmk and TeX Live at `/Library/TeX/texbin`.
+
+- Before editing, the notebook 13 source held outputs from the investigator's IDE run, the kernel display name `.venv` and an empty trailing cell, with no cell text changed; they were set aside and the committed version restored with `git restore`.
+- `make paper`: every asset group built (`paper/generated/assets.json`: synthetic, cohort, LUMIERE, CANTAB, network and connectome built; published figures present); `paper/main.pdf`, 26 pages, no undefined citations or references. The PDF text contains the new abstract sentence, "thirteen notebooks", table row 13, the Discussion paragraph, the conclusion clause, "01–13" in the appendix and references [68]–[70]; the table page and the Discussion page were inspected as images. Every cited key is in `paper/references.bib` and every entry is cited.
+- The three new bibliography entries were written from Crossref and PubMed metadata read earlier the same day; a fresh Crossref lookup was blocked by the agent's network review and not repeated.
+- PR [#5](https://github.com/arvidl/AI-assisted-glioma-research/pull/5) CI (notebook 13) passed on every job (Ubuntu and macOS, Python 3.11–3.13) before this follow-up.
+- `make check`: Ruff lint and format passed; 263 passed.

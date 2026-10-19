@@ -30,6 +30,10 @@ The historical neuroglial record is preserved unchanged. The current framing
 revision has its own summary in `ai-use/2026-10-06-explicit-ai-roles.md` and
 machine-readable record in `ai-records/2026-10-06-explicit-ai-roles.json`.
 
+Notebook 13 places these practices in a nine-stage research workflow, from
+idea to further studies, and distinguishes AI support, collaborator and agent
+modes; its examples are taken from the records cited here.
+
 No productivity, scientific-quality, or clinical-utility effect was measured.
 [The proposed benefit protocol](ai-benefit-evaluation.md) specifies matched
 tasks, counterbalanced conditions, capped quality-qualified time and independent

@@ -30,7 +30,8 @@ have a clinical/biological (in 08 and 09: neuroscience and clinical) and a
 modeling track and checked references; 05–10 also have a glossary. Notebook 10
 has three tracks: cognitive neuroscience, clinical and modeling. Notebook 11
 has the same three tracks. Notebook 12, the real-data companion, has a clinical and a
-modelling track and a glossary.
+modelling track and a glossary. Notebook 13, a guide to AI assistance across the research
+workflow, has one text for all readers, a glossary and checked references.
 
 **Google Colab.** Notebooks 01–13 can be opened directly in Colab: their first
 code cell clones this repository and puts its package on the path, using
