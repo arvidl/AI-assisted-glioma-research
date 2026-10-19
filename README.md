@@ -1,6 +1,6 @@
 # AI-assisted glioma research
 
-**Companion to the talk** *AI-assisted Glioma Research: Imaging, Tumor–Brain
+**Companion to the talk** [[slides](https://docs.google.com/presentation/d/e/2PACX-1vSWp_Tyib7-gBi06ZyX3ZOEDc0Y1JSJIUvDtN6k12fx66-nc_bZIq411e1Zf_i6nIjDNd54udA9EXYo/pub?start=false&loop=false&delayms=3000)] *AI-assisted Glioma Research: Imaging, Tumor–Brain
 Interactions, and Cognition* (Arvid Lundervold), 2026 China–Europe Neurosurgery
 Academic Symposium, Jinan, 22–25 October 2026. A 20-minute talk can only point
 to the ideas; here they are worked out as thirteen runnable notebooks (Google
